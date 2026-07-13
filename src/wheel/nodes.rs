@@ -239,6 +239,47 @@ impl Domain {
         ALL_DOMAINS
     }
 
+    /// Alias for `name_lower()` — backward compatibility.
+    #[inline]
+    pub fn full_name_lower(self) -> &'static str {
+        self.name_lower()
+    }
+
+    /// Map an astrology `Sign` to its ruling `Domain` via planetary rulership.
+    pub fn from_sign(sign: crate::astrology::Sign) -> Self {
+        use crate::astrology::Sign;
+        match sign {
+            Sign::Aries => Domain::Mangala,
+            Sign::Taurus => Domain::Shukra,
+            Sign::Gemini => Domain::Budha,
+            Sign::Cancer => Domain::Chandra,
+            Sign::Leo => Domain::Surya,
+            Sign::Virgo => Domain::Budha,
+            Sign::Libra => Domain::Shukra,
+            Sign::Scorpio => Domain::Mangala,
+            Sign::Sagittarius => Domain::Brihaspati,
+            Sign::Capricorn => Domain::Shani,
+            Sign::Aquarius => Domain::Shani,
+            Sign::Pisces => Domain::Brihaspati,
+        }
+    }
+
+    /// Inherent Guna of this graha.
+    pub fn guna(self) -> crate::astrology::Guna {
+        use crate::astrology::Guna;
+        match self {
+            Domain::Surya => Guna::Sattva,
+            Domain::Chandra => Guna::Sattva,
+            Domain::Mangala => Guna::Rajas,
+            Domain::Budha => Guna::Rajas,
+            Domain::Brihaspati => Guna::Sattva,
+            Domain::Shukra => Guna::Rajas,
+            Domain::Shani => Guna::Tamas,
+            Domain::Rahu => Guna::Tamas,
+            Domain::Ketu => Guna::Sattva,
+        }
+    }
+
     /// Parse a domain from a string (name, symbol, or alias).
     pub fn parse(s: &str) -> Option<Self> {
         let lower = s.to_ascii_lowercase();

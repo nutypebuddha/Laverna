@@ -30,6 +30,40 @@ pub fn compute_intent_score(keywords: &[String], intent_markers: &[&str]) -> f64
     matches as f64 / keywords.len() as f64
 }
 
+/// NLP context — pre-tokenized query from Zanpakuto preprocessing.
+///
+/// Holds the tokenized, stemmed tokens that the descent engine processes.
+#[derive(Debug, Clone)]
+pub struct NlpContext {
+    /// Tokenized query terms (already cleaned and stemmed).
+    pub tokens: Vec<String>,
+    /// Original raw query text.
+    pub raw_query: String,
+}
+
+impl NlpContext {
+    /// Create a new NLP context from a raw query string.
+    pub fn from_query(query: &str) -> Self {
+        let normalized = normalize_query_text(query);
+        let tokens: Vec<String> = extract_keywords(&normalized)
+            .into_iter()
+            .map(|s| s.to_lowercase())
+            .collect();
+        NlpContext {
+            tokens,
+            raw_query: query.to_string(),
+        }
+    }
+
+    /// Create from pre-tokenized list.
+    pub fn from_tokens(tokens: Vec<String>) -> Self {
+        NlpContext {
+            tokens,
+            raw_query: String::new(),
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

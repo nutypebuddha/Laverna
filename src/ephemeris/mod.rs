@@ -51,6 +51,88 @@ pub fn longitude_to_sign_index(ecliptic_longitude: f64) -> u8 {
     (normalized / 30.0) as u8
 }
 
+/// Computed position of a graha at a moment in time.
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
+pub struct GrahaPosition {
+    /// Which graha.
+    pub graha: crate::wheel::Domain,
+    /// Tropical ecliptic longitude in degrees (0–360).
+    pub tropical: f64,
+    /// Sidereal longitude in degrees (tropical − ayanamsa).
+    pub sidereal: f64,
+    /// Rashi (sidereal zodiac sign) computed from sidereal longitude.
+    pub rashi: crate::astrology::Rashi,
+    /// Nakshatra (lunar mansion) computed from sidereal longitude.
+    pub nakshatra: crate::astrology::Nakshatra,
+    /// Pada (quarter) within the nakshatra (1–4).
+    pub pada: u8,
+}
+
+/// Pure function: approximate Lahiri ayanamsa for a Julian Day.
+fn lahiri_ayanamsa(jd: f64) -> f64 {
+    let t = (jd - 2451545.0) / 36525.0;
+    // Lahiri ayanamsa approximation (Meeus)
+    23.85 + 0.01396 * t * 57.29577951
+}
+
+/// Pure function: map a sidereal longitude to a Rashi.
+fn longitude_to_rashi(sidereal_deg: f64) -> crate::astrology::Rashi {
+    let normalized = sidereal_deg.rem_euclid(360.0);
+    let index = (normalized / 30.0) as usize;
+    crate::astrology::Rashi::from_index(index)
+}
+
+/// Pure function: map a sidereal longitude to a Nakshatra (27 mansions).
+fn longitude_to_nakshatra(sidereal_deg: f64) -> crate::astrology::Nakshatra {
+    let normalized = sidereal_deg.rem_euclid(360.0);
+    let index = (normalized / (360.0 / 27.0)) as usize;
+    crate::astrology::Nakshatra::from_index(index)
+}
+
+/// Pure function: compute pada (1–4) within a nakshatra.
+fn compute_pada(sidereal_deg: f64) -> u8 {
+    let normalized = sidereal_deg.rem_euclid(360.0);
+    let nak_span = 360.0 / 27.0;
+    let within_nak = normalized % nak_span;
+    ((within_nak / (nak_span / 4.0)) as u8) + 1
+}
+
+/// Compute all 9 graha positions for a given Julian Day.
+pub fn all_graha_positions(jd: f64) -> Vec<GrahaPosition> {
+    let ayanamsa = lahiri_ayanamsa(jd);
+    use crate::wheel::Domain;
+    Domain::all()
+        .iter()
+        .map(|&graha| {
+            // Map graha to planet index for VSOP87
+            let planet_index = match graha {
+                Domain::Surya => 2,      // Sun (geocentric = Earth at 2)
+                Domain::Chandra => 2,    // Moon (approximate from Earth)
+                Domain::Mangala => 3,    // Mars
+                Domain::Budha => 0,      // Mercury
+                Domain::Brihaspati => 4, // Jupiter
+                Domain::Shukra => 1,     // Venus
+                Domain::Shani => 5,      // Saturn
+                Domain::Rahu => 7,       // North Node (use Neptune approx)
+                Domain::Ketu => 6,       // South Node (use Uranus approx)
+            };
+            let tropical = compute_vsop87_approximation(jd, planet_index);
+            let sidereal = (tropical - ayanamsa).rem_euclid(360.0);
+            let rashi = longitude_to_rashi(sidereal);
+            let nakshatra = longitude_to_nakshatra(sidereal);
+            let pada = compute_pada(sidereal);
+            GrahaPosition {
+                graha,
+                tropical,
+                sidereal,
+                rashi,
+                nakshatra,
+                pada,
+            }
+        })
+        .collect()
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

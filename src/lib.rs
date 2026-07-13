@@ -28,15 +28,23 @@ pub mod prelude {
         PlanetaryRuler, Rashi, Sign, SignAspect, VedicClassification, VedicElement,
     };
     pub use crate::bankai::{aggregate_confidence_scores, compute_confidence_score};
-    pub use crate::chart::{compute_planetary_aspect, determine_planet_house};
-    pub use crate::descent::{lowercase_string, tokenize_descent};
+    pub use crate::chart::{compute_planetary_aspect, determine_planet_house, ChartSnapshot};
+    pub use crate::descent::{
+        lowercase_string, tokenize_descent, DescentEngine, DescentLayer, SettledToken,
+        SettlingMatrix,
+    };
     pub use crate::economy::budget::Budget;
     pub use crate::economy::conversation::ConversationTracker;
     pub use crate::economy::cost::CostTracker;
     pub use crate::economy::tray::BallEconomy;
-    pub use crate::entity::{compute_entity_hash, validate_entity_id};
-    pub use crate::ephemeris::{compute_vsop87_approximation, julian_day_to_date};
-    pub use crate::formula::{extract_formula_domain, validate_formula_id};
+    pub use crate::entity::{
+        compute_entity_hash, validate_entity_id, DynamicEntity, Entity, EntityRegistry,
+        EventRegistry, ShikaiFormRegistry,
+    };
+    pub use crate::ephemeris::{compute_vsop87_approximation, julian_day_to_date, GrahaPosition};
+    pub use crate::formula::{
+        extract_formula_domain, validate_formula_id, Formula, FormulaRegistry, FormulaType,
+    };
     pub use crate::gyro::{compute_next_position, map_graha_to_position};
     pub use crate::primitive::arithmetic::{add_unsigned_8, full_adder, half_adder};
     pub use crate::primitive::nand::{and_gate, nand_gate, not_gate, or_gate, xor_gate};
@@ -47,5 +55,5 @@ pub mod prelude {
     pub use crate::wheel::{
         CompositionAspect, Domain, UnderstandingAxis, WheelError, WheelGraph, ALL_DOMAINS,
     };
-    pub use crate::zanpakuto::{extract_keywords, normalize_query_text};
+    pub use crate::zanpakuto::{extract_keywords, normalize_query_text, NlpContext};
 }

@@ -50,6 +50,56 @@ pub fn classify_aspect_by_angle(aspect_angle: f64) -> &'static str {
     }
 }
 
+/// A real astronomical aspect between two grahas from their angular separation.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, serde::Serialize, serde::Deserialize)]
+pub enum AstroAspect {
+    Conjunction,
+    Sextile,
+    Square,
+    Trine,
+    Opposition,
+}
+
+/// A complete sky snapshot at a moment in time.
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
+pub struct ChartSnapshot {
+    /// Julian Day of this snapshot.
+    pub julian_day: f64,
+    /// All 9 graha positions computed from ephemeris.
+    pub graha_positions: Vec<crate::ephemeris::GrahaPosition>,
+    /// Lagna (ascendant) rashi — computed if latitude/longitude are set.
+    pub lagna: Option<crate::astrology::Rashi>,
+    /// Human-readable label (e.g. "birth chart for X").
+    pub label: Option<String>,
+}
+
+impl ChartSnapshot {
+    /// Create a new snapshot for the given Julian Day.
+    pub fn new(jd: f64) -> Self {
+        let graha_positions = crate::ephemeris::all_graha_positions(jd);
+        ChartSnapshot {
+            julian_day: jd,
+            graha_positions,
+            lagna: None,
+            label: None,
+        }
+    }
+
+    /// Set a label for this snapshot.
+    pub fn with_label(mut self, label: &str) -> Self {
+        self.label = Some(label.to_string());
+        self
+    }
+
+    /// Get the position of a specific graha.
+    pub fn graha_position(
+        &self,
+        graha: crate::wheel::Domain,
+    ) -> Option<&crate::ephemeris::GrahaPosition> {
+        self.graha_positions.iter().find(|p| p.graha == graha)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
