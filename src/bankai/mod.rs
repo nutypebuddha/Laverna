@@ -1,3 +1,7 @@
+pub mod diagnostics;
+pub mod protocol;
+pub mod verifier;
+
 /// Pure function: Compute confidence score from evidence count.
 pub fn compute_confidence_score(evidence_count: u32, total_requirements: u32) -> f64 {
     if total_requirements == 0 {

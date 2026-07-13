@@ -2,6 +2,7 @@ use serde::{Deserialize, Serialize};
 use std::fmt;
 
 mod aspects;
+pub mod barnum;
 mod classifier;
 mod constants;
 mod elements;

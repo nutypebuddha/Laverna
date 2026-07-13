@@ -23,9 +23,15 @@ pub mod cli;
 
 pub mod prelude {
     pub use crate::asauchi::{compute_aspect, is_adjacent, is_conjunction, validate_graha_index};
+    pub use crate::astrology::barnum::{analyze_barnum, passes_barnum_filter};
     pub use crate::astrology::{
         AtomClassification, ChangeSorter, Element, Graha, Guna, House, Modality, Nakshatra,
         PlanetaryRuler, Rashi, Sign, SignAspect, VedicClassification, VedicElement,
+    };
+    pub use crate::bankai::diagnostics::{Diagnostic, DiagnosticGate, DiagnosticReport, Severity};
+    pub use crate::bankai::protocol::RefinementSession;
+    pub use crate::bankai::verifier::{
+        verify_expression, verify_proposal, LlmProposal, ProposalKind,
     };
     pub use crate::bankai::{aggregate_confidence_scores, compute_confidence_score};
     pub use crate::chart::{compute_planetary_aspect, determine_planet_house, ChartSnapshot};
