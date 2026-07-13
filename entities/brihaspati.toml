@@ -1,0 +1,113 @@
+# Entities on Sagittarius (History & Anthropology)
+
+[[entity]]
+id = "dsm_history"
+name = "DSM Evolution"
+domain = "brihaspati"
+description = "Historical evolution of psychiatric diagnosis: DSM-I (1952) through DSM-5-TR (2022)."
+tags = ["history", "psychiatry", "classification", "DSM"]
+properties = { editions_count = 5.0, categorical_to_dimensional = 0.4, reliability_improvement = 0.6 }
+
+[[entity]]
+id = "anti_psychiatry"
+name = "Anti-Psychiatry Movement"
+domain = "brihaspati"
+description = "Historical movement: critics of psychiatric diagnosis and treatment (Szasz, Laing, Foucault)."
+tags = ["history", "psychiatry", "critique", "social"]
+properties = { institutional_critique = 0.8, patient_autonomy_focus = 0.7, stigma_awareness = 0.75 }
+
+[[entity]]
+id = "asylum_history"
+name = "History of Psychiatric Institutions"
+domain = "brihaspati"
+description = "Evolution from asylums to community mental health. Deinstitutionalization movement."
+tags = ["history", "psychiatry", "institutions", "social"]
+properties = { institutionalization_rate = 0.6, community_care_shift = 0.8, bed_count_reduction_since_1950s = 0.85 }
+
+[[entity]]
+id = "psychopharmacology_history"
+name = "History of Psychopharmacology"
+domain = "brihaspati"
+description = "Historical development: chlorpromazine (1952) through SSRIs, atypical antipsychotics, and novel mechanisms."
+tags = ["history", "psychiatry", "pharmacology", "discovery"]
+properties = { first_generation_impact = 0.9, second_generation_improvement = 0.6, mechanism_discovery_rate = 0.7 }
+
+[[entity]]
+id = "freudian_psychoanalysis"
+name = "Freudian Psychoanalysis"
+domain = "brihaspati"
+description = "Historical school: Freud's psychoanalytic theory. Unconscious mind, defense mechanisms, talk therapy origins."
+tags = ["history", "psychotherapy", "psychoanalysis", "theory"]
+properties = { unconscious_mind_emphasis = 0.9, defense_mechanism_framework = 0.85, empirical_support = 0.3 }
+
+[[entity]]
+id = "community_mental_health_act"
+name = "Community Mental Health Movement"
+domain = "brihaspati"
+description = "Historical policy shift: from institutional to community-based care. CMHC Act (1963) and global deinstitutionalization."
+tags = ["history", "policy", "deinstitutionalization", "community_care"]
+properties = { community_based_shift = 0.85, funding_adequacy = 0.4, continuity_of_care = 0.55 }
+
+[[entity]]
+id = "schizoaffective_disorder"
+name = "Schizoaffective Disorder"
+domain = "brihaspati"
+description = "DSM-5 diagnosis: uninterrupted psychotic symptoms with mood episodes (depressive or manic)"
+tags = ["psychiatry", "mood", "psychosis", "DSM-5", "diagnosis"]
+properties = { mood_instability = 0.85, reality_distortion = 0.7, cognitive_disorganization = 0.6, affective_intensity = 0.8 }
+
+[[entity]]
+id = "bipolar_disorder"
+name = "Bipolar I Disorder"
+domain = "brihaspati"
+description = "DSM-5 diagnosis: manic episodes, often with depressive episodes"
+tags = ["psychiatry", "mood", "mania", "DSM-5", "diagnosis"]
+properties = { mood_instability = 0.9, energy_shift = 0.85, reality_distortion = 0.3, affective_intensity = 0.9 }
+
+[[entity]]
+id = "schizophrenia"
+name = "Schizophrenia"
+domain = "brihaspati"
+description = "DSM-5 diagnosis: delusions, hallucinations, disorganized speech, negative symptoms"
+tags = ["psychiatry", "psychosis", "DSM-5", "diagnosis"]
+properties = { reality_distortion = 0.9, cognitive_disorganization = 0.75, mood_instability = 0.3, affective_intensity = 0.2 }
+
+[[entity]]
+id = "major_depression"
+name = "Major Depressive Disorder"
+domain = "brihaspati"
+description = "DSM-5 diagnosis: persistent depressed mood, anhedonia, cognitive impairment"
+tags = ["psychiatry", "mood", "depression", "DSM-5", "diagnosis"]
+properties = { mood_instability = 0.4, valence = -0.8, arousal = 0.2, affective_intensity = 0.6 }
+
+[[entity]]
+id = "anxiety_disorder"
+name = "Generalized Anxiety Disorder"
+domain = "brihaspati"
+description = "DSM-5 diagnosis: excessive worry, hyperarousal, difficulty concentrating"
+tags = ["psychiatry", "anxiety", "DSM-5", "diagnosis"]
+properties = { arousal = 0.85, valence = -0.4, mood_instability = 0.5, affective_intensity = 0.7 }
+
+[[entity]]
+id = "ptsd"
+name = "Post-Traumatic Stress Disorder"
+domain = "brihaspati"
+description = "DSM-5 diagnosis: re-experiencing, avoidance, hyperarousal after trauma"
+tags = ["psychiatry", "anxiety", "trauma", "DSM-5", "diagnosis"]
+properties = { arousal = 0.9, valence = -0.7, mood_instability = 0.75, reality_distortion = 0.3 }
+
+[[entity]]
+id = "dopamine"
+name = "Dopamine System"
+domain = "brihaspati"
+description = "Neurotransmitter system: reward, motivation, motor control. Dysregulated in psychosis."
+tags = ["neuroscience", "neurotransmitter", "psychopharmacology"]
+properties = { reward_sensitivity = 0.8, motor_activation = 0.6, cognitive_focus = 0.7 }
+
+[[entity]]
+id = "serotonin"
+name = "Serotonin System"
+domain = "brihaspati"
+description = "Neurotransmitter system: mood, appetite, sleep. Target of SSRIs."
+tags = ["neuroscience", "neurotransmitter", "psychopharmacology"]
+properties = { mood_regulation = 0.85, appetite_effect = 0.5, sleep_regulation = 0.7 }

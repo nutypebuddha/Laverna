@@ -1,0 +1,184 @@
+# Navagraha — The 9 Vedic Planetary Deities
+# Each graha entity carries full Vedic classification for gyroscopic settling.
+#
+# The `domain` field is set to the owning zodiac node for wheel placement.
+# Vedic-specific fields (graha, guna, tattva, etc.) are used by the Vedic
+# classification layer to compute guna balance, bhūta (element), etc.
+
+# ─── Surya (Sun) — Atma Karaka, soul indicator ───────────────────────────────
+
+[[entity]]
+id = "surya"
+name = "Surya"
+domain = "surya"
+description = "Navagraha: Sun. Atma Karaka (soul significator). Kingship, vitality, self, authority. Rules Leo."
+tags = ["navagraha", "graha", "sun", "luminary", "king", "atma_karaka"]
+properties = { vitality = 0.95, leadership = 0.9, self_expression = 0.88, authority = 0.85 }
+constants = { mass_kg = 1.9885e30, radius_m = 6.957e8, luminosity_w = 3.828e26, surface_temp_k = 5778 }
+graha = "surya"
+rashi = "simha"
+guna = "sattva"
+tattva = "agni"
+purushartha = "dharma"
+day = "sunday"
+ruled_nakshatras = ["krittika", "uttara_phalguni", "uttara_shadha"]
+mantra = "ॐ ह्रां ह्रीं ह्रौं सः सूर्याय नमः"
+bija = "ह्रां"
+
+# ─── Chandra (Moon) — Manas Karaka, mind indicator ───────────────────────────
+
+[[entity]]
+id = "chandra"
+name = "Chandra"
+domain = "chandra"
+description = "Navagraha: Moon. Manas Karaka (mind significator). Emotion, intuition, nurture, fluctuation. Rules Cancer."
+tags = ["navagraha", "graha", "moon", "luminary", "mind", "emotion"]
+properties = { emotion = 0.9, intuition = 0.85, nurture = 0.88, receptivity = 0.85, fluctuation = 0.8 }
+constants = { mass_kg = 7.342e22, radius_m = 1.7374e6, orbital_period_days = 27.32, surface_gravity_ms2 = 1.62 }
+graha = "chandra"
+rashi = "karka"
+guna = "sattva"
+tattva = "jala"
+purushartha = "artha"
+day = "monday"
+ruled_nakshatras = ["rohini", "hasta", "shravana"]
+mantra = "ॐ स्रां स्रीं स्रौं सः चन्द्राय नमः"
+bija = "स्रां"
+
+# ─── Mangala (Mars) — Bhoomi, earthly energy ──────────────────────────────────
+
+[[entity]]
+id = "mangala"
+name = "Mangala"
+domain = "mangala"
+description = "Navagraha: Mars. Commander-in-chief of the grahas. Action, aggression, courage, assertion. Rules Aries and Scorpio."
+tags = ["navagraha", "graha", "mars", "action", "aggression", "courage"]
+properties = { action = 0.9, courage = 0.88, aggression = 0.75, initiative = 0.85, endurance = 0.8 }
+constants = { mass_kg = 6.4171e23, radius_m = 3.3895e6, orbital_period_days = 686.98, surface_gravity_ms2 = 3.72 }
+graha = "mangala"
+rashi = "mesha"
+guna = "tamas"
+tattva = "agni"
+purushartha = "dharma"
+day = "tuesday"
+ruled_nakshatras = ["mrigashira", "chitra", "dhanishtha"]
+mantra = "ॐ क्रां क्रीं क्रौं कः मंगलाय नमः"
+bija = "क्रां"
+
+# ─── Budha (Mercury) — Intelligence, communication ───────────────────────────
+
+[[entity]]
+id = "budha"
+name = "Budha"
+domain = "budha"
+description = "Navagraha: Mercury. Prince of the grahas. Intellect, communication, wit, adaptability. Rules Gemini and Virgo."
+tags = ["navagraha", "graha", "mercury", "intellect", "communication", "adaptability"]
+properties = { intelligence = 0.9, communication = 0.88, adaptability = 0.85, curiosity = 0.8, wit = 0.8 }
+constants = { mass_kg = 3.3011e23, radius_m = 2.4397e6, orbital_period_days = 87.97, surface_gravity_ms2 = 3.70 }
+graha = "budha"
+rashi = "mithuna"
+guna = "rajas"
+tattva = "prithvi"
+purushartha = "artha"
+day = "wednesday"
+ruled_nakshatras = ["ashlesha", "jyestha", "revati"]
+mantra = "ॐ ब्रां ब्रीं ब्रौं बुधाय नमः"
+bija = "ब्रां"
+
+# ─── Brihaspati (Jupiter) — Wisdom, knowledge, guru ───────────────────────────
+
+[[entity]]
+id = "brihaspati"
+name = "Brihaspati"
+domain = "brihaspati"
+description = "Navagraha: Jupiter. Guru of the gods. Wisdom, knowledge, dharma, expansion, prosperity. Rules Sagittarius and Pisces."
+tags = ["navagraha", "graha", "jupiter", "guru", "wisdom", "expansion", "benefic"]
+properties = { wisdom = 0.9, expansion = 0.85, knowledge = 0.88, optimism = 0.8, generosity = 0.75 }
+constants = { mass_kg = 1.8982e27, radius_m = 6.9911e7, orbital_period_days = 4332.59, surface_gravity_ms2 = 24.79 }
+graha = "brihaspati"
+rashi = "dhanus"
+guna = "sattva"
+tattva = "akasha"
+purushartha = "dharma"
+day = "thursday"
+ruled_nakshatras = ["punarvasu", "vishakha", "purva_shadha"]
+mantra = "ॐ ग्रां ग्रीं ग्रौं गुरवे नमः"
+bija = "ग्रां"
+
+# ─── Shukra (Venus) — Love, beauty, luxury, relationships ─────────────────────
+
+[[entity]]
+id = "shukra"
+name = "Shukra"
+domain = "shukra"
+description = "Navagraha: Venus. Guru of the asuras. Love, beauty, luxury, art, relationships, fertility. Rules Taurus and Libra."
+tags = ["navagraha", "graha", "venus", "love", "beauty", "luxury", "benefic"]
+properties = { love = 0.9, beauty = 0.88, harmony = 0.85, luxury = 0.75, creativity = 0.8 }
+constants = { mass_kg = 4.8675e24, radius_m = 6.0518e6, orbital_period_days = 224.7, surface_gravity_ms2 = 8.87 }
+graha = "shukra"
+rashi = "vrishabha"
+guna = "rajas"
+tattva = "jala"
+purushartha = "kama"
+day = "friday"
+ruled_nakshatras = ["bharani", "purva_phalguni", "purva_bhadrapada"]
+mantra = "ॐ द्रां द्रीं द्रौं शुक्राय नमः"
+bija = "द्रां"
+
+# ─── Shani (Saturn) — Discipline, limitation, karma ───────────────────────────
+
+[[entity]]
+id = "shani"
+name = "Shani"
+domain = "shani"
+description = "Navagraha: Saturn. The judge. Discipline, limitation, karma, responsibility, longevity. Rules Capricorn and Aquarius."
+tags = ["navagraha", "graha", "saturn", "karma", "discipline", "limitation", "malefic"]
+properties = { discipline = 0.9, limitation = 0.85, karma = 0.88, persistence = 0.85, structure = 0.8 }
+constants = { mass_kg = 5.6834e26, radius_m = 5.8232e7, orbital_period_days = 10759.22, surface_gravity_ms2 = 10.44 }
+graha = "shani"
+rashi = "makara"
+guna = "tamas"
+tattva = "vayu"
+purushartha = "moksha"
+day = "saturday"
+ruled_nakshatras = ["pushya", "anuradha", "uttara_bhadrapada"]
+mantra = "ॐ प्रां प्रीं प्रौं शनये नमः"
+bija = "प्रां"
+
+# ─── Rahu (North Node) — Shadow, obsession, illusion ──────────────────────────
+
+[[entity]]
+id = "rahu"
+name = "Rahu"
+domain = "rahu"
+description = "Navagraha: North Lunar Node. Shadow planet. Obsession, illusion, worldly ambition, unconventionality. Head of the demon snake."
+tags = ["navagraha", "graha", "shadow", "node", "obsession", "illusion", "malefic"]
+properties = { obsession = 0.9, ambition = 0.85, illusion = 0.8, transformation = 0.75, unconventionality = 0.7 }
+graha = "rahu"
+rashi = "vrishchika"
+guna = "tamas"
+tattva = "vayu"
+purushartha = "moksha"
+day = "saturday"
+ruled_nakshatras = ["ardra", "svati", "shatabhisha"]
+mantra = "ॐ भ्रां भ्रीं भ्रौं राहवे नमः"
+bija = "भ्रां"
+
+# ─── Ketu (South Node) — Severance, spirituality, liberation ──────────────────
+
+[[entity]]
+id = "ketu"
+name = "Ketu"
+domain = "ketu"
+description = "Navagraha: South Lunar Node. Shadow planet. Severance, detachment, spirituality, past-life karma, moksha. Tail of the demon snake."
+tags = ["navagraha", "graha", "shadow", "node", "spirituality", "detachment", "malefic"]
+properties = { detachment = 0.9, spirituality = 0.88, severance = 0.85, insight = 0.8, liberation = 0.75 }
+graha = "ketu"
+rashi = "meena"
+guna = "tamas"
+tattva = "akasha"
+purushartha = "moksha"
+day = "tuesday"
+ruled_nakshatras = ["ashwini", "magha", "mula"]
+mantra = "ॐ स्रां स्रीं स्रौं केतवे नमः"
+bija = "स्रां"

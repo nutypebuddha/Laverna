@@ -1,0 +1,42 @@
+# Astrological Aspects — relational geometries between domains on the wheel
+# Ptolemaic major aspects: the five classical angular relationships.
+
+[[entity]]
+id = "conjunction"
+name = "Conjunction"
+domain = "mangala"
+description = "Aspect of unity and intensity (0° arc). Planets merge their energies, creating a focal point of concentrated power."
+tags = ["aspect", "ptolemaic", "major", "intensity", "fusion"]
+properties = { arc_degrees = 0.0, orb_max = 10.0, intensity = 0.9, fusion_quality = 0.95, tension_level = 0.3 }
+
+[[entity]]
+id = "sextile"
+name = "Sextile"
+domain = "budha"
+description = "Aspect of opportunity and flow (60° arc). Planets interact harmoniously, creating openings for growth through conscious effort."
+tags = ["aspect", "ptolemaic", "major", "opportunity", "harmony"]
+properties = { arc_degrees = 60.0, orb_max = 6.0, opportunity = 0.85, flow_quality = 0.75, tension_level = 0.2 }
+
+[[entity]]
+id = "square"
+name = "Square"
+domain = "chandra"
+description = "Aspect of tension and growth (90° arc). Planets challenge each other, creating friction that demands action and resolution."
+tags = ["aspect", "ptolemaic", "major", "challenge", "tension"]
+properties = { arc_degrees = 90.0, orb_max = 8.0, challenge = 0.9, growth_potential = 0.85, tension_level = 0.8 }
+
+[[entity]]
+id = "trine"
+name = "Trine"
+domain = "surya"
+description = "Aspect of talent and ease (120° arc). Planets flow naturally together, expressing innate gifts without effort."
+tags = ["aspect", "ptolemaic", "major", "talent", "flow"]
+properties = { arc_degrees = 120.0, orb_max = 8.0, ease = 0.9, talent_expression = 0.85, tension_level = 0.1 }
+
+[[entity]]
+id = "opposition"
+name = "Opposition"
+domain = "shukra"
+description = "Aspect of polarity and awareness (180° arc). Planets stand in dynamic tension, requiring integration of opposites."
+tags = ["aspect", "ptolemaic", "major", "polarity", "balance"]
+properties = { arc_degrees = 180.0, orb_max = 10.0, polarity = 0.9, integration_need = 0.85, tension_level = 0.7 }

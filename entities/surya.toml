@@ -1,0 +1,65 @@
+# Entities on Leo (Biology & Medicine)
+
+[[entity]]
+id = "prefrontal_cortex"
+name = "Prefrontal Cortex"
+domain = "surya"
+description = "Brain region: executive function, decision-making, social cognition. Hypofunctional in schizophrenia."
+tags = ["neuroscience", "brain", "neuroanatomy"]
+properties = { executive_function = 0.9, social_cognition = 0.8, working_memory = 0.85 }
+
+[[entity]]
+id = "amygdala"
+name = "Amygdala"
+domain = "surya"
+description = "Brain region: emotion processing, fear response, salience detection. Hyperactive in anxiety."
+tags = ["neuroscience", "brain", "neuroanatomy", "emotion"]
+properties = { fear_processing = 0.9, emotional_memory = 0.8, salience_detection = 0.75 }
+
+[[entity]]
+id = "hippocampus"
+name = "Hippocampus"
+domain = "surya"
+description = "Brain region: memory formation, spatial navigation. Reduced volume in depression and PTSD."
+tags = ["neuroscience", "brain", "neuroanatomy", "memory"]
+properties = { memory_consolidation = 0.9, spatial_navigation = 0.8, stress_vulnerability = 0.6 }
+
+[[entity]]
+id = "hypothalamus_pituitary_adrenal_axis"
+name = "HPA Axis"
+domain = "surya"
+description = "Neuroendocrine system: stress response, cortisol regulation. Dysregulated in mood disorders."
+tags = ["neuroscience", "endocrinology", "stress", "biology"]
+properties = { cortisol_release = 0.85, stress_response = 0.9, circadian_regulation = 0.7 }
+
+[[entity]]
+id = "circadian_rhythm"
+name = "Circadian Rhythm"
+domain = "surya"
+description = "Biological 24-hour cycle: sleep-wake, hormone release, metabolism. Disrupted in mood disorders."
+tags = ["biology", "sleep", "chronobiology"]
+properties = { period_hours = 24.0, sleep_regulation = 0.8, mood_sensitivity = 0.6 }
+
+[[entity]]
+id = "anterior_cingulate_cortex"
+name = "Anterior Cingulate Cortex"
+domain = "surya"
+description = "Brain region: conflict monitoring, error detection, emotional regulation. Implicated in OCD and depression."
+tags = ["neuroscience", "brain", "neuroanatomy", "emotion"]
+properties = { conflict_monitoring = 0.85, error_detection = 0.8, emotional_regulation = 0.75 }
+
+[[entity]]
+id = "insula"
+name = "Insula"
+domain = "surya"
+description = "Brain region: interoception, bodily awareness, emotional awareness. Dysfunctional in anxiety and eating disorders."
+tags = ["neuroscience", "brain", "neuroanatomy", "interoception"]
+properties = { interoceptive_accuracy = 0.85, emotional_awareness = 0.8, bodily_representation = 0.75 }
+
+[[entity]]
+id = "neuroplasticity"
+name = "Neuroplasticity"
+domain = "surya"
+description = "Biological mechanism: brain's ability to reorganize neural connections in response to experience."
+tags = ["neuroscience", "biology", "learning", "recovery"]
+properties = { synaptic_remodeling = 0.85, structural_plasticity = 0.75, recovery_potential = 0.8 }

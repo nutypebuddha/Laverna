@@ -1,0 +1,786 @@
+# Non-math formulas: Grammar rules
+#
+# Grammar is the foundation — language is the medium through which all
+# knowledge is expressed. These rules span:
+#   - κ (Language): general English grammar, style, and structure
+#   - μ (Psychology): clinical language, diagnostic discourse, therapeutic speech
+#
+# Each rule is either:
+#   - prescriptive: what "should" be (style guides, standards)
+#   - descriptive: what is observed in actual usage
+#   - structural: constituency, dependency, or phrase structure
+
+# ─── κ Language: General English Grammar ─────────────────────────────────
+# K-12 levels: 0=K → 12=Grade 12
+
+[[grammar]]
+id = "subject_verb_agreement"
+pattern = "(\\w+) (is|are|was|were) (\\w+)"
+transform = "ensure number agreement"
+description = "Subject-verb number agreement — singular subjects take singular verbs"
+rule_type = "prescriptive"
+level = 0
+evidence = "Quirk & Greenbaum, A University Grammar of English"
+
+[[grammar]]
+id = "dangling_modifier"
+pattern = "\\w+ing\\b.*,.*\\b(he|she|it|they)\\b"
+transform = "rephrase for clarity — ensure the modifier has a clear subject"
+description = "Dangling modifier detection — participial phrase without clear subject"
+rule_type = "prescriptive"
+level = 6
+evidence = "Strunk & White, The Elements of Style"
+
+[[grammar]]
+id = "passive_voice"
+pattern = "\\b(is|are|was|were|been|being)\\s+\\w+ed\\b"
+transform = "consider active voice for directness"
+description = "Passive voice detection — use active voice for clarity unless agent is unknown"
+rule_type = "descriptive"
+level = 3
+evidence = "Pinker, The Sense of Style"
+
+[[grammar]]
+id = "splitting_infinitive"
+pattern = "\\bto\\s+\\w+ly\\s+\\w+\\b"
+transform = "move adverb before or after the infinitive for formal register"
+description = "Split infinitive detection — 'to boldly go' vs 'to go boldly'"
+rule_type = "descriptive"
+level = 3
+evidence = "Modern usage accepts split infinitives; Fowler's initially rejected them"
+
+[[grammar]]
+id = "singular_they"
+pattern = "\\b(everyone|someone|anyone|no one|each|nobody)\\b.*\\b(their|them|they)\\b"
+transform = "affirm singular they as grammatical and inclusive"
+description = "Singular they — standard for indefinite antecedents; avoids gendered pronouns"
+rule_type = "descriptive"
+level = 6
+evidence = "APA Style 7th ed.; Merriam-Webster Word of the Year 2019"
+
+[[grammar]]
+id = "serial_comma"
+pattern = "\\w+,\\s+\\w+,\\s+and\\s+\\w+"
+transform = "retain Oxford comma for clarity in lists"
+description = "Serial (Oxford) comma — comma before 'and' in lists of 3+ items"
+rule_type = "prescriptive"
+level = 3
+evidence = "Chicago Manual of Style, 17th ed."
+
+[[grammar]]
+id = "pronoun_case_error"
+pattern = "between\\s+(you\\s+and\\s+I|I\\s+and\\s+you)"
+transform = "use 'between you and me' (object case after preposition)"
+description = "Pronoun case after preposition — 'between you and me' is correct"
+rule_type = "prescriptive"
+level = 3
+evidence = "Garner's Modern American Usage"
+
+[[grammar]]
+id = "double_negative"
+pattern = "(don't|doesn't|didn't|haven't|hasn't|hadn't|won't|can't|couldn't).*(no|none|nothing|nobody|never)"
+transform = "use single negative — double negatives create affirmative in standard English"
+description = "Double negative detection — standard English uses one negation per clause"
+rule_type = "prescriptive"
+level = 3
+evidence = "Standard English grammar; contrast AAVE (negative concord is grammatical)"
+
+[[grammar]]
+id = "parallel_structure"
+pattern = "\\b(to\\s+\\w+\\b.*,?\\s*to\\s+\\w+\\b.*,\\s*\\w+ing\\b)"
+transform = "ensure all items in a series share the same grammatical form"
+description = "Parallel structure — items in a series should share grammatical form"
+rule_type = "prescriptive"
+level = 6
+evidence = "Strunk & White, Rule 12: Use parallel structure"
+
+[[grammar]]
+id = "conditional_clause"
+pattern = "\\b(if|unless|provided that|as long as)\\b.*\\b(then|will|would|could|should)\\b"
+transform = "affirm conditional structure — ensure antecedent-consequent clarity"
+description = "Conditional clause detection — if/when structures with consequence"
+rule_type = "structural"
+level = 6
+evidence = "Quirk & Greenbaum, 14.24-14.30"
+
+[[grammar]]
+id = "relative_clause"
+pattern = "\\b(which|that|who|whom|whose)\\b.*,?"
+transform = "use 'that' for restrictive clauses, 'which' for non-restrictive (with comma)"
+description = "Relative clause — that/which/who introduce dependent clauses"
+rule_type = "structural"
+level = 6
+evidence = "Chicago Manual of Style 5.220-5.230"
+
+[[grammar]]
+id = "comparative_cluster"
+pattern = "\\b(more|less)\\s+\\w+\\s+(than|as)\\b"
+transform = "ensure 'than' follows comparative; 'as...as' for equality"
+description = "Comparative structure — 'more X than Y', 'as X as Y'"
+rule_type = "structural"
+level = 6
+evidence = "Huddleston & Pullum, Cambridge Grammar of English"
+
+[[grammar]]
+id = "sentence_fragment"
+pattern = "^\\s*(Because|Although|Since|Unless|While|As|If)\\s+\\w+.*[.?!]\\s*$"
+transform = "subordinate clause as sentence — connect to main clause or rephrase"
+description = "Sentence fragment — subordinate clause standing alone as a sentence"
+rule_type = "prescriptive"
+level = 0
+evidence = "Strunk & White, Rule 11: Use definite, specific, concrete language"
+
+[[grammar]]
+id = "misplaced_modifier"
+pattern = "\\b(almost|nearly|only|just|almost|even|hardly|scarcely)\\b\\s+\\w+"
+transform = "place modifier immediately before the word it modifies to avoid ambiguity"
+description = "Misplaced modifier — limiting modifiers should precede their target"
+rule_type = "prescriptive"
+level = 9
+evidence = "Garner's Modern American Usage: 'only' placement"
+
+[[grammar]]
+id = "nominalization"
+pattern = "\\w+(tion|sion|ment|ance|ence|ity|ization)\\b"
+transform = "prefer verb forms for directness: 'investigate' vs 'conduct an investigation'"
+description = "Nominalization detection — prefer strong verbs over noun phrases"
+rule_type = "descriptive"
+level = 9
+evidence = "Williams & Bizup, Style: Lessons in Clarity and Grace"
+
+# ─── μ Psychology: Clinical Language ─────────────────────────────────────
+# K-12 levels: clinical language starts at Grade 3 scaffolding
+
+[[grammar]]
+id = "symptom_presentation"
+pattern = "presents?\\s+with\\s+\\w+(\\s+(and|with)\\s+\\w+)*"
+transform = "formal symptom presentation — '[patient] presents with [symptom(s)]'"
+description = "Clinical symptom presentation — standard psychiatric intake phrasing"
+rule_type = "structural"
+level = 3
+evidence = "DSM-5-TR, Clinical Formulation section"
+
+[[grammar]]
+id = "diagnostic_criteria"
+pattern = "meets?\\s+(criteria|threshold|diagnosis)\\s+for\\s+\\w+"
+transform = "affirm DSM-5 criteria language — criterion A/B/C structure"
+description = "DSM-5 diagnostic criteria — structured criterion-based diagnosis"
+rule_type = "structural"
+level = 6
+evidence = "DSM-5-TR, 'Diagnostic Criteria' sections"
+
+[[grammar]]
+id = "clinical_formulation"
+pattern = "formulation:\\s*.+\\bin\\s+(the\\s+)?context\\s+of\\s+"
+transform = "biopsychosocial formulation — presenting problem in context of predisposing/precipitating/perpetuating factors"
+description = "Clinical formulation — 4P model (predisposing, precipitating, perpetuating, protective)"
+rule_type = "structural"
+level = 9
+evidence = "Weerasekera, 1996; Johnstone & Dallos, 2014"
+
+[[grammar]]
+id = "differential_diagnosis"
+pattern = "rule\\s+out\\s+\\w+(\\s+(and|or)\\s+\\w+)*"
+transform = "differential diagnosis — list ruled-out conditions with rationale"
+description = "Differential diagnosis — conditions considered and excluded with justification"
+rule_type = "structural"
+level = 9
+evidence = "DSM-5-TR, Differential Diagnosis sections"
+
+[[grammar]]
+id = "medication_regimen"
+pattern = "\\d+\\s*m?g\\s+(of\\s+)?\\w+\\s+(daily|BID|TID|QHS|PRN|q[dh]|bid|tid)"
+transform = "standard medication order — [dose][unit] of [medication] [frequency]"
+description = "Medication regimen — structured prescription notation"
+rule_type = "prescriptive"
+level = 6
+evidence = "WHO Guide to Good Prescribing"
+
+[[grammar]]
+id = "side_effect_monitoring"
+pattern = "(associated\\s+with|side\\s+effect|adverse\\s+event|tolerability)"
+transform = "systematic side effect review by organ system"
+description = "Side effect and adverse event monitoring language"
+rule_type = "descriptive"
+level = 9
+evidence = "UKU Side Effect Rating Scale; SAS; AIMS"
+
+[[grammar]]
+id = "therapeutic_alliance_language"
+pattern = "(therapeutic\\s+alliance|working\\s+relationship|rapport|collaboration\\s+with)"
+transform = "explicitly name and assess the therapeutic alliance"
+description = "Therapeutic alliance language — the collaborative relationship between clinician and patient"
+rule_type = "descriptive"
+level = 12
+evidence = "Bordin, 1979; Horvath & Greenberg, 1989 (WAI)"
+
+[[grammar]]
+id = "cognitive_restructuring"
+pattern = "(reframe|challenge|restructure|replace)\\s+\\w+(thought|belief|cognition|idea)s?"
+transform = "CBT restructuring — identify cognitive distortion, challenge evidence, generate alternative"
+description = "Cognitive restructuring — core CBT technique for modifying maladaptive thoughts"
+rule_type = "structural"
+level = 9
+evidence = "Beck, 1979; CBT manual"
+
+[[grammar]]
+id = "exposure_therapy"
+pattern = "(graded\\s+exposure|hierarchy|systematic\\s+desensitization|habituation)"
+transform = "exposure hierarchy — rank order of feared stimuli with SUDS ratings"
+description = "Exposure therapy language — graded exposure with hierarchy and habituation tracking"
+rule_type = "structural"
+level = 9
+evidence = "Foa & Kozak, 1986; Craske, 2008"
+
+[[grammar]]
+id = "diagnostic_impression"
+pattern = "impression:\\s*.+\\s+(disorder|syndrome|condition|presentation)"
+transform = "diagnostic impression — summary formulation with primary diagnosis and specifiers"
+description = "Diagnostic impression — clinical summary with diagnosis, specifiers, and severity"
+rule_type = "structural"
+level = 12
+evidence = "DSM-5-TR, 'Recording Procedures'"
+
+[[grammar]]
+id = "risk_assessment"
+pattern = "risk\\s+(of|for)\\s+(suicide|self.harm|violence|harm|elopement|decline)"
+transform = "structured risk assessment — risk factors, protective factors, plan"
+description = "Clinical risk assessment — suicide, self-harm, violence risk with mitigation plan"
+rule_type = "prescriptive"
+level = 12
+evidence = "Chu et al., 2015; SAFE-T Protocol"
+
+[[grammar]]
+id = "progress_note"
+pattern = "^(SOAP|DAP|BIRP|GIRP)\\b"
+transform = "structured progress note format — ensure all sections are present"
+description = "Progress note format detection — SOAP/DAP/BIRP/GIRP structured note templates"
+rule_type = "structural"
+level = 12
+evidence = "Weed, 1968 (SOAP); general clinical documentation standards"
+# Non-math formulas: Code patterns
+#
+# Code is executable math expressed in programming languages. These patterns
+# span language-specific idioms and language-agnostic anti-patterns.
+#
+# K-12 Spiral: Level 0 (basic patterns) → Level 12 (architecture)
+# Domain: ζ (CS & AI), η (Engineering)
+
+# ─── General Patterns ────────────────────────────────────────────────────
+
+[[code]]
+id = "early_return"
+language = "general"
+level = 3
+template = "if (condition) { return value; }"
+alternative = "Nested if-else with single return"
+complexity = 2
+is_anti_pattern = false
+
+[[code]]
+id = "magic_number"
+language = "general"
+level = 0
+template = "if (x > 42)"
+alternative = "Use named constant: const MAX_THRESHOLD = 42;"
+complexity = 1
+is_anti_pattern = true
+
+[[code]]
+id = "god_object"
+language = "general"
+level = 9
+template = "class GodClass"
+alternative = "Split into single-responsibility classes"
+complexity = 8
+is_anti_pattern = true
+
+[[code]]
+id = "callback_hell"
+language = "javascript"
+level = 6
+template = "asyncCall(() => { asyncCall2(() => { asyncCall3(() => { }); }); });"
+alternative = "Use promises/async-await"
+complexity = 6
+is_anti_pattern = true
+
+[[code]]
+id = "feature_envy"
+language = "general"
+level = 6
+template = "class A { void doSomething(B b) { b.getX(); b.getY(); b.getZ(); } }"
+alternative = "Move the method to class B that has the data"
+complexity = 5
+is_anti_pattern = true
+
+[[code]]
+id = "string_concat"
+language = "general"
+level = 3
+template = "result = a + b + c"
+alternative = "Use string builder/interpolation"
+complexity = 2
+is_anti_pattern = true
+
+[[code]]
+id = "hardcoded_config"
+language = "general"
+level = 6
+template = "DB_URL = 'localhost:5432'"
+alternative = "Use environment variables or config files"
+complexity = 4
+is_anti_pattern = true
+
+[[code]]
+id = "copy_pasta"
+language = "general"
+level = 0
+template = "Repeated blocks with minor variations"
+alternative = "Extract to function/loop"
+complexity = 3
+is_anti_pattern = true
+
+# ─── Rust-specific Patterns ──────────────────────────────────────────────
+
+[[code]]
+id = "unwrap_heavy"
+language = "rust"
+level = 3
+template = "x.unwrap()"
+alternative = "Use pattern matching or ? operator"
+complexity = 2
+is_anti_pattern = true
+
+[[code]]
+id = "clone_everywhere"
+language = "rust"
+level = 3
+template = "x.clone()"
+alternative = "Use references &x or Rc/Arc"
+complexity = 3
+is_anti_pattern = true
+
+[[code]]
+id = "mutex_guard_leak"
+language = "rust"
+level = 6
+template = "let data = lock.lock().unwrap();"
+alternative = "Scope the guard; use block { } or explicit drop"
+complexity = 5
+is_anti_pattern = true
+
+[[code]]
+id = "box_dyn_trait"
+language = "rust"
+level = 6
+template = "Box<dyn Trait>"
+alternative = "Use generics (impl Trait) or enums where possible"
+complexity = 5
+is_anti_pattern = true
+
+[[code]]
+id = "needless_borrow"
+language = "rust"
+level = 6
+template = "fn foo(x: &String)"
+alternative = "Use &str instead of &String"
+complexity = 3
+is_anti_pattern = true
+
+[[code]]
+id = "result_ignore"
+language = "rust"
+level = 6
+template = "result.ok();"
+alternative = "Handle the error explicitly with match or ?"
+complexity = 4
+is_anti_pattern = true
+
+[[code]]
+id = "lifetime_elision"
+language = "rust"
+level = 9
+template = "fn foo<'a>(x: &'a str, y: &'a str) -> &'a str"
+alternative = "Let Rust elide lifetimes when unambiguous"
+complexity = 7
+is_anti_pattern = true
+
+[[code]]
+id = "type_complexity"
+language = "rust"
+level = 12
+template = "HashMap<String, Vec<Option<Box<dyn Fn()>>>>"
+alternative = "Use type aliases or newtypes"
+complexity = 8
+is_anti_pattern = true
+
+# ─── Python-specific Patterns ────────────────────────────────────────────
+
+[[code]]
+id = "mutable_default_arg"
+language = "python"
+level = 6
+template = "def foo(x=[]):"
+alternative = "Use None as default and initialize inside: if x is None: x = []"
+complexity = 4
+is_anti_pattern = true
+
+[[code]]
+id = "bare_except"
+language = "python"
+level = 3
+template = "try: ... except: ..."
+alternative = "Catch specific exceptions (except ValueError:)"
+complexity = 2
+is_anti_pattern = true
+# Non-math formulas: Logic patterns (Aries / Logic)
+[[logic]]
+id = "modus_ponens"
+form = "If P then Q. P. Therefore Q."
+premises = ["If P then Q", "P"]
+conclusion = "Q"
+is_valid = true
+
+[[logic]]
+id = "modus_tollens"
+form = "If P then Q. Not Q. Therefore not P."
+premises = ["If P then Q", "Not Q"]
+conclusion = "Not P"
+is_valid = true
+
+[[logic]]
+id = "syllogism"
+form = "All A are B. All B are C. Therefore all A are C."
+premises = ["All A are B", "All B are C"]
+conclusion = "All A are C"
+is_valid = true
+
+[[logic]]
+id = "affirming_consequent"
+form = "If P then Q. Q. Therefore P."
+premises = ["If P then Q", "Q"]
+conclusion = "P"
+is_valid = false
+counterexample = "If it rains, the ground is wet. The ground is wet. Therefore it rained. (Could be from sprinklers)"
+
+[[logic]]
+id = "denying_antecedent"
+form = "If P then Q. Not P. Therefore not Q."
+premises = ["If P then Q", "Not P"]
+conclusion = "Not Q"
+is_valid = false
+counterexample = "If it rains, the ground is wet. It did not rain. Therefore the ground is not wet. (Could be from sprinklers)"
+# ☿ Capstone — LLM-gated formulas
+#
+# `formula_type = "llm"` formulas hold a prompt template in `expression`
+# ({input} placeholders), not evaluable arithmetic. Bankai renders the
+# template, asks the capstone model (capstone/athena-qwen.toml) at
+# temperature 0, and admits the value only if it passes the deterministic
+# gates in src/bankai/llm_eval.rs: exactly one finite number in the output.
+# A successful LLM step carries reduced chain confidence — estimated, never
+# proven. Evaluating these requires a build with --features llm and an
+# attached capstone; other builds fail cleanly at eval time.
+
+[[formula]]
+id = "estimate_reading_minutes"
+formula_type = "llm"
+tags = ["capstone", "estimation", "language", "mercury"]
+domain = "budha"
+inputs = ["word_count"]
+output = "reading_minutes"
+expression = "Estimate how many minutes an average adult needs to read {word_count} words of ordinary prose."
+description = "Reading time estimate — capstone generation, numeric-gated"
+evidence = "None — LLM estimate admitted through the llm_eval gates, confidence-penalized"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# NAND-TO-TOP PIPELINE
+# ═══════════════════════════════════════════════════════════════════════════════
+#
+# The complete derivation chain: NAND (Sheffer stroke) → all logic gates →
+# arithmetic → grammar rules → code patterns → logic proofs → formulas →
+# entities → astrology. Each layer is grounded in the one below it.
+#
+# Layer 0: NAND — nand(a,b) = 1 - a*b (absolute bedrock)
+# Layer 1: Derived gates — not, and, or, nor, xor, xnor, implies (from NAND)
+# Layer 2: Arithmetic — half_adder, full_adder, add4 (from gates)
+# Layer 3: Grammar — structural rules for expression syntax
+# Layer 4: Code — compilation templates for gate→hardware/software
+# Layer 5: Logic — formal proofs of gate equivalences
+# Layer 6: Formulas — evaluable expressions in the formula registry
+# Layer 7: Entities — grounded tokens with Vedic classification
+# Layer 8: Astrology — 7-axis classification from domain resolution
+#
+# This section wires layers 3-5 to NAND (layers 0-2) so that every
+# grammar rule, code pattern, and logic proof traces back to the
+# Sheffer stroke.
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# ─── Layer 3: NAND-Grounded Grammar Rules ────────────────────────────────────
+# Structural rules describing how NAND expressions are parsed and transformed.
+# These govern the syntax that feeds into the formula registry.
+
+[[grammar]]
+id = "nand_expression_syntax"
+pattern = "nand\\s*\\(\\s*\\w+\\s*,\\s*\\w+\\s*\\)"
+transform = "validate two-argument NAND gate syntax"
+description = "NAND expression syntax — nand(a, b) is the atomic expression; all other gates derive from it"
+rule_type = "structural"
+level = 0
+evidence = "Sheffer stroke: nand(a,b) = 1 - a*b; functionally complete Boolean primitive"
+
+[[grammar]]
+id = "nestable_gate_syntax"
+pattern = "(nand|not|and|or|nor|xor|xnor|implies)\\s*\\("
+transform = "allow recursive nesting — gates accept gate expressions as arguments"
+description = "Nestable gate syntax — any gate output can feed as input to another gate, building arbitrary Boolean functions"
+rule_type = "structural"
+level = 3
+evidence = "Functional completeness: every Boolean function expressible as NAND-only composition"
+
+[[grammar]]
+id = "gate_precedence"
+pattern = "(nand|and|or|not|nor|xor|xnor|implies)\\s*\\("
+transform = "apply precedence: not > and > xor > or > implies > nand"
+description = "Gate operator precedence — NOT binds tightest, NAND binds loosest, enabling unambiguous parsing"
+rule_type = "structural"
+level = 6
+evidence = "Standard Boolean algebra precedence; mirrors arithmetic (not=unary, and=multiplicative, or=additive)"
+
+[[grammar]]
+id = "variable_binding"
+pattern = "\\b([a-z]\\w*)\\b\\s*(,|\\))"
+transform = "bind lowercase identifiers as input variables; uppercase or numeric as constants"
+description = "Variable binding in gate expressions — lowercase names become DAG input nodes resolved at evaluation time"
+rule_type = "structural"
+level = 0
+evidence = "Athena NandDag: add_input(name) creates named variable nodes; values supplied via HashMap at eval"
+
+[[grammar]]
+id = "constant_fold_pattern"
+pattern = "(nand|and|or|not)\\s*\\(\\s*\\d+\\.?\\d*\\s*,\\s*\\d+\\.?\\d*\\s*\\)"
+transform = "evaluate constant subexpressions at compile time"
+description = "Constant folding — gate expressions with only literal inputs can be reduced to a single constant"
+rule_type = "structural"
+level = 9
+evidence = "Compiler optimization: constant folding eliminates redundant computation in NandDag"
+
+[[grammar]]
+id = "de_morgan_transform"
+pattern = "(not\\s*\\(\\s*and|not\\s*\\(\\s*or)"
+transform = "apply De Morgan: not(and(a,b)) = or(not(a),not(b)); not(or(a,b)) = and(not(a),not(b))"
+description = "De Morgan transformation — distribute negation inward by flipping AND/OR operators"
+rule_type = "structural"
+level = 9
+evidence = "De Morgan's laws: ¬(A∧B) = ¬A∨¬B and ¬(A∨B) = ¬A∧¬B; verified for Boolean values in nand.rs"
+
+[[grammar]]
+id = "double_negation_elimination"
+pattern = "not\\s*\\(\\s*not\\s*\\("
+transform = "eliminate double negation: not(not(a)) = a"
+description = "Double negation elimination — involution property: NOT(NOT(x)) = x"
+rule_type = "structural"
+level = 3
+evidence = "Involution: not(a) = nand(a,a); not(not(a)) = nand(nand(a,a), nand(a,a)) = a"
+
+[[grammar]]
+id = "nand_self_idempotent"
+pattern = "nand\\s*\\(\\s*(\\w+)\\s*,\\s*\\1\\s*\\)"
+transform = "nand(a,a) = not(a) — recognize self-NAND as negation"
+description = "Self-NAND idempotency — nand(a,a) is equivalent to NOT(a), the fundamental derivation"
+rule_type = "structural"
+level = 3
+evidence = "nand(a,a) = 1 - a*a = 1 - a = not(a); the sole axiom of the Sheffer stroke"
+
+[[grammar]]
+id = "implies_as_or_not"
+pattern = "implies\\s*\\(\\s*(\\w+)\\s*,\\s*(\\w+)\\s*\\)"
+transform = "rewrite as or(not(a), b) — implication is material conditional"
+description = "Implication decomposition — implies(a,b) = or(not(a),b) = nand(nand(a,a), b)"
+rule_type = "structural"
+level = 6
+evidence = "Material conditional: A→B ≡ ¬A∨B; in NAND: nand(nand(a,a), b)"
+
+[[grammar]]
+id = "xor_chain_pattern"
+pattern = "xor\\s*\\("
+transform = "xor(a,b) = or(and(a,not(b)), and(not(a),b)) — recognize XOR composition"
+description = "XOR as composed gates — xor(a,b) decomposes to NOT/AND/OR, which each decompose to NAND"
+rule_type = "structural"
+level = 6
+evidence = "xor(a,b) = a+b-2ab (continuous); equivalently or(and(a,not(b)),and(not(a),b))"
+
+# ─── Layer 4: NAND-Derived Code Patterns ─────────────────────────────────────
+# Compilation and optimization templates for translating NAND gate
+# expressions into executable code (Rust, hardware description, DAG).
+
+[[code]]
+id = "nand_gate_rust"
+language = "rust"
+template = "fn nand(a: f64, b: f64) -> f64 { 1.0 - a * b }"
+
+complexity = 1
+is_anti_pattern = false
+level = 0
+
+[[code]]
+id = "nand_dag_compilation"
+language = "rust"
+template = "NandExpression::compile(expr_str)?.evaluate(&inputs)"
+
+complexity = 4
+is_anti_pattern = false
+level = 3
+
+[[code]]
+id = "nand_constant_folding"
+language = "general"
+template = "if all_inputs_are_constant(node) { fold_to_constant(node) }"
+
+complexity = 5
+is_anti_pattern = false
+level = 9
+
+[[code]]
+id = "nand_cse_optimization"
+language = "general"
+template = "deduplicate_identical_subexpressions(dag) — common subexpression elimination"
+
+complexity = 7
+is_anti_pattern = false
+level = 12
+
+[[code]]
+id = "nand_gate_minimization"
+language = "general"
+template = "Quine-McCluskey or espresso: minimize NAND-only expression from truth table"
+
+complexity = 8
+is_anti_pattern = false
+level = 12
+
+[[code]]
+id = "nand_to_nand_optimization"
+language = "general"
+template = "rewrite all derived gates as pure NAND: not(a)=nand(a,a), and(a,b)=not(nand(a,b))"
+
+complexity = 5
+is_anti_pattern = false
+level = 6
+
+[[code]]
+id = "nand_parallel_evaluation"
+language = "rust"
+template = "dag.nodes.par_iter().map(|n| evaluate_node(n, &results))"
+
+complexity = 6
+is_anti_pattern = false
+level = 9
+
+[[code]]
+id = "half_adder_from_nand"
+language = "rust"
+template = "let sum = xor(a, b); let carry = and(a, b); (sum, carry)"
+
+complexity = 3
+is_anti_pattern = false
+level = 3
+
+[[code]]
+id = "full_adder_from_nand"
+language = "rust"
+template = "let (s1, c1) = half_adder(a, b); let (sum, c2) = half_adder(s1, carry_in); let carry = or(c1, c2); (sum, carry)"
+
+complexity = 4
+is_anti_pattern = false
+level = 6
+
+[[code]]
+id = "ripple_carry_adder"
+language = "rust"
+template = "chain full_adders: result_bit[i], carry_out[i] = full_adder(a[i], b[i], carry_in[i])"
+
+complexity = 6
+is_anti_pattern = false
+level = 9
+
+# ─── Layer 5: NAND-Proven Logic Patterns ─────────────────────────────────────
+# Formal proofs that each logic gate is derivable from NAND.
+# These connect the primitive NAND layer to the Boolean logic layer,
+# which in turn grounds the formula registry's Logic type.
+
+[[logic]]
+id = "nand_axiom"
+form = "nand(a, b) = 1 - a*b"
+premises = ["Sheffer stroke axiom: nand is functionally complete"]
+conclusion = "All Boolean functions expressible as NAND composition"
+is_valid = true
+
+[[logic]]
+id = "not_from_nand"
+form = "not(a) = nand(a, a)"
+premises = ["nand(a, a) = 1 - a*a = 1 - a"]
+conclusion = "NOT is derivable from NAND via self-application"
+is_valid = true
+
+[[logic]]
+id = "and_from_nand"
+form = "and(a, b) = not(nand(a, b))"
+premises = ["nand(a, b) = 1 - a*b", "not(x) = 1 - x"]
+conclusion = "AND is derivable as NOT(NAND(a,b)) = 1 - (1 - a*b) = a*b"
+is_valid = true
+
+[[logic]]
+id = "or_from_nand"
+form = "or(a, b) = nand(not(a), not(b))"
+premises = ["not(a) = nand(a,a) = 1-a", "nand(1-a, 1-b) = 1-(1-a)(1-b) = a+b-ab"]
+conclusion = "OR is derivable from NAND via negated inputs"
+is_valid = true
+
+[[logic]]
+id = "nor_from_nand"
+form = "nor(a, b) = not(or(a, b))"
+premises = ["or(a,b) = nand(not(a),not(b))", "not(x) = nand(x,x)"]
+conclusion = "NOR is derivable as NOT(OR(a,b)) = NOT(NAND(NOT(a),NOT(b)))"
+is_valid = true
+
+[[logic]]
+id = "xor_from_nand"
+form = "xor(a, b) = or(and(a, not(b)), and(not(a), b))"
+premises = ["and(a,not(b)) = a*(1-b)", "and(not(a),b) = (1-a)*b", "or sums them: a+b-2ab"]
+conclusion = "XOR is derivable from NAND via AND/OR/NOT composition; continuous: a+b-2ab"
+is_valid = true
+
+[[logic]]
+id = "xnor_from_nand"
+form = "xnor(a, b) = not(xor(a, b))"
+premises = ["xor(a,b) = a+b-2ab", "not(x) = 1-x"]
+conclusion = "XNOR is derivable as NOT(XOR) = 1-a-b+2ab; equals 1 when a=b"
+is_valid = true
+
+[[logic]]
+id = "implies_from_nand"
+form = "implies(a, b) = or(not(a), b)"
+premises = ["implies(a,b) is false only when a=1 and b=0", "or(not(a),b) = (1-a)+b-(1-a)b = 1-a+ab"]
+conclusion = "IMPLIES is derivable from NAND via NOT and OR; material conditional A→B ≡ ¬A∨B"
+is_valid = true
+
+[[logic]]
+id = "addition_from_nand"
+form = "a + b via half_adder(a,b) = (xor(a,b), and(a,b))"
+premises = ["sum = xor(a,b) = a+b-2ab (continuous)", "carry = and(a,b) = a*b", "bits_to_u8 maps 4-bit result to integer"]
+conclusion = "Integer addition is derivable from NAND via XOR/AND → half_adder → full_adder → add4"
+is_valid = true
+
+[[logic]]
+id = "de_morgan_from_nand"
+form = "not(and(a,b)) = or(not(a),not(b)) and not(or(a,b)) = and(not(a),not(b))"
+premises = ["not(and(a,b)) = 1-ab", "or(not(a),not(b)) = (1-a)+(1-b)-(1-a)(1-b) = 1-ab"]
+conclusion = "De Morgan's laws hold for Boolean values {0,1}; noted: do NOT hold for continuous f64 in [0,1]"
+is_valid = true
+
+[[logic]]
+id = "nand_functional_completeness"
+form = "Every Boolean function f: {0,1}^n → {0,1} expressible as NAND-only composition"
+premises = ["NAND is not affine (depends on both inputs non-trivially)", "NAND is not self-dual", "NAND is not monotone", "Post's criterion: a gate is functionally complete iff it is not affine, not self-dual, not monotone, not the constant 0, not the constant 1"]
+conclusion = "NAND satisfies all Post criteria → functionally complete → all gates derivable"
+is_valid = true

@@ -1007,4 +1007,44 @@ mod tests {
         let none = r.by_output("nonexistent");
         assert!(none.is_empty());
     }
+
+    #[test]
+    fn test_load_all_formula_toml_files() {
+        let dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("formulas");
+        if !dir.exists() {
+            eprintln!("Skipping: formulas/ directory not found");
+            return;
+        }
+        let mut r = FormulaRegistry::new();
+        let mut loaded = 0;
+        for entry in std::fs::read_dir(&dir).unwrap() {
+            let path = entry.unwrap().path();
+            if path.extension().map_or(false, |e| e == "toml") {
+                r.load_from_file(&path)
+                    .unwrap_or_else(|e| panic!("Failed to load {}: {}", path.display(), e));
+                loaded += 1;
+            }
+        }
+        assert!(loaded > 0, "Should have loaded at least one TOML file");
+        assert!(
+            r.len() > 100,
+            "Should have loaded many formulas, got {}",
+            r.len()
+        );
+        // Spot-check a few known formulas
+        assert!(r.get("add").is_some(), "Missing 'add' formula");
+        assert!(r.get("nand").is_some(), "Missing 'nand' formula");
+        assert!(
+            r.get("kleiber_law").is_some(),
+            "Missing 'kleiber_law' from atomic_seed"
+        );
+        assert!(
+            r.get("clinical_severity").is_some(),
+            "Missing 'clinical_severity' from bridging_seed"
+        );
+        assert!(
+            r.get("climate_anxiety_vortex").is_some(),
+            "Missing 'climate_anxiety_vortex' from vortex_seed"
+        );
+    }
 }

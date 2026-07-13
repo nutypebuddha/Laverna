@@ -1,0 +1,1016 @@
+# Bridging formulas: Clinical/Psychology cross-domain
+# Connects entity properties across Surya (biology/neuroscience),
+# Brihaspati (psychology/history), and Shani (philosophy/structure).
+# These formulas enable multi-step entity reasoning chains:
+#   entity properties → intermediate variables → derived clinical outcomes
+#
+# Total: 48 bridging formulas (28 original + 20 added 2026-07-09)
+
+# ─── Multi-step chain: Psychosis severity assessment ──────────────────────────
+# Chain: entity properties → insight_deficit + cognitive_load → severity_index
+# Example: schizophrenia → 0.825 insight_deficit + 0.12 cognitive_load → 0.567 severity
+
+[[formula]]
+id = "clinical_severity"
+tags = ["psychiatry", "severity", "clinical", "chain"]
+from = "brihaspati"
+to = "brihaspati"
+inputs = ["insight_deficit", "cognitive_load"]
+output = "severity_index"
+expression = "(insight_deficit + cognitive_load) / 2"
+description = "Clinical: overall severity from insight deficit and cognitive load"
+aspect = "conjunction"
+evidence = "Aspects share a house — direct domain alignment, low friction transfer"
+
+[[formula]]
+id = "treatment_priority"
+tags = ["psychiatry", "treatment", "priority", "clinical", "chain"]
+from = "brihaspati"
+to = "shukra"
+inputs = ["severity_index", "treatment_burden"]
+output = "treatment_priority_score"
+expression = "severity_index / max(treatment_burden, 0.1)"
+description = "Psychology-Engineering: treatment priority from severity vs burden ratio"
+aspect = "square"
+evidence = "Aspects share a modality — 90° tense transfer, transformation through friction"
+
+# ─── Multi-step chain: Functional outcome assessment ──────────────────────────
+# Chain: entity properties → social_functioning + cognitive_vulnerability → functional_decline
+
+[[formula]]
+id = "functional_impact"
+tags = ["psychiatry", "function", "disability", "clinical", "chain"]
+from = "brihaspati"
+to = "brihaspati"
+inputs = ["social_functioning", "cognitive_vulnerability"]
+output = "functional_decline"
+expression = "1 - (social_functioning * (1 - cognitive_vulnerability))"
+description = "Clinical: functional decline from social deficits and cognitive vulnerability"
+aspect = "conjunction"
+evidence = "Aspects share a house — direct domain alignment, low friction transfer"
+
+# ─── Multi-step chain: Environmental → Neuro → Outcome ────────────────────────
+# Chain: environment properties → environmental_support + healing_capacity → recovery_index
+
+[[formula]]
+id = "recovery_potential_index"
+tags = ["recovery", "environment", "neuroplasticity", "clinical", "chain"]
+from = "surya"
+to = "surya"
+inputs = ["environmental_support", "healing_capacity"]
+output = "recovery_index"
+expression = "(environmental_support + healing_capacity) / 2"
+description = "Biology: recovery potential from environmental support and neuroplastic healing"
+aspect = "conjunction"
+evidence = "Aspects share a house — direct domain alignment, low friction transfer"
+
+[[formula]]
+id = "psychosis_insight"
+tags = ["psychiatry", "psychosis", "insight", "clinical"]
+from = "brihaspati"
+to = "brihaspati"
+inputs = ["reality_distortion", "cognitive_disorganization"]
+output = "insight_deficit"
+expression = "(reality_distortion + cognitive_disorganization) / 2"
+description = "Clinical: insight deficit from reality distortion and cognitive disorganization"
+aspect = "conjunction"
+evidence = "Aspects share a house — direct domain alignment, low friction transfer"
+
+[[formula]]
+id = "mood_cognition_bridge"
+tags = ["psychiatry", "mood", "cognition", "clinical"]
+from = "brihaspati"
+to = "shani"
+inputs = ["mood_instability", "affective_intensity"]
+output = "cognitive_load"
+expression = "mood_instability * affective_intensity * 2"
+description = "Psychology-Philosophy: cognitive load from mood instability and affective intensity"
+aspect = "square"
+evidence = "Aspects share a modality — 90° tense transfer, transformation through friction"
+
+[[formula]]
+id = "neuroplasticity_recovery"
+tags = ["neuroscience", "recovery", "plasticity", "clinical"]
+from = "surya"
+to = "brihaspati"
+inputs = ["structural_plasticity", "synaptic_remodeling", "recovery_potential"]
+output = "healing_capacity"
+expression = "(structural_plasticity + synaptic_remodeling + recovery_potential) / 3"
+description = "Biology-Psychology: healing capacity from neuroplasticity factors"
+aspect = "trine"
+evidence = "Aspects share an element — 120° flowing transfer, natural affinity"
+
+[[formula]]
+id = "stress_resilience"
+tags = ["stress", "resilience", "hpa", "clinical"]
+from = "surya"
+to = "brihaspati"
+inputs = ["cortisol_release", "stress_response", "circadian_regulation"]
+output = "resilience_score"
+expression = "1 - (cortisol_release * stress_response * (1 - circadian_regulation))"
+description = "Biology-Psychology: resilience from HPA axis regulation"
+aspect = "trine"
+evidence = "Aspects share an element — 120° flowing transfer, natural affinity"
+
+[[formula]]
+id = "environmental_buffering"
+tags = ["environment", "stress", "resilience", "clinical"]
+from = "chandra"
+to = "surya"
+inputs = ["neuroplasticity_enhancement", "stress_buffering", "cognitive_reserve"]
+output = "environmental_support"
+expression = "(neuroplasticity_enhancement + stress_buffering + cognitive_reserve) / 3"
+description = "Environment-Biology: environmental support for brain health"
+aspect = "trine"
+evidence = "Aspects share an element — 120° flowing transfer, natural affinity"
+
+[[formula]]
+id = "pharmacology_target"
+tags = ["pharmacology", "treatment", "clinical"]
+from = "shukra"
+to = "brihaspati"
+inputs = ["target_dopamine", "target_serotonin"]
+output = "mechanism_breadth"
+expression = "(target_dopamine + target_serotonin) / 2"
+description = "Engineering-Psychology: treatment mechanism breadth from receptor targets"
+aspect = "square"
+evidence = "Aspects share a modality — 90° tense transfer, transformation through friction"
+
+[[formula]]
+id = "treatment_response"
+tags = ["treatment", "efficacy", "clinical"]
+from = "shukra"
+to = "brihaspati"
+inputs = ["efficacy_severe_depression", "efficacy_mania"]
+output = "mood_efficacy"
+expression = "(efficacy_severe_depression + efficacy_mania) / 2"
+description = "Engineering-Psychology: mood treatment efficacy from clinical data"
+aspect = "trine"
+evidence = "Aspects share an element — 120° flowing transfer, natural affinity"
+
+[[formula]]
+id = "social_cognition_deficit"
+tags = ["social", "cognition", "psychosis", "clinical"]
+from = "surya"
+to = "brihaspati"
+inputs = ["executive_function", "social_cognition", "working_memory"]
+output = "social_functioning"
+expression = "(executive_function + social_cognition + working_memory) / 3"
+description = "Biology-Psychology: social functioning from prefrontal cortex capacity"
+aspect = "trine"
+evidence = "Aspects share an element — 120° flowing transfer, natural affinity"
+
+[[formula]]
+id = "emotional_dysregulation"
+tags = ["emotion", "regulation", "clinical"]
+from = "surya"
+to = "brihaspati"
+inputs = ["fear_processing", "emotional_memory", "salience_detection"]
+output = "threat_sensitivity"
+expression = "(fear_processing + emotional_memory + salience_detection) / 3"
+description = "Biology-Psychology: threat sensitivity from amygdala function"
+aspect = "trine"
+evidence = "Aspects share an element — 120° flowing transfer, natural affinity"
+
+[[formula]]
+id = "memory_stress_vulnerability"
+tags = ["memory", "stress", "clinical"]
+from = "surya"
+to = "brihaspati"
+inputs = ["memory_consolidation", "stress_vulnerability"]
+output = "cognitive_vulnerability"
+expression = "memory_consolidation * stress_vulnerability"
+description = "Biology-Psychology: cognitive vulnerability from hippocampal stress sensitivity"
+aspect = "trine"
+evidence = "Aspects share an element — 120° flowing transfer, natural affinity"
+
+[[formula]]
+id = "treatment_side_effects"
+tags = ["pharmacology", "side_effects", "clinical"]
+from = "shukra"
+to = "surya"
+inputs = ["half_life_hours", "therapeutic_index"]
+output = "treatment_burden"
+expression = "max(1.0 - therapeutic_index, 0.1) * (24.0 / min(half_life_hours, 48.0))"
+description = "Engineering-Biology: treatment burden from half-life and narrow therapeutic index"
+aspect = "square"
+evidence = "Aspects share a modality — 90° tense transfer, transformation through friction"
+# Bridging formulas: CS ↔ Math, CS ↔ Engineering
+[[formula]]
+id = "precision_recall_fusion"
+tags = ["machine_learning", "evaluation"]
+from = "mangala"
+to = "mangala"
+inputs = ["tp", "fp", "fn"]
+output = "f1"
+expression = "2 * tp / (2 * tp + fp + fn)"
+description = "CS-Math: F1 from true positives, false positives, false negatives"
+aspect = "trine"
+evidence = "Aspects share an element — 120° flowing transfer, natural affinity"
+
+[[formula]]
+id = "computational_complexity"
+tags = ["algorithms", "scalability"]
+from = "mangala"
+to = "mangala"
+inputs = ["n"]
+output = "complexity_growth_rate"
+expression = "n * log10(n) / log10(2)"
+description = "CS-Math: O(n log n) operations as n grows"
+aspect = "sextile"
+evidence = "Aspects share a sign — harmonious 60° transfer, additive resonance"
+
+[[formula]]
+id = "ai_ethic_bridge"
+tags = ["artificial_intelligence", "ethics"]
+from = "mangala"
+to = "shani"
+inputs = ["accuracy", "fairness"]
+output = "ethic_score"
+expression = "(accuracy + fairness) / 2"
+description = "CS-Philosophy: balance of accuracy and fairness"
+aspect = "opposition"
+evidence = "Aspects share an axis — 180° polarized transfer, integration through contrast"
+# Bridging formulas: Environment ↔ Biology, Economics ↔ Environment
+[[formula]]
+id = "population_growth"
+tags = ["population", "ecology"]
+from = "chandra"
+to = "surya"
+inputs = ["initial", "rate", "time"]
+output = "final_pop"
+expression = "initial * exp(rate * time)"
+description = "Environment-Biology: exponential population growth"
+aspect = "trine"
+evidence = "Aspects share an element — 120° flowing transfer, natural affinity"
+
+[[formula]]
+id = "eco_footprint"
+tags = ["ecology", "sustainability"]
+from = "surya"
+to = "budha"
+inputs = ["consumption", "population"]
+output = "footprint"
+expression = "consumption * population / 1000"
+description = "Biology-Economics: ecological footprint estimate"
+aspect = "square"
+evidence = "Aspects share a modality — 90° tense transfer, transformation through friction"
+
+[[formula]]
+id = "climate_economics"
+tags = ["climate", "economics"]
+from = "chandra"
+to = "budha"
+inputs = ["emissions_tons", "cost_per_ton"]
+output = "total_cost"
+expression = "emissions_tons * cost_per_ton"
+description = "Environment-Economics: carbon cost calculation"
+aspect = "opposition"
+evidence = "Aspects share an axis — 180° polarized transfer, integration through contrast"
+# Bridging formulas: Language ↔ Psychology, Philosophy ↔ Psychology
+[[formula]]
+id = "sentiment_analysis"
+tags = ["nlp", "emotion"]
+from = "shani"
+to = "brihaspati"
+inputs = ["positive_words", "negative_words", "total_words"]
+output = "sentiment"
+expression = "(positive_words - negative_words) / total_words"
+description = "Language-Psychology: sentiment from word counts"
+aspect = "trine"
+evidence = "Aspects share an element — 120° flowing transfer, natural affinity"
+
+[[formula]]
+id = "reading_comprehension"
+tags = ["linguistics", "education"]
+from = "shani"
+to = "brihaspati"
+inputs = ["flesch_score", "education_years"]
+output = "comprehension"
+expression = "min(flesch_score / 100, education_years / 20)"
+description = "Language-Psychology: reading comprehension estimate"
+aspect = "sextile"
+evidence = "Aspects share a sign — harmonious 60° transfer, additive resonance"
+
+[[formula]]
+id = "moral_psychology"
+tags = ["ethics", "psychology"]
+from = "shani"
+to = "brihaspati"
+inputs = ["moral_score", "empathy"]
+output = "ethical_judgment"
+expression = "(moral_score + empathy) / 2"
+description = "Philosophy-Psychology: ethical judgment synthesis"
+aspect = "trine"
+evidence = "Aspects share an element — 120° flowing transfer, natural affinity"
+# Bridging formulas: Physics ↔ Engineering, Math ↔ Physics
+[[formula]]
+id = "momentum_to_ke"
+tags = ["mechanics", "energy"]
+from = "mangala"
+to = "shukra"
+inputs = ["mass", "velocity"]
+output = "ke"
+expression = "0.5 * mass * velocity * velocity"
+description = "Momentum → Kinetic energy"
+aspect = "trine"
+evidence = "Aspects share an element — 120° flowing transfer, natural affinity"
+
+[[formula]]
+id = "math_physics_bridge"
+tags = ["mathematics", "physics"]
+from = "mangala"
+to = "shukra"
+inputs = ["a", "b"]
+output = "ratio"
+expression = "a / b"
+description = "Math-to-physics ratio bridge"
+aspect = "trine"
+evidence = "Aspects share an element — 120° flowing transfer, natural affinity"
+
+[[formula]]
+id = "force_to_work"
+tags = ["mechanics", "energy", "work"]
+domain = "shukra"
+from = "shukra"
+to = "shukra"
+inputs = ["ke", "distance"]
+output = "work"
+expression = "ke / distance"
+description = "Work-energy theorem: W = F×d, given kinetic energy and distance"
+aspect = "conjunction"
+evidence = "Work-energy theorem: W = ΔKE — integral of force over displacement"
+
+[[formula]]
+id = "bio_chem_bridge"
+tags = ["biology", "chemistry"]
+from = "surya"
+to = "shukra"
+inputs = ["concentration", "volume"]
+output = "amount"
+expression = "concentration * volume"
+description = "Biology-Chemistry: amount = concentration × volume"
+aspect = "sextile"
+evidence = "Aspects share a sign — harmonious 60° transfer, additive resonance"
+
+# ============================================================
+# NEW BRIDGING FORMULAS (added 2026-07-09, 20 total)
+# ============================================================
+
+# --- Surya (Biology) ↔ Brihaspati (Psychology) : 5 formulas ---
+
+[[formula]]
+id = "receptor_occupancy_to_symptom_change"
+tags = ["psychiatry", "pharmacology", "receptor", "symptom"]
+from = "surya"
+to = "brihaspati"
+inputs = ["receptor_occupancy", "baseline_symptom_severity", "affinity"]
+output = "symptom_change"
+expression = "receptor_occupancy * affinity * (1.0 - baseline_symptom_severity / 10.0)"
+description = "Psychopharm: symptom change from receptor occupancy, affinity, and baseline severity"
+aspect = "trine"
+evidence = "Occupancy model: symptom response ∝ occupancy × affinity × (baseline ceiling effect)"
+
+[[formula]]
+id = "neurotransmitter_balance_to_mood"
+tags = ["psychiatry", "neurotransmitter", "mood", "serotonin", "dopamine"]
+from = "surya"
+to = "brihaspati"
+inputs = ["target_serotonin", "target_dopamine", "target_norepinephrine"]
+output = "mood_stabilization_index"
+expression = "(target_serotonin * 0.5 + target_dopamine * 0.3 + target_norepinephrine * 0.2) * 10.0"
+description = "Psychopharm: mood stabilization from weighted neurotransmitter target engagement"
+aspect = "trine"
+evidence = "Monoamine hypothesis: mood improvement ∝ weighted sum of neurotransmitter target engagement"
+
+[[formula]]
+id = "half_life_to_compliance_score"
+tags = ["pharmacology", "compliance", "half_life", "dosing"]
+from = "surya"
+to = "brihaspati"
+inputs = ["half_life_hours", "dosing_frequency_per_day"]
+output = "compliance_score"
+expression = "1.0 / (1.0 + exp(-0.1 * (half_life_hours / dosing_frequency_per_day - 12.0)))"
+description = "Psychopharm: medication adherence as logistic function of half-life relative to dosing frequency"
+aspect = "sextile"
+evidence = "Pharmacokinetic adherence: longer half-life reduces dose timing burden, improving compliance"
+
+[[formula]]
+id = "therapeutic_index_to_safety_margin"
+tags = ["pharmacology", "safety", "therapeutic_index", "toxicity"]
+from = "surya"
+to = "brihaspati"
+inputs = ["therapeutic_index"]
+output = "safety_margin"
+expression = "1.0 - exp(-therapeutic_index * 2.0)"
+description = "Psychopharm: safety margin as asymptotic function of therapeutic index"
+aspect = "trine"
+evidence = "Therapeutic index: TI = TD50/ED50; safety margin approaches 1.0 as TI increases"
+
+[[formula]]
+id = "renal_clearance_to_dose_adjustment"
+tags = ["pharmacology", "renal", "clearance", "dosing"]
+from = "surya"
+to = "brihaspati"
+inputs = ["renal_clearance", "renal_clearance_normal"]
+output = "dose_adjustment_factor"
+expression = "renal_clearance / renal_clearance_normal"
+description = "Psychopharm: dose adjustment factor from renal function ratio"
+aspect = "sextile"
+evidence = "Renal dosing: dose = standard_dose × (patient_ClCr / normal_ClCr)"
+
+# --- Chandra (Earth) ↔ Surya (Biology) : 3 formulas (reverse direction) ---
+
+[[formula]]
+id = "pollution_exposure_to_respiratory_risk"
+tags = ["environment", "health", "pollution", "respiratory"]
+from = "chandra"
+to = "surya"
+inputs = ["particulate_matter_index", "exposure_duration_years", "baseline_lung_function"]
+output = "respiratory_risk_index"
+expression = "particulate_matter_index * exposure_duration_years / (baseline_lung_function + 0.1)"
+description = "Environmental health: respiratory risk from particulate exposure duration and baseline function"
+aspect = "square"
+evidence = "Epidemiology: PM2.5 exposure × duration correlates with COPD and lung cancer risk"
+
+[[formula]]
+id = "temperature_anomaly_to_heat_stress"
+tags = ["climate", "health", "temperature", "heat"]
+from = "chandra"
+to = "surya"
+inputs = ["temperature_anomaly", "humidity_factor", "population_acclimatization"]
+output = "heat_stress_mortality_risk"
+expression = "temperature_anomaly * humidity_factor / (population_acclimatization + 0.5)"
+description = "Environmental health: heat stress mortality risk from temperature anomaly and humidity"
+aspect = "square"
+evidence = "Climate health: excess mortality during heatwaves ∝ temperature × humidity / acclimatization"
+
+[[formula]]
+id = "water_quality_to_gastrointestinal_risk"
+tags = ["environment", "health", "water", "sanitation"]
+from = "chandra"
+to = "surya"
+inputs = ["coliform_count", "water_treatment_efficiency"]
+output = "waterborne_disease_risk"
+expression = "coliform_count * (1.0 - water_treatment_efficiency)"
+description = "Environmental health: waterborne disease risk from contamination and treatment efficiency"
+aspect = "sextile"
+evidence = "Sanitation: disease risk ∝ pathogen load × (1 - treatment efficacy)"
+
+# --- Surya (Biology) ↔ Shukra (Physics) : 3 formulas (biophysics) ---
+
+[[formula]]
+id = "receptor_binding_affinity_to_ec50"
+tags = ["biophysics", "pharmacology", "receptor", "binding"]
+from = "surya"
+to = "shukra"
+inputs = ["binding_affinity_km", "drug_concentration"]
+output = "fraction_bound"
+expression = "drug_concentration / (binding_affinity_km + drug_concentration)"
+description = "Biophysics: fraction of receptors bound from drug concentration and KM affinity"
+aspect = "trine"
+evidence = "Michaelis-Menten: fraction bound = [drug] / (KM + [drug]) — standard receptor occupancy"
+
+[[formula]]
+id = "membrane_potential_to_neural_firing"
+tags = ["biophysics", "neuroscience", "membrane", "firing_rate"]
+from = "surya"
+to = "shukra"
+inputs = ["membrane_potential_mv", "threshold_potential_mv"]
+output = "firing_rate_hz"
+expression = "max(0.0, membrane_potential_mv - threshold_potential_mv) * 10.0"
+description = "Biophysics: neural firing rate from membrane potential above threshold"
+aspect = "trine"
+evidence = "Hodgkin-Huxley: firing rate ∝ (Vm - Vthreshold) above threshold, 0 below"
+
+[[formula]]
+id = "drug_diffusion_to_brain_penetration"
+tags = ["biophysics", "pharmacology", "diffusion", "bbb"]
+from = "surya"
+to = "shukra"
+inputs = ["logp", "molecular_weight", "plasma_concentration"]
+output = "brain_penetration_index"
+expression = "plasma_concentration * exp(-0.5 * logp * logp) / sqrt(molecular_weight)"
+description = "Biophysics: brain penetration from logP, molecular weight, and plasma concentration"
+aspect = "sextile"
+evidence = "Lipinski: brain penetration ∝ exp(-logP²/2) / √MW (Gaussian optimal logP ~0-2)"
+
+# --- Brihaspati (Psychology) ↔ Shani (Language/Phil) : 3 formulas ---
+
+[[formula]]
+id = "cognitive_load_to_linguistic_complexity"
+tags = ["psychology", "linguistics", "cognition", "complexity"]
+from = "brihaspati"
+to = "shani"
+inputs = ["cognitive_load", "working_memory_capacity"]
+output = "utterance_complexity"
+expression = "cognitive_load / (working_memory_capacity + 0.1) * 5.0"
+description = "Psycholinguistics: utterance complexity decreases under cognitive load relative to WM capacity"
+aspect = "square"
+evidence = "Levelt model: higher cognitive load reduces syntactic complexity and lexical diversity"
+
+[[formula]]
+id = "emotional_valence_to_rhetorical_device"
+tags = ["psychology", "linguistics", "emotion", "rhetoric"]
+from = "brihaspati"
+to = "shani"
+inputs = ["emotional_valence", "physiological_arousal"]
+output = "metaphor_density"
+expression = "abs(emotional_valence) * physiological_arousal * 2.0"
+description = "Psycholinguistics: metaphor density increases with emotional intensity and arousal"
+aspect = "trine"
+evidence = "Lakoff-Johnson: emotional states recruit more metaphorical language proportional to intensity"
+
+[[formula]]
+id = "belief_update_to_narrative_shift"
+tags = ["psychology", "philosophy", "belief", "narrative"]
+from = "brihaspati"
+to = "shani"
+inputs = ["prior_belief_strength", "surprise_magnitude", "cognitive_flexibility"]
+output = "belief_revision_magnitude"
+expression = "surprise_magnitude * cognitive_flexibility * (1.0 - prior_belief_strength * 0.8)"
+description = "Cognitive-philosophical: belief revision from surprise, flexibility, and prior conviction"
+aspect = "square"
+evidence = "Bayesian belief updating: posterior ∝ likelihood × prior; revision ∝ prediction error × flexibility"
+
+# --- Mangala (Math/CS) ↔ Brihaspati (Psychology) : 3 formulas ---
+
+[[formula]]
+id = "entropy_to_cognitive_uncertainty"
+tags = ["math", "psychology", "entropy", "uncertainty"]
+from = "mangala"
+to = "brihaspati"
+inputs = ["state_probabilities", "num_states"]
+output = "cognitive_uncertainty_bits"
+expression = "state_probabilities * log2(num_states + 1.0)"
+description = "Computational psych: cognitive uncertainty as entropy over possible states"
+aspect = "trine"
+evidence = "Shannon entropy: H = -Σp(x)log₂p(x); cognitive uncertainty increases with state space size"
+
+[[formula]]
+id = "reinforcement_rate_to_learning_curve"
+tags = ["math", "psychology", "reinforcement", "learning"]
+from = "mangala"
+to = "brihaspati"
+inputs = ["reinforcement_rate", "trials", "initial_learning_rate"]
+output = "learning_proficiency"
+expression = "initial_learning_rate * (1.0 - exp(-reinforcement_rate * trials * 0.1))"
+description = "Computational psych: learning proficiency as asymptotic function of reinforcement over trials"
+aspect = "trine"
+evidence = "Rescorla-Wagner: learning asymptote ∝ reinforcement rate; learning rate = α × (λ - V)"
+
+[[formula]]
+id = "dimensionality_to_decision_time"
+tags = ["math", "psychology", "decision", "dimensionality"]
+from = "mangala"
+to = "brihaspati"
+inputs = ["choice_dimensionality", "information_per_dimension"]
+output = "decision_latency_ms"
+expression = "choice_dimensionality * information_per_dimension * 50.0"
+description = "Computational psych: decision latency scales with choice dimensionality and information load"
+aspect = "sextile"
+evidence = "Hick-Hyman law: RT = a + b × log₂(n); choice dimensionality increases effective n"
+
+# --- Shukra (Physics) ↔ Budha (Astronomy) : 3 formulas ---
+
+[[formula]]
+id = "stellar_luminosity_to_habitable_zone"
+tags = ["astrophysics", "exoplanets", "habitable_zone", "stellar"]
+from = "shukra"
+to = "budha"
+inputs = ["stellar_luminosity_lsol", "stellar_temperature_k"]
+output = "habitable_zone_radius_au"
+expression = "sqrt(stellar_luminosity_lsol / 1.0) * (1.0 - 0.1 * abs(stellar_temperature_k - 5778.0) / 5778.0)"
+description = "Astrophysics: habitable zone radius from stellar luminosity and temperature"
+aspect = "trine"
+evidence = "Kasting (1993): HZ = √(L/L☉) × (Teff/5778K) adjustment for stellar type"
+
+[[formula]]
+id = "orbital_period_to_semimajor_axis"
+tags = ["astrophysics", "orbital_mechanics", "kepler"]
+from = "shukra"
+to = "budha"
+inputs = ["orbital_period_years", "stellar_mass_msol"]
+output = "semimajor_axis_au"
+expression = "exp(log(orbital_period_years * orbital_period_years * stellar_mass_msol) / 3.0)"
+description = "Astrophysics: semimajor axis from orbital period and stellar mass (Kepler's 3rd law)"
+aspect = "conjunction"
+evidence = "Kepler's 3rd law: P² = 4π²a³/GM — period-squared proportional to semi-major-axis-cubed"
+
+[[formula]]
+id = "redshift_to_distance"
+tags = ["astrophysics", "cosmology", "redshift", "distance"]
+from = "budha"
+to = "shukra"
+inputs = ["redshift_z"]
+output = "comoving_distance_glyr"
+expression = "redshift_z * 3.26 * 2.0 / (1.0 + sqrt(1.0 + redshift_z))"
+description = "Astrophysics: comoving distance from redshift (flat ΛCDM approximation)"
+aspect = "trine"
+evidence = "Hubble-Lemaître law: d ≈ cz/H₀ × (2/(1+√(1+z))) approximation for ΛCDM"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Universal Counsel Bridging Formulas — Rahu/Ketu + Missing Domain Pairs
+# Total: 15 new formulas (48 → 63 bridging)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# ─── Rahu (Innovation/Technology) — NEW: zero bridging connections before ─────
+
+[[formula]]
+id = "tech_behavioral_impact"
+tags = ["technology", "psychology", "behavior", "social", "counsel"]
+from = "rahu"
+to = "brihaspati"
+inputs = ["adoption_rate", "attention_displacement", "social_isolation"]
+output = "behavioral_disruption_index"
+expression = "(adoption_rate * 0.4) + (attention_displacement * 0.35) + (social_isolation * 0.25)"
+description = "Technology-psychology: how tech adoption disrupts attention, social bonds, and mental health"
+aspect = "trine"
+evidence = "Twenge 2017, Turkle 2011: smartphone/social media adoption correlates with rising anxiety and loneliness"
+
+[[formula]]
+id = "ethics_of_emerging_tech"
+tags = ["technology", "philosophy", "ethics", "counsel", "governance"]
+from = "rahu"
+to = "shani"
+inputs = ["capability_level", "regulatory_gap", "reversibility"]
+output = "ethical_risk_score"
+expression = "(capability_level * 0.4) + (regulatory_gap * 0.35) + ((1.0 - reversibility) * 0.25)"
+description = "Technology-philosophy: ethical risk from capability outpacing governance"
+aspect = "conjunction"
+evidence = "Bostrom 2014, Floridi 2013: risk scales with capability × gap in oversight × irreversibility"
+
+[[formula]]
+id = "innovation_computational_power"
+tags = ["technology", "math", "computation", "algorithmic"]
+from = "rahu"
+to = "mangala"
+inputs = ["parallelism", "algorithmic_complexity", "data_volume"]
+output = "computational_advantage"
+expression = "parallelism * log(data_volume + 1.0) / (algorithmic_complexity + 0.1)"
+description = "Technology-Math: computational advantage from parallel architecture × data scale"
+aspect = "sextile"
+evidence = "Amdahl's law meets big data: advantage = parallelism × log(n) / complexity"
+
+[[formula]]
+id = "fintech_extraction_model"
+tags = ["technology", "economics", "fintech", "digital_economy", "counsel"]
+from = "rahu"
+to = "budha"
+inputs = ["platform_concentration", "fee_rate", "user_lock_in"]
+output = "extraction_pressure"
+expression = "(platform_concentration * 0.4) + (fee_rate * 100.0 * 0.35) + (user_lock_in * 0.25)"
+description = "Technology-Economics: rent extraction pressure from platform monopolies"
+aspect = "sextile"
+evidence = "Posner & Weyl 2018: platform monopoly enables rent extraction proportional to lock-in"
+
+# ─── Ketu (Spiritual/Transcendence) — NEW: zero bridging connections before ────
+
+[[formula]]
+id = "wisdom_practice_depth"
+tags = ["spiritual", "philosophy", "wisdom", "practice", "counsel"]
+from = "ketu"
+to = "shani"
+inputs = ["years_practice", "lineage_depth", "integration_level"]
+output = "wisdom_depth"
+expression = "(years_practice * 0.3) + (lineage_depth * 0.3) + (integration_level * 0.4)"
+description = "Spiritual-Philosophy: wisdom depth from sustained practice, tradition, and life integration"
+aspect = "conjunction"
+evidence = "Wallace 2011, Wilber 2006: wisdom scales with practice × depth × integration, not just knowledge"
+
+[[formula]]
+id = "meaning_making_capacity"
+tags = ["spiritual", "psychology", "meaning", "purpose", "counsel"]
+from = "ketu"
+to = "brihaspati"
+inputs = ["narrative_coherence", "values_clarity", "community_belonging"]
+output = "meaning_score"
+expression = "(narrative_coherence * 0.35) + (values_clarity * 0.35) + (community_belonging * 0.3)"
+description = "Spiritual-Psychology: meaning-making from narrative, values, and belonging"
+aspect = "trine"
+evidence = "Frankl 1946, Steger 2009: meaning = coherent narrative + clear values + belonging"
+
+[[formula]]
+id = "consciousness_hard_problem"
+tags = ["spiritual", "biology", "consciousness", "neuroscience", "counsel"]
+from = "ketu"
+to = "surya"
+inputs = ["neural_complexity", "integration_level", "mystery_remainder"]
+output = "consciousness_gap"
+expression = "(neural_complexity * 0.4) + (integration_level * 0.3) + (mystery_remainder * 0.3)"
+description = "Spiritual-Biology: the 'hard problem' gap — neuroscience explains mechanism, not experience"
+aspect = "opposition"
+evidence = "Chalmers 1995: explanatory gap between neural correlates and subjective experience"
+
+# ─── Budha↔Brihaspati: Behavioral Economics (missing entirely) ────────────────
+
+[[formula]]
+id = "behavioral_economic_distortion"
+tags = ["economics", "psychology", "behavioral", "bias", "counsel"]
+from = "budha"
+to = "brihaspati"
+inputs = ["cognitive_bias_strength", "market_pressure", "information_asymmetry"]
+output = "distortion_index"
+expression = "(cognitive_bias_strength * 0.4) + (market_pressure * 0.3) + (information_asymmetry * 0.3)"
+description = "Economics-Psychology: market distortion from cognitive biases × pressure × asymmetry"
+aspect = "sextile"
+evidence = "Kahneman & Tversky 1979, Thaler 2015: behavioral biases compound under market pressure"
+
+# ─── Budha↔Shani: Economic Philosophy (missing entirely) ──────────────────────
+
+[[formula]]
+id = "economic_justice_index"
+tags = ["economics", "philosophy", "justice", "fairness", "counsel"]
+from = "budha"
+to = "shani"
+inputs = ["gini_coefficient", "opportunity_access", "rule_of_law"]
+output = "justice_score"
+expression = "((1.0 - gini_coefficient) * 0.35) + (opportunity_access * 0.35) + (rule_of_law * 0.3)"
+description = "Economics-Philosophy: economic justice from inequality, opportunity, and institutional fairness"
+aspect = "sextile"
+evidence = "Rawls 1971, Sen 1999: justice = low inequality × high opportunity × strong institutions"
+
+# ─── Chandra↔Brihaspati: Eco-Psychology (missing entirely) ───────────────────
+
+[[formula]]
+id = "eco_anxiety_counsel"
+tags = ["earth", "psychology", "eco-anxiety", "climate", "counsel"]
+from = "chandra"
+to = "brihaspati"
+inputs = ["environmental_threat", "perceived_control", "community_support"]
+output = "eco_counsel_score"
+expression = "(perceived_control * 0.4) + (community_support * 0.3) + ((1.0 - environmental_threat) * 0.3)"
+description = "Earth-Psychology: eco-anxiety counsel — agency and community buffer threat perception"
+aspect = "trine"
+evidence = "Clayton 2020, Hickman 2021: eco-anxiety buffered by agency, community, and meaning"
+
+# ─── Chandra↔Shukra: Sustainable Engineering (missing entirely) ───────────────
+
+[[formula]]
+id = "sustainable_design_score"
+tags = ["earth", "engineering", "sustainability", "design", "counsel"]
+from = "chandra"
+to = "shukra"
+inputs = ["resource_efficiency", "ecological_footprint", "lifecycle_length"]
+output = "sustainability_score"
+expression = "(resource_efficiency * 0.35) + ((1.0 - ecological_footprint) * 0.3) + (lifecycle_length * 0.35)"
+description = "Earth-Engineering: sustainable design from efficiency, low footprint, and durability"
+aspect = "trine"
+evidence = "McDonough & Braungart 2002: cradle-to-cradle design = efficiency × low impact × longevity"
+
+# ─── Surya↔Mangala: Computational Biology / Epidemiology ─────────────────────
+
+[[formula]]
+id = "epidemic_spread_model"
+tags = ["biology", "math", "epidemiology", "modeling", "counsel"]
+from = "surya"
+to = "mangala"
+inputs = ["transmission_rate", "population_density", "intervention_effectiveness"]
+output = "epidemic_risk"
+expression = "(transmission_rate * population_density * 0.6) * (1.0 - intervention_effectiveness * 0.4)"
+description = "Biology-Math: epidemic risk from transmission × density, reduced by intervention effectiveness"
+aspect = "sextile"
+evidence = "SIR model (Kermack & McKendrick 1927): R₀ = β × N × (1/γ), intervention reduces effective R₀"
+
+# ─── Surya↔Chandra: Environmental Health (missing depth) ─────────────────────
+
+[[formula]]
+id = "environmental_health_impact"
+tags = ["biology", "earth", "environmental_health", "toxicology", "counsel"]
+from = "surya"
+to = "chandra"
+inputs = ["pollution_exposure", "baseline_health", "healthcare_access"]
+output = "health_impact_score"
+expression = "(pollution_exposure * 0.4) + ((1.0 - baseline_health) * 0.3) + ((1.0 - healthcare_access) * 0.3)"
+description = "Biology-Earth: health impact from environmental exposure × vulnerability × access"
+aspect = "conjunction"
+evidence = "WHO 2021: environmental health risk = exposure × (1 - resilience) × (1 - healthcare access)"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# NAND-TO-TOP BRIDGING FORMULAS
+# ═══════════════════════════════════════════════════════════════════════════════
+#
+# These formulas connect the derivation chain across domains:
+#
+#   NAND (Mangala) → Logic (Budha) → Code (Shukra) → Grammar (Shani)
+#                                                       ↓
+#                                                  Formulas (Mangala)
+#                                                       ↓
+#                                                  Entities (Surya/Chandra)
+#                                                       ↓
+#                                                  Astrology (all 9 domains)
+#
+# Each formula bridges two adjacent layers in the pipeline, encoding
+# the mathematical relationship that proves the upper layer is grounded
+# in the lower one.
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# ─── NAND → Logic: Gate derivation (Mangala ↔ Budha) ────────────────────────
+# Proves each derived gate is computable from NAND alone.
+
+[[formula]]
+id = "nand_to_not"
+tags = ["nand", "logic", "derivation", "bedrock", "mangala"]
+from = "mangala"
+to = "budha"
+inputs = ["a"]
+output = "not_a"
+expression = "1 - a"
+description = "NAND→NOT: self-NAND produces negation; the first derivation from the bedrock"
+aspect = "trine"
+evidence = "nand(a,a) = 1 - a*a = 1 - a; NOT is the sole axiom-level derivation"
+
+[[formula]]
+id = "nand_to_and"
+tags = ["nand", "logic", "derivation", "bedrock", "mangala"]
+from = "mangala"
+to = "budha"
+inputs = ["a", "b"]
+output = "and_ab"
+expression = "a * b"
+description = "NAND→AND: NOT(NAND(a,b)) = a*b; conjunction as NAND followed by self-NAND"
+aspect = "trine"
+evidence = "and(a,b) = not(nand(a,b)) = 1-(1-a*b) = a*b; proven by Peano multiplication"
+
+[[formula]]
+id = "nand_to_or"
+tags = ["nand", "logic", "derivation", "bedrock", "mangala"]
+from = "mangala"
+to = "budha"
+inputs = ["a", "b"]
+output = "or_ab"
+expression = "a + b - a * b"
+description = "NAND→OR: NAND(NOT(a),NOT(b)) = a+b-ab; disjunction as dual-input NAND"
+aspect = "trine"
+evidence = "or(a,b) = nand(1-a, 1-b) = 1-(1-a)(1-b) = a+b-ab"
+
+[[formula]]
+id = "nand_to_xor"
+tags = ["nand", "logic", "derivation", "bedrock", "mangala"]
+from = "mangala"
+to = "budha"
+inputs = ["a", "b"]
+output = "xor_ab"
+expression = "a + b - 2 * a * b"
+description = "NAND→XOR: exclusive-or as composed NAND gates; parity detection from bedrock"
+aspect = "trine"
+evidence = "xor(a,b) = or(and(a,not(b)),and(not(a),b)) = a+b-2ab; continuous extension"
+
+[[formula]]
+id = "nand_to_implies"
+tags = ["nand", "logic", "derivation", "bedrock", "mangala"]
+from = "mangala"
+to = "budha"
+inputs = ["a", "b"]
+output = "implies_ab"
+expression = "1 - a + a * b"
+description = "NAND→IMPLIES: material conditional from NAND; the bridge from logic to proof"
+aspect = "trine"
+evidence = "implies(a,b) = or(not(a),b) = (1-a)+b-(1-a)b = 1-a+ab; false only when a=1,b=0"
+
+# ─── Logic → Code: Gate compilation (Budha ↔ Shukra) ────────────────────────
+# Formulas that measure the cost of compiling logical gates into code.
+
+[[formula]]
+id = "gate_nand_count"
+tags = ["logic", "code", "compilation", "cost", "budha"]
+from = "budha"
+to = "shukra"
+inputs = ["gate_depth", "fan_out"]
+output = "nand_cost"
+expression = "gate_depth * 2 + fan_out"
+description = "Logic→Code: NAND gate count estimate from expression depth and fan-out"
+aspect = "sextile"
+evidence = "NAND circuit complexity: each derived gate costs 1-4 NAND gates; depth × fan-out bounds area"
+
+[[formula]]
+id = "dag_node_cost"
+tags = ["logic", "code", "compilation", "dag", "budha"]
+from = "budha"
+to = "shukra"
+inputs = ["node_count", "edge_count"]
+output = "compile_cost"
+expression = "node_count + edge_count * 2"
+description = "Logic→Code: DAG compilation cost from node count and edge connectivity"
+aspect = "sextile"
+evidence = "NandDag compilation: O(V+E) topological sort; edge count determines wiring complexity"
+
+[[formula]]
+id = "expression_parse_depth"
+tags = ["logic", "code", "parsing", "grammar", "budha"]
+from = "budha"
+to = "shukra"
+inputs = ["nesting_level", "operator_count"]
+output = "parse_complexity"
+expression = "nesting_level * 3 + operator_count"
+description = "Logic→Code: expression parsing complexity from nesting depth and operator count"
+aspect = "sextile"
+evidence = "Recursive-descent parser: each nesting level adds a stack frame; each operator adds a token"
+
+# ─── Code → Formula: Compilation grounding (Shukra ↔ Mangala) ───────────────
+# Formulas that connect code patterns back to evaluable mathematics.
+
+[[formula]]
+id = "formula_eval_cost"
+tags = ["code", "formula", "evaluation", "cost", "shukra"]
+from = "shukra"
+to = "mangala"
+inputs = ["expression_tokens", "variable_count"]
+output = "eval_operations"
+expression = "expression_tokens + variable_count * 2"
+description = "Code→Formula: evaluation cost from expression token count and variable lookups"
+aspect = "sextile"
+evidence = "Tanto evaluator: O(tokens) traversal; each variable requires HashMap lookup"
+
+[[formula]]
+id = "gate_to_formula_confidence"
+tags = ["code", "formula", "confidence", "grounding", "shukra"]
+from = "shukra"
+to = "mangala"
+inputs = ["deterministic_steps", "llm_steps"]
+output = "chain_confidence"
+expression = "0.95 ^ deterministic_steps * 0.6 ^ llm_steps"
+description = "Code→Formula: chain confidence from deterministic (0.95) and LLM (0.6) step composition"
+aspect = "sextile"
+evidence = "Bankai confidence: deterministic steps multiply at 0.95; LLM steps penalized at 0.6"
+
+# ─── Grammar → Formula: Expression syntax grounding (Shani ↔ Mangala) ────────
+# Connects language structure to mathematical evaluation.
+
+[[formula]]
+id = "grammar_to_expression"
+tags = ["grammar", "formula", "parsing", "shani"]
+from = "shani"
+to = "mangala"
+inputs = ["rule_matches", "transform_count"]
+output = "expression_tokens"
+expression = "rule_matches + transform_count"
+description = "Grammar→Formula: expression tokens from grammar rule matches and transforms applied"
+aspect = "square"
+evidence = "NLP pipeline: grammar rules match token patterns; transforms produce formula-ready expressions"
+
+[[formula]]
+id = "expression_to_descent"
+tags = ["grammar", "formula", "descent", "shani"]
+from = "shani"
+to = "mangala"
+inputs = ["token_count", "average_depth"]
+output = "resolution_score"
+expression = "(token_count * average_depth) / (token_count + 7)"
+description = "Grammar→Formula: descent resolution score from token count and average layer depth"
+aspect = "square"
+evidence = "DescentEngine: resolution_score = fraction of tokens reaching Formula+ depth (layers 4-6)"
+
+# ─── Formula → Entity: Mathematical grounding (Mangala ↔ Surya) ─────────────
+# Connects evaluated formulas to grounded entities.
+
+[[formula]]
+id = "formula_entity_grounding"
+tags = ["formula", "entity", "grounding", "mangala"]
+from = "mangala"
+to = "surya"
+inputs = ["formula_confidence", "entity_match_score"]
+output = "grounding_strength"
+expression = "formula_confidence * entity_match_score"
+description = "Formula→Entity: grounding strength from formula confidence × entity match quality"
+aspect = "conjunction"
+evidence = "DescentLayer::NAND: dual grounding requires both entity AND formula match at confidence ≥ 0.8"
+
+[[formula]]
+id = "entity_to_classification"
+tags = ["entity", "astrology", "classification", "surya"]
+from = "surya"
+to = "surya"
+inputs = ["vedic_graha_activation", "western_sign_activation"]
+output = "classification_depth"
+expression = "vedic_graha_activation * 0.6 + western_sign_activation * 0.4"
+description = "Entity→Astrology: classification depth from Vedic (60%) and Western (40%) axis activations"
+aspect = "conjunction"
+evidence = "AtomClassification: 7-axis system with Vedic nested inside; Vedic weighted higher for descent"
+
+# ─── Entity → Astrology: Full pipeline grounding (Surya ↔ Chandra) ──────────
+# The final bridge: from grounded entities to the user-facing astrology.
+
+[[formula]]
+id = "astrology_chart_resolution"
+tags = ["entity", "astrology", "chart", "resolution", "surya"]
+from = "surya"
+to = "chandra"
+inputs = ["entity_count", "settled_at_nand"]
+output = "chart_resolution"
+expression = "settled_at_nand / max(entity_count, 1)"
+description = "Entity→Astrology: chart resolution from fraction of tokens reaching NAND bedrock"
+aspect = "conjunction"
+evidence = "SettlingMatrix::resolution_score = tokens at Formula+ depth / total tokens; higher = more grounded"
+
+[[formula]]
+id = "vedic_western_bridge"
+tags = ["vedic", "western", "astrology", "bridge", "surya"]
+from = "surya"
+to = "chandra"
+inputs = ["vedic_confidence", "western_confidence"]
+output = "unified_confidence"
+expression = "(vedic_confidence + western_confidence) / 2"
+description = "Vedic↔Western bridge: unified confidence from both classification systems"
+aspect = "conjunction"
+evidence = "AtomClassification: Vedic and Western are independent axes; average gives unified view"

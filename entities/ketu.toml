@@ -1,0 +1,82 @@
+# Entities for Ketu — Spiritual, Transcendent, Liberating
+# Ketu: the karmic node of detachment, wisdom, and liberation
+
+[[entity]]
+id = "mindfulness_meditation"
+name = "Mindfulness & Meditation"
+domain = "ketu"
+description = "Contemplative practices for awareness, regulation, and insight. Evidence-based benefits for mental health."
+tags = ["spiritual", "psychology", "practice", "health", "counsel"]
+properties = { evidence_base = 0.85, accessibility = 0.9, depth = 0.7, health_benefit = 0.8 }
+
+[[entity]]
+id = "meaning_purpose"
+name = "Meaning & Purpose"
+domain = "ketu"
+description = "Existential sense of 'why'. Protective factor against depression, addiction, and despair."
+tags = ["spiritual", "philosophy", "psychology", "counsel"]
+properties = { protective_factor = 0.9, cultivability = 0.7, universality = 0.85, depth = 0.8 }
+
+[[entity]]
+id = "grief_loss"
+name = "Grief & Loss"
+domain = "ketu"
+description = "Natural response to loss. Not a disorder to fix but a process to accompany."
+tags = ["spiritual", "psychology", "counsel", "loss", "healing"]
+properties = { universality = 0.95, duration = 0.7, growth_potential = 0.8, support_need = 0.85 }
+
+[[entity]]
+id = "shadow_work"
+name = "Shadow Work"
+domain = "ketu"
+description = "Jungian concept: integrating rejected aspects of self. Necessary for psychological wholeness."
+tags = ["spiritual", "psychology", "jung", "growth", "counsel"]
+properties = { difficulty = 0.8, growth_potential = 0.9, universality = 0.7, courage_required = 0.85 }
+
+[[entity]]
+id = "compassion_ethics"
+name = "Compassion & Ethics"
+domain = "ketu"
+description = "Ethical framework grounded in empathy and suffering reduction. Cross-cultural universal."
+tags = ["spiritual", "philosophy", "ethics", "compassion", "counsel"]
+properties = { universality = 0.9, practicability = 0.7, depth = 0.85, evidence_base = 0.6 }
+
+[[entity]]
+id = "addiction_recovery"
+name = "Addiction & Recovery"
+domain = "ketu"
+description = "Compulsive behavior patterns and the path to freedom. Medical model + spiritual dimensions."
+tags = ["spiritual", "psychology", "health", "recovery", "counsel"]
+properties = { prevalence = 0.7, treatability = 0.6, spiritual_dimension = 0.8, community_need = 0.9 }
+
+[[entity]]
+id = "creative_flow"
+name = "Creative Flow State"
+domain = "ketu"
+description = "Csikszentmihalyi's flow: optimal experience through challenge-skill balance."
+tags = ["spiritual", "psychology", "creativity", "wellbeing"]
+properties = { access_frequency = 0.5, wellbeing_correlation = 0.85, cultivability = 0.7, depth = 0.8 }
+
+[[entity]]
+id = "death_awareness"
+name = "Death Awareness"
+domain = "ketu"
+description = "Mortality salience as a catalyst for meaning, urgency, and authentic living."
+tags = ["spiritual", "philosophy", "psychology", "existential", "counsel"]
+properties = { universality = 0.95, catalytic_power = 0.9, avoidance_default = 0.85, wisdom_trigger = 0.8 }
+
+[[entity]]
+id = "intergenerational_trauma"
+name = "Intergenerational Trauma"
+domain = "ketu"
+description = "Trauma patterns transmitted across generations. Epigenetic and psychological mechanisms."
+tags = ["spiritual", "psychology", "family", "healing", "counsel"]
+properties = { transmission_rate = 0.6, reversibility = 0.7, recognition_difficulty = 0.75, healing_depth = 0.9 }
+
+[[entity]]
+id = "solitude_silence"
+name = "Solitude & Silence"
+domain = "ketu"
+description = "Intentional aloneness for reflection, creativity, and spiritual deepening."
+tags = ["spiritual", "wellbeing", "practice", "counsel"]
+properties = { accessibility = 0.9, benefit_depth = 0.8, modern_scarcity = 0.85, practiceDifficulty = 0.5 }

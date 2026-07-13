@@ -1703,4 +1703,33 @@ tags = ["anime", "gundam"]
             .expect("legacy present");
         assert_eq!(shared.name, "Shinken Hakkyōken");
     }
+
+    #[test]
+    fn test_load_all_entity_toml_files() {
+        let dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("entities");
+        if !dir.exists() {
+            eprintln!("Skipping: entities/ directory not found");
+            return;
+        }
+        let mut reg = EntityRegistry::new();
+        let mut loaded = 0;
+        for entry in std::fs::read_dir(&dir).unwrap() {
+            let path = entry.unwrap().path();
+            if path.extension().map_or(false, |e| e == "toml") {
+                reg.load_seeds_from_file(&path)
+                    .unwrap_or_else(|e| panic!("Failed to load {}: {}", path.display(), e));
+                loaded += 1;
+            }
+        }
+        assert!(loaded > 0, "Should have loaded at least one entity TOML file");
+        let seeds = reg.list_seeds();
+        assert!(
+            seeds.len() > 100,
+            "Should have loaded many seed entities, got {}",
+            seeds.len()
+        );
+        // Spot-check a few known entities
+        assert!(reg.get_seed("cognitive_flexibility").is_some(), "Missing 'cognitive_flexibility' from budha.toml");
+        assert!(reg.get_seed("mangala").is_some(), "Missing 'mangala' from grahas.toml");
+    }
 }

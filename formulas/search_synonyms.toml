@@ -1,0 +1,230 @@
+# ─── Synonym Dictionary for Formula Search ────────────────────────────────
+#
+# Each group maps a canonical term to all its variants. When a user searches
+# for any term in the group, ALL terms in the group are searched — so "gravity"
+# also matches formulas tagged with "gravitational", "gravitation", etc.
+#
+# This is a flat lookup: every term maps bidirectionally to every other term
+# in its group. There is no hierarchy or "preferred term" — all are equal.
+#
+# Deterministic, zero-dependency replacement for embedding-based semantic
+# search. Editable at runtime (no recompile needed).
+#
+# Format: [group.<canonical>]
+#         terms = ["variant1", "variant2", ...]
+
+[group.gravity]
+terms = ["gravity", "gravitational", "gravitation", "g_force", "g_field"]
+
+[group.energy]
+terms = ["energy", "energetic", "joule", "joules", "work"]
+
+[group.force]
+terms = ["force", "forces", "newton", "newtons", "f=ma"]
+
+[group.velocity]
+terms = ["velocity", "speed", "velocities", "v"]
+
+[group.mass]
+terms = ["mass", "masses", "weight", "gravitational_mass", "inertia"]
+
+[group.momentum]
+terms = ["momentum", "impulse", "p=mv"]
+
+[group.entropy]
+terms = ["entropy", "entropic", "disorder", "thermodynamic", "second_law"]
+
+[group.kinetic]
+terms = ["kinetic", "motion", "movement", "translational"]
+
+[group.potential]
+terms = ["potential", "potential_energy", "positional", "stored"]
+
+[group.acceleration]
+terms = ["acceleration", "accelerate", "accelerating", "a"]
+
+[group.frequency]
+terms = ["frequency", "frequencies", "hertz", "hz", "periodic"]
+
+[group.wavelength]
+terms = ["wavelength", "wave", "lambda", "wave_length", "wavenumber"]
+
+[group.temperature]
+terms = ["temperature", "temp", "thermal", "heat", "kelvin", "celsius"]
+
+[group.pressure]
+terms = ["pressure", "pressures", "pascal", "pascals", "atm", "bar"]
+
+[group.volume]
+terms = ["volume", "volumes", "capacity"]
+
+[group.density]
+terms = ["density", "densities", "dense", "rho", "mass_density", "number_density"]
+
+[group.area]
+terms = ["area", "surface", "cross_section", "cross-sectional"]
+
+[group.length]
+terms = ["length", "distance", "range", "size", "displacement", "altitude", "height", "depth"]
+
+[group.time]
+terms = ["time", "duration", "period", "temporal", "elapsed", "interval"]
+
+[group.current]
+terms = ["current", "amperage", "amps", "amperes", "i"]
+
+[group.voltage]
+terms = ["voltage", "potential_difference", "volt", "volts", "emf", "electric_potential"]
+
+[group.resistance]
+terms = ["resistance", "resistivity", "ohm", "ohms", "impedance"]
+
+[group.capacitance]
+terms = ["capacitance", "capacitor", "farad", "capacitive"]
+
+[group.inductance]
+terms = ["inductance", "inductor", "henry", "inductive"]
+
+[group.magnetic]
+terms = ["magnetic", "magnetism", "b_field", "magnetic_field", "magnet"]
+
+[group.electric]
+terms = ["electric", "electricity", "electrical", "charge", "coulomb"]
+
+[group.angular]
+terms = ["angular", "rotational", "rotation", "spin", "torque", "moment_of_inertia", "gyro"]
+
+[group.photon]
+terms = ["photon", "photons", "light", "radiant", "luminous", "lumens"]
+
+[group.radioactive]
+terms = ["radioactive", "radioactivity", "decay", "half_life", "half-life", "nuclear"]
+
+[group.chemical]
+terms = ["chemical", "chemistry", "reaction", "molecule", "molar", "concentration", "reagent"]
+
+[group.ph]
+terms = ["ph", "acidity", "alkalinity", "acid", "base", "buffer"]
+
+[group.biological]
+terms = ["biological", "bio", "organism", "cellular", "cell", "dna", "rna", "protein", "enzyme", "metabolic"]
+
+[group.economic]
+terms = ["economic", "economy", "gdp", "gross_domestic_product", "market", "financial", "finance", "monetary"]
+
+[group.computer]
+terms = ["computer", "computing", "algorithm", "computational", "cs", "computation"]
+
+[group.ai]
+terms = ["ai", "artificial_intelligence", "machine_learning", "ml", "neural", "deep_learning", "llm"]
+
+[group.statistics]
+terms = ["statistics", "statistical", "probability", "probabilistic", "distribution", "variance", "bayesian", "stochastic"]
+
+[group.geometric]
+terms = ["geometric", "geometry", "circle", "sphere", "triangle", "radius", "diameter", "perimeter", "circumference"]
+
+[group.trigonometric]
+terms = ["trigonometric", "trig", "trigonometry", "sine", "cosine", "tangent", "sin", "cos", "tan", "hypotenuse"]
+
+[group.relativity]
+terms = ["relativity", "relativistic", "einstein", "spacetime", "space_time", "lorentz"]
+
+[group.quantum]
+terms = ["quantum", "quantum_mechanics", "planck", "schrodinger", "wave_function", "superposition", "qubit"]
+
+[group.thermodynamic]
+terms = ["thermodynamic", "thermodynamics", "carnot", "efficiency", "heat_engine", "enthalpy", "gibbs"]
+
+[group.fluid]
+terms = ["fluid", "fluids", "hydrodynamic", "bernoulli", "viscosity", "laminar", "turbulent", "flow"]
+
+[group.optical]
+terms = ["optical", "optics", "lens", "refraction", "diffraction", "interference", "focal", "refractive"]
+
+[group.acoustic]
+terms = ["acoustic", "acoustics", "sound", "audio", "sonic", "decibel", "db", "pitch", "resonance"]
+
+[group.astronomy]
+terms = ["astronomy", "astronomical", "celestial", "orbital", "planet", "star", "galaxy", "cosmic", "astrophysics"]
+
+[group.math]
+terms = ["math", "mathematics", "mathematical", "arithmetic", "algebra", "calculus", "differential", "integral"]
+
+[group.logic]
+terms = ["logic", "logical", "boolean", "gate", "truth_table", "bitwise", "propositional"]
+
+[group.cryptography]
+terms = ["cryptography", "crypto", "encryption", "decryption", "cipher", "rsa", "aes", "hash", "signature"]
+
+[group.signal]
+terms = ["signal", "signals", "signal_processing", "fourier", "convolution", "filter"]
+
+[group.control]
+terms = ["control", "feedback", "pid", "transfer_function", "stability", "closed_loop"]
+
+[group.mechanics]
+terms = ["mechanics", "classical_mechanics", "newtonian", "lagrangian", "hamiltonian"]
+
+[group.electromagnetism]
+terms = ["electromagnetism", "electromagnetic", "maxwell", "faraday", "ampere", "gauss"]
+
+[group.thermodynamic_cycle]
+terms = ["cycle", "carnot_cycle", "otto", "diesel", "rankine", "brayton"]
+
+[group.unit_conversion]
+terms = ["unit", "units", "conversion", "convert", "metric", "imperial", "si"]
+
+[group.dimension]
+terms = ["dimension", "dimensional", "dimensional_analysis"]
+
+[group.error]
+terms = ["error", "uncertainty", "tolerance", "precision", "accuracy", "margin"]
+
+[group.radiance]
+terms = ["radiance", "irradiance", "intensity", "flux", "luminosity", "brightness"]
+
+[group.ecology]
+terms = ["ecology", "ecological", "ecosystem", "environmental", "biodiversity", "population_growth"]
+
+[group.geology]
+terms = ["geology", "geological", "earth", "seismic", "plate_tectonic", "mineral"]
+
+[group.medicine]
+terms = ["medicine", "medical", "clinical", "pharmaceutical", "drug", "dose", "therapeutic"]
+
+[group.neuroscience]
+terms = ["neuroscience", "neural", "brain", "neuron", "synapse", "cortical", "cognition"]
+
+[group.psychology]
+terms = ["psychology", "psychological", "cognitive", "behavioral", "mental", "personality"]
+
+[group.language]
+terms = ["language", "linguistic", "linguistics", "grammar", "syntax", "semantics", "pragmatics"]
+
+[group.philosophy]
+terms = ["philosophy", "philosophical", "ethics", "moral", "epistemology", "ontology", "logic"]
+
+[group.history]
+terms = ["history", "historical", "ancient", "medieval", "modern", "civilization"]
+
+[group.anthropology]
+terms = ["anthropology", "anthropological", "cultural", "society", "societal"]
+
+[group.engineering]
+terms = ["engineering", "engineer", "design", "technology", "tech", "mechanical", "civil", "electrical"]
+
+[group.materials]
+terms = ["materials", "material", "material_science", "alloy", "composite", "polymer", "ceramic"]
+
+[group.navigation]
+terms = ["navigation", "gps", "geolocation", "bearing", "heading", "waypoint"]
+
+[group.weather]
+terms = ["weather", "climate", "meteorology", "atmospheric", "wind", "precipitation", "humidity"]
+
+[group.photography]
+terms = ["photography", "camera", "exposure", "aperture", "shutter", "iso"]
+
+[group.finance]
+terms = ["finance", "financial", "investment", "portfolio", "annuity", "loan", "interest", "compound"]

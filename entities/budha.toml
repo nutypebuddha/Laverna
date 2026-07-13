@@ -1,0 +1,57 @@
+# Entities on Gemini (Language, Communication & Intellect)
+
+[[entity]]
+id = "cognitive_flexibility"
+name = "Cognitive Flexibility"
+domain = "budha"
+description = "Executive function: ability to switch between mental sets, adapt to changing rules."
+tags = ["cognition", "executive_function", "neuropsychology"]
+properties = { set_shifting = 0.8, adaptability = 0.85, perseveration_resistance = 0.7 }
+
+[[entity]]
+id = "theory_of_mind"
+name = "Theory of Mind"
+domain = "budha"
+description = "Social cognition: understanding that others have mental states different from one's own."
+tags = ["cognition", "social_cognition", "neuroscience", "communication"]
+properties = { mentalizing = 0.85, perspective_taking = 0.8, social_inference = 0.75 }
+
+[[entity]]
+id = "therapeutic_alliance"
+name = "Therapeutic Alliance"
+domain = "budha"
+description = "The collaborative relationship between therapist and client. Strong predictor of treatment outcome."
+tags = ["psychotherapy", "communication", "relationship", "outcome"]
+properties = { bond = 0.85, goal_agreement = 0.75, task_collaboration = 0.8 }
+
+[[entity]]
+id = "mental_health_economics"
+name = "Mental Health Economics"
+domain = "budha"
+description = "Economic burden of mental illness: direct costs (treatment) and indirect costs (lost productivity)."
+tags = ["economics", "health", "psychiatry", "policy"]
+properties = { global_cost_billions_usd = 1000.0, treatment_gap_percent = 0.7, roi_per_treatment = 4.0 }
+
+[[entity]]
+id = "disability_insurance"
+name = "Disability Insurance"
+domain = "budha"
+description = "Social insurance: income replacement for those unable to work due to mental illness."
+tags = ["economics", "social_policy", "disability"]
+properties = { coverage_generosity = 0.5, administrative_burden = 0.6, employment_reintegration = 0.4 }
+
+[[entity]]
+id = "pharmacoeconomics"
+name = "Pharmacoeconomics"
+domain = "budha"
+description = "Cost-effectiveness analysis of psychotropic medications. QALY and ICER for treatment comparisons."
+tags = ["economics", "pharmacology", "health_policy", "cost_effectiveness"]
+properties = { cost_per_qaly = 50000.0, generic_savings = 0.8, innovation_premium = 0.3 }
+
+[[entity]]
+id = "workplace_mental_health"
+name = "Workplace Mental Health Economics"
+domain = "budha"
+description = "Economic analysis: mental health interventions in the workplace. ROI from reduced absenteeism."
+tags = ["economics", "workplace", "productivity"]
+properties = { absenteeism_cost = 0.6, presenteeism_cost = 0.8, intervention_roi = 3.5 }

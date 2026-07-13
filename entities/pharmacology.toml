@@ -1,0 +1,445 @@
+# Pharmacology Entities (50 drugs)
+# Domain: Surya (Biology/Medicine)
+# Added: 2026-07-09
+#
+# Each drug has pharmacokinetic properties:
+#   half_life_hours       — elimination half-life
+#   therapeutic_index     — TD50/ED50 ratio (higher = safer)
+#   bioavailability       — fraction reaching systemic circulation
+#   protein_binding       — fraction bound to plasma proteins
+#   renal_clearance       — fraction excreted unchanged by kidneys
+#   target_serotonin      — serotonin receptor affinity (0-1)
+#   target_dopamine       — dopamine receptor affinity (0-1)
+#   target_norepinephrine — norepinephrine receptor affinity (0-1)
+#   receptor_affinity_kd  — dissociation constant in nM (lower = stronger)
+#   volume_of_distribution_Lkg — apparent Vd per kg
+#
+# Values are population means from clinical pharmacology references.
+
+# ═══════════════════════════════════════════════════════════════
+# ANTIDEPRESSANTS — SSRIs & SNRIs (10)
+# ═══════════════════════════════════════════════════════════════
+
+[[entity]]
+id = "fluoxetine"
+name = "Fluoxetine (Prozac)"
+domain = "surya"
+description = "SSRI antidepressant. Highly selective serotonin reuptake inhibitor. Long half-life with active metabolite norfluoxetine."
+tags = ["pharmacology", "antidepressant", "SSRI", "serotonin", "psychiatry"]
+properties = { half_life_hours = 96.0, therapeutic_index = 8.0, bioavailability = 0.72, protein_binding = 0.94, renal_clearance = 0.1, target_serotonin = 0.9, target_dopamine = 0.0, target_norepinephrine = 0.0, receptor_affinity_kd = 1.5, volume_of_distribution_Lkg = 25.0 }
+
+[[entity]]
+id = "sertraline"
+name = "Sertraline (Zoloft)"
+domain = "surya"
+description = "SSRI antidepressant. High selectivity for serotonin transporter. Minimal drug interactions."
+tags = ["pharmacology", "antidepressant", "SSRI", "serotonin", "psychiatry"]
+properties = { half_life_hours = 26.0, therapeutic_index = 10.0, bioavailability = 0.44, protein_binding = 0.98, renal_clearance = 0.15, target_serotonin = 0.92, target_dopamine = 0.05, target_norepinephrine = 0.0, receptor_affinity_kd = 0.5, volume_of_distribution_Lkg = 20.0 }
+
+[[entity]]
+id = "escitalopram"
+name = "Escitalopram (Lexapro)"
+domain = "surya"
+description = "SSRI antidepressant. S-enantiomer of citalopram. Most selective SSRI. Best tolerability profile."
+tags = ["pharmacology", "antidepressant", "SSRI", "serotonin", "psychiatry"]
+properties = { half_life_hours = 30.0, therapeutic_index = 12.0, bioavailability = 0.8, protein_binding = 0.56, renal_clearance = 0.1, target_serotonin = 0.95, target_dopamine = 0.0, target_norepinephrine = 0.0, receptor_affinity_kd = 1.1, volume_of_distribution_Lkg = 12.0 }
+
+[[entity]]
+id = "paroxetine"
+name = "Paroxetine (Paxil)"
+domain = "surya"
+description = "SSRI antidepressant. Most potent serotonin reuptake inhibition. Also has mild norepinephrine effects. Highest withdrawal risk."
+tags = ["pharmacology", "antidepressant", "SSRI", "serotonin", "psychiatry"]
+properties = { half_life_hours = 21.0, therapeutic_index = 7.0, bioavailability = 0.5, protein_binding = 0.93, renal_clearance = 0.05, target_serotonin = 0.93, target_dopamine = 0.0, target_norepinephrine = 0.1, receptor_affinity_kd = 0.15, volume_of_distribution_Lkg = 11.0 }
+
+[[entity]]
+id = "citalopram"
+name = "Citalopram (Celexa)"
+domain = "surya"
+description = "SSRI antidepressant. Racemic mixture. QT prolongation risk at high doses. First-line for depression."
+tags = ["pharmacology", "antidepressant", "SSRI", "serotonin", "psychiatry"]
+properties = { half_life_hours = 35.0, therapeutic_index = 9.0, bioavailability = 0.8, protein_binding = 0.8, renal_clearance = 0.12, target_serotonin = 0.88, target_dopamine = 0.0, target_norepinephrine = 0.0, receptor_affinity_kd = 1.5, volume_of_distribution_Lkg = 14.0 }
+
+[[entity]]
+id = "fluvoxamine"
+name = "Fluvoxamine (Luvox)"
+domain = "surya"
+description = "SSRI antidepressant. Used primarily for OCD. Also sigma-1 receptor agonist. Notable for COVID-19 research."
+tags = ["pharmacology", "antidepressant", "SSRI", "OCD", "psychiatry"]
+properties = { half_life_hours = 17.0, therapeutic_index = 8.0, bioavailability = 0.53, protein_binding = 0.77, renal_clearance = 0.04, target_serotonin = 0.87, target_dopamine = 0.0, target_norepinephrine = 0.0, receptor_affinity_kd = 2.2, volume_of_distribution_Lkg = 25.0 }
+
+[[entity]]
+id = "venlafaxine"
+name = "Venlafaxine (Effexor)"
+domain = "surya"
+description = "SNRI antidepressant. Serotonin-norepinephrine reuptake inhibitor. Dose-dependent NE effect. Withdrawal risk high."
+tags = ["pharmacology", "antidepressant", "SNRI", "serotonin", "norepinephrine", "psychiatry"]
+properties = { half_life_hours = 11.0, therapeutic_index = 6.0, bioavailability = 0.42, protein_binding = 0.27, renal_clearance = 0.05, target_serotonin = 0.85, target_dopamine = 0.0, target_norepinephrine = 0.7, receptor_affinity_kd = 8.0, volume_of_distribution_Lkg = 6.0 }
+
+[[entity]]
+id = "duloxetine"
+name = "Duloxetine (Cymbalta)"
+domain = "surya"
+description = "SNRI antidepressant. Balanced serotonin and norepinephrine reuptake inhibition. Also approved for neuropathic pain and fibromyalgia."
+tags = ["pharmacology", "antidepressant", "SNRI", "serotonin", "norepinephrine", "pain", "psychiatry"]
+properties = { half_life_hours = 12.0, therapeutic_index = 7.0, bioavailability = 0.5, protein_binding = 0.9, renal_clearance = 0.07, target_serotonin = 0.8, target_dopamine = 0.0, target_norepinephrine = 0.75, receptor_affinity_kd = 5.0, volume_of_distribution_Lkg = 3.4 }
+
+[[entity]]
+id = "bupropion"
+name = "Bupropion (Wellbutrin)"
+domain = "surya"
+description = "NDRI antidepressant. Norepinephrine-dopamine reuptake inhibitor. Unique mechanism. No sexual side effects. Also smoking cessation."
+tags = ["pharmacology", "antidepressant", "NDRI", "dopamine", "norepinephrine", "smoking_cessation", "psychiatry"]
+properties = { half_life_hours = 20.0, therapeutic_index = 5.0, bioavailability = 0.8, protein_binding = 0.84, renal_clearance = 0.15, target_serotonin = 0.0, target_dopamine = 0.65, target_norepinephrine = 0.75, receptor_affinity_kd = 520.0, volume_of_distribution_Lkg = 20.0 }
+
+[[entity]]
+id = "mirtazapine"
+name = "Mirtazapine (Remeron)"
+domain = "surya"
+description = "NaSSA antidepressant. Alpha-2 antagonist, 5-HT2/5-HT3 antagonist. Sedating, appetite stimulating. Unique receptor profile."
+tags = ["pharmacology", "antidepressant", "NaSSA", "sedating", "psychiatry"]
+properties = { half_life_hours = 30.0, therapeutic_index = 8.0, bioavailability = 0.5, protein_binding = 0.85, renal_clearance = 0.25, target_serotonin = 0.3, target_dopamine = 0.0, target_norepinephrine = 0.85, receptor_affinity_kd = 5.0, volume_of_distribution_Lkg = 4.5 }
+
+# ═══════════════════════════════════════════════════════════════
+# ANTIPSYCHOTICS — First & Second Generation (10)
+# ═══════════════════════════════════════════════════════════════
+
+[[entity]]
+id = "haloperidol"
+name = "Haloperidol (Haldol)"
+domain = "surya"
+description = "First-generation antipsychotic. High-potency D2 antagonist. Used for acute psychosis, agitation, Tourette's. High EPS risk."
+tags = ["pharmacology", "antipsychotic", "FGA", "dopamine", "psychiatry"]
+properties = { half_life_hours = 21.0, therapeutic_index = 4.0, bioavailability = 0.65, protein_binding = 0.9, renal_clearance = 0.01, target_serotonin = 0.1, target_dopamine = 0.95, target_norepinephrine = 0.05, receptor_affinity_kd = 2.5, volume_of_distribution_Lkg = 18.0 }
+
+[[entity]]
+id = "clozapine"
+name = "Clozapine (Clozaril)"
+domain = "surya"
+description = "Second-generation antipsychotic. Gold standard for treatment-resistant schizophrenia. Unique multi-receptor profile. Agranulocytosis risk requires monitoring."
+tags = ["pharmacology", "antipsychotic", "SGA", "atypical", "treatment-resistant", "psychiatry"]
+properties = { half_life_hours = 12.0, therapeutic_index = 2.0, bioavailability = 0.8, protein_binding = 0.97, renal_clearance = 0.05, target_serotonin = 0.7, target_dopamine = 0.4, target_norepinephrine = 0.3, receptor_affinity_kd = 180.0, volume_of_distribution_Lkg = 5.0 }
+
+[[entity]]
+id = "risperidone"
+name = "Risperidone (Risperdal)"
+domain = "surya"
+description = "Second-generation antipsychotic. Potent D2/5-HT2A antagonist. Active metabolite paliperidone. Effective for positive and negative symptoms."
+tags = ["pharmacology", "antipsychotic", "SGA", "atypical", "dopamine", "serotonin", "psychiatry"]
+properties = { half_life_hours = 20.0, therapeutic_index = 5.0, bioavailability = 0.7, protein_binding = 0.9, renal_clearance = 0.1, target_serotonin = 0.85, target_dopamine = 0.9, target_norepinephrine = 0.2, receptor_affinity_kd = 1.0, volume_of_distribution_Lkg = 1.5 }
+
+[[entity]]
+id = "olanzapine"
+name = "Olanzapine (Zyprexa)"
+domain = "surya"
+description = "Second-generation antipsychotic. Multi-receptor antagonist. High metabolic side effect burden (weight gain, diabetes)."
+tags = ["pharmacology", "antipsychotic", "SGA", "atypical", "metabolic", "psychiatry"]
+properties = { half_life_hours = 33.0, therapeutic_index = 4.0, bioavailability = 0.6, protein_binding = 0.93, renal_clearance = 0.07, target_serotonin = 0.8, target_dopamine = 0.6, target_norepinephrine = 0.3, receptor_affinity_kd = 10.0, volume_of_distribution_Lkg = 16.0 }
+
+[[entity]]
+id = "quetiapine"
+name = "Quetiapine (Seroquel)"
+domain = "surya"
+description = "Second-generation antipsychotic. Low D2 affinity, high histamine blockade. Also used for depression (adjunct) and insomnia at low doses."
+tags = ["pharmacology", "antipsychotic", "SGA", "atypical", "sedating", "psychiatry"]
+properties = { half_life_hours = 7.0, therapeutic_index = 6.0, bioavailability = 0.85, protein_binding = 0.83, renal_clearance = 0.03, target_serotonin = 0.7, target_dopamine = 0.35, target_norepinephrine = 0.2, receptor_affinity_kd = 160.0, volume_of_distribution_Lkg = 10.0 }
+
+[[entity]]
+id = "aripiprazole"
+name = "Aripiprazole (Abilify)"
+domain = "surya"
+description = "Second-generation antipsychotic. Partial D2 and 5-HT1A agonist. Unique mechanism — dopamine system stabilizer. Low metabolic side effects."
+tags = ["pharmacology", "antipsychotic", "SGA", "partial_agonist", "dopamine", "psychiatry"]
+properties = { half_life_hours = 75.0, therapeutic_index = 7.0, bioavailability = 0.87, protein_binding = 0.99, renal_clearance = 0.01, target_serotonin = 0.6, target_dopamine = 0.75, target_norepinephrine = 0.1, receptor_affinity_kd = 4.0, volume_of_distribution_Lkg = 4.9 }
+
+[[entity]]
+id = "paliperidone"
+name = "Paliperidone (Invega)"
+domain = "surya"
+description = "Second-generation antipsychotic. Active metabolite of risperidone. Extended-release formulation. Once-daily dosing."
+tags = ["pharmacology", "antipsychotic", "SGA", "atypical", "dopamine", "psychiatry"]
+properties = { half_life_hours = 24.0, therapeutic_index = 5.0, bioavailability = 0.28, protein_binding = 0.74, renal_clearance = 0.8, target_serotonin = 0.8, target_dopamine = 0.85, target_norepinephrine = 0.15, receptor_affinity_kd = 1.5, volume_of_distribution_Lkg = 1.2 }
+
+[[entity]]
+id = "lurasidone"
+name = "Lurasidone (Latuda)"
+domain = "surya"
+description = "Second-generation antipsychotic. Potent 5-HT2A/D2 antagonist. High affinity for 5-HT7. Low metabolic side effects. Must take with food."
+tags = ["pharmacology", "antipsychotic", "SGA", "atypical", "serotonin", "dopamine", "psychiatry"]
+properties = { half_life_hours = 20.0, therapeutic_index = 6.0, bioavailability = 0.1, protein_binding = 0.99, renal_clearance = 0.1, target_serotonin = 0.9, target_dopamine = 0.8, target_norepinephrine = 0.2, receptor_affinity_kd = 1.0, volume_of_distribution_Lkg = 5.0 }
+
+[[entity]]
+id = "ziprasidone"
+name = "Ziprasidone (Geodon)"
+domain = "surya"
+description = "Second-generation antipsychotic. Potent 5-HT2A/D2 antagonist. Minimal weight gain. QT prolongation risk."
+tags = ["pharmacology", "antipsychotic", "SGA", "atypical", "serotonin", "dopamine", "psychiatry"]
+properties = { half_life_hours = 7.0, therapeutic_index = 4.0, bioavailability = 0.6, protein_binding = 0.99, renal_clearance = 0.05, target_serotonin = 0.9, target_dopamine = 0.7, target_norepinephrine = 0.15, receptor_affinity_kd = 4.0, volume_of_distribution_Lkg = 1.5 }
+
+[[entity]]
+id = "amisulpride"
+name = "Amisulpride (Solian)"
+domain = "surya"
+description = "Second-generation antipsychotic. Selective D2/D3 antagonist. Unique: low doses = negative symptom improvement, high doses = positive symptom control."
+tags = ["pharmacology", "antipsychotic", "SGA", "dopamine", "negative_symptoms", "psychiatry"]
+properties = { half_life_hours = 12.0, therapeutic_index = 5.0, bioavailability = 0.5, protein_binding = 0.16, renal_clearance = 0.7, target_serotonin = 0.0, target_dopamine = 0.9, target_norepinephrine = 0.0, receptor_affinity_kd = 3.0, volume_of_distribution_Lkg = 5.8 }
+
+# ═══════════════════════════════════════════════════════════════
+# MOOD STABILIZERS (5)
+# ═══════════════════════════════════════════════════════════════
+
+[[entity]]
+id = "lithium_carbonate"
+name = "Lithium Carbonate (Eskalith)"
+domain = "surya"
+description = "Mood stabilizer. Gold standard for bipolar disorder. Narrow therapeutic index. Requires serum monitoring. Multiple mechanisms (inositol, GSK3, BDNF)."
+tags = ["pharmacology", "mood_stabilizer", "bipolar", "lithium", "psychiatry"]
+properties = { half_life_hours = 24.0, therapeutic_index = 1.5, bioavailability = 0.95, protein_binding = 0.0, renal_clearance = 0.8, target_serotonin = 0.3, target_dopamine = 0.2, target_norepinephrine = 0.2, receptor_affinity_kd = 1000.0, volume_of_distribution_Lkg = 0.7 }
+
+[[entity]]
+id = "valproate"
+name = "Valproate (Depakote)"
+domain = "surya"
+description = "Mood stabilizer, anticonvulsant. Multiple mechanisms: GABA potentiation, sodium channel blockade. Broad spectrum. Teratogenic."
+tags = ["pharmacology", "mood_stabilizer", "anticonvulsant", "bipolar", "psychiatry"]
+properties = { half_life_hours = 15.0, therapeutic_index = 3.0, bioavailability = 0.9, protein_binding = 0.9, renal_clearance = 0.05, target_serotonin = 0.2, target_dopamine = 0.15, target_norepinephrine = 0.3, receptor_affinity_kd = 500.0, volume_of_distribution_Lkg = 0.14 }
+
+[[entity]]
+id = "lamotrigine"
+name = "Lamotrigine (Lamictal)"
+domain = "surya"
+description = "Mood stabilizer, anticonvulsant. Sodium channel blockade, glutamate modulation. Particularly effective for bipolar depression. Stevens-Johnson risk (slow titration)."
+tags = ["pharmacology", "mood_stabilizer", "anticonvulsant", "bipolar", "depression", "psychiatry"]
+properties = { half_life_hours = 28.0, therapeutic_index = 6.0, bioavailability = 0.98, protein_binding = 0.55, renal_clearance = 0.9, target_serotonin = 0.0, target_dopamine = 0.0, target_norepinephrine = 0.0, receptor_affinity_kd = 2000.0, volume_of_distribution_Lkg = 1.3 }
+
+[[entity]]
+id = "carbamazepine"
+name = "Carbamazepine (Tegretol)"
+domain = "surya"
+description = "Mood stabilizer, anticonvulsant. Sodium channel blockade. Potent CYP3A4 inducer. Autoinduction. Many drug interactions."
+tags = ["pharmacology", "mood_stabilizer", "anticonvulsant", "bipolar", "enzyme_inducer", "psychiatry"]
+properties = { half_life_hours = 8.0, therapeutic_index = 2.5, bioavailability = 0.85, protein_binding = 0.75, renal_clearance = 0.02, target_serotonin = 0.1, target_dopamine = 0.1, target_norepinephrine = 0.15, receptor_affinity_kd = 500.0, volume_of_distribution_Lkg = 1.5 }
+
+[[entity]]
+id = "oxcarbazepine"
+name = "Oxcarbazepine (Trileptal)"
+domain = "surya"
+description = "Mood stabilizer, anticonvulsant. Sodium channel blockade. Better tolerated than carbamazepine. No autoinduction. Hyponatremia risk."
+tags = ["pharmacology", "mood_stabilizer", "anticonvulsant", "bipolar", "psychiatry"]
+properties = { half_life_hours = 9.0, therapeutic_index = 4.0, bioavailability = 0.95, protein_binding = 0.4, renal_clearance = 0.95, target_serotonin = 0.0, target_dopamine = 0.0, target_norepinephrine = 0.0, receptor_affinity_kd = 1000.0, volume_of_distribution_Lkg = 0.5 }
+
+# ═══════════════════════════════════════════════════════════════
+# ANXIOLYTICS & SEDATIVES (7)
+# ═══════════════════════════════════════════════════════════════
+
+[[entity]]
+id = "diazepam"
+name = "Diazepam (Valium)"
+domain = "surya"
+description = "Benzodiazepine anxiolytic. Long-acting. GABAA positive allosteric modulator. Anxiolytic, sedative, muscle relaxant, anticonvulsant."
+tags = ["pharmacology", "anxiolytic", "benzodiazepine", "GABA", "psychiatry"]
+properties = { half_life_hours = 48.0, therapeutic_index = 5.0, bioavailability = 0.9, protein_binding = 0.99, renal_clearance = 0.01, target_serotonin = 0.0, target_dopamine = 0.0, target_norepinephrine = 0.0, receptor_affinity_kd = 10.0, volume_of_distribution_Lkg = 1.1 }
+
+[[entity]]
+id = "lorazepam"
+name = "Lorazepam (Ativan)"
+domain = "surya"
+description = "Benzodiazepine anxiolytic. Intermediate-acting. No active metabolites. Preferred in elderly and hepatic impairment."
+tags = ["pharmacology", "anxiolytic", "benzodiazepine", "GABA", "psychiatry"]
+properties = { half_life_hours = 14.0, therapeutic_index = 6.0, bioavailability = 0.9, protein_binding = 0.91, renal_clearance = 0.01, target_serotonin = 0.0, target_dopamine = 0.0, target_norepinephrine = 0.0, receptor_affinity_kd = 15.0, volume_of_distribution_Lkg = 1.3 }
+
+[[entity]]
+id = "clonazepam"
+name = "Clonazepam (Klonopin)"
+domain = "surya"
+description = "Benzodiazepine anxiolytic. Long-acting. Potent anticonvulsant. Used for panic disorder, seizure disorders, REM sleep behavior disorder."
+tags = ["pharmacology", "anxiolytic", "benzodiazepine", "GABA", "panic", "psychiatry"]
+properties = { half_life_hours = 35.0, therapeutic_index = 5.0, bioavailability = 0.9, protein_binding = 0.85, renal_clearance = 0.005, target_serotonin = 0.0, target_dopamine = 0.0, target_norepinephrine = 0.0, receptor_affinity_kd = 5.0, volume_of_distribution_Lkg = 3.0 }
+
+[[entity]]
+id = "alprazolam"
+name = "Alprazolam (Xanax)"
+domain = "surya"
+description = "Benzodiazepine anxiolytic. Short-acting. Rapid onset. High abuse potential. Withdrawal risk with regular use."
+tags = ["pharmacology", "anxiolytic", "benzodiazepine", "GABA", "addiction", "psychiatry"]
+properties = { half_life_hours = 12.0, therapeutic_index = 4.0, bioavailability = 0.88, protein_binding = 0.8, renal_clearance = 0.01, target_serotonin = 0.0, target_dopamine = 0.0, target_norepinephrine = 0.0, receptor_affinity_kd = 20.0, volume_of_distribution_Lkg = 1.0 }
+
+[[entity]]
+id = "buspirone"
+name = "Buspirone (Buspar)"
+domain = "surya"
+description = "Non-benzodiazepine anxiolytic. 5-HT1A partial agonist. No sedation, no abuse potential. Delayed onset (2-4 weeks)."
+tags = ["pharmacology", "anxiolytic", "non-benzodiazepine", "serotonin", "psychiatry"]
+properties = { half_life_hours = 3.0, therapeutic_index = 10.0, bioavailability = 0.05, protein_binding = 0.86, renal_clearance = 0.35, target_serotonin = 0.75, target_dopamine = 0.2, target_norepinephrine = 0.0, receptor_affinity_kd = 30.0, volume_of_distribution_Lkg = 5.3 }
+
+[[entity]]
+id = "zolpidem"
+name = "Zolpidem (Ambien)"
+domain = "surya"
+description = "Non-benzodiazepine hypnotic (Z-drug). Selective GABAA α1 agonist. Rapid onset, short duration. For sleep initiation."
+tags = ["pharmacology", "hypnotic", "sedative", "GABA", "sleep", "psychiatry"]
+properties = { half_life_hours = 2.5, therapeutic_index = 4.0, bioavailability = 0.7, protein_binding = 0.92, renal_clearance = 0.01, target_serotonin = 0.0, target_dopamine = 0.0, target_norepinephrine = 0.0, receptor_affinity_kd = 30.0, volume_of_distribution_Lkg = 0.5 }
+
+[[entity]]
+id = "eszopiclone"
+name = "Eszopiclone (Lunesta)"
+domain = "surya"
+description = "Non-benzodiazepine hypnotic (Z-drug). GABAA positive allosteric modulator. For sleep maintenance. Metallic taste side effect."
+tags = ["pharmacology", "hypnotic", "sedative", "GABA", "sleep", "psychiatry"]
+properties = { half_life_hours = 6.0, therapeutic_index = 5.0, bioavailability = 0.7, protein_binding = 0.55, renal_clearance = 0.75, target_serotonin = 0.0, target_dopamine = 0.0, target_norepinephrine = 0.0, receptor_affinity_kd = 50.0, volume_of_distribution_Lkg = 1.4 }
+
+# ═══════════════════════════════════════════════════════════════
+# ADHD & COGNITIVE ENHANCERS (6)
+# ═══════════════════════════════════════════════════════════════
+
+[[entity]]
+id = "methylphenidate"
+name = "Methylphenidate (Ritalin, Concerta)"
+domain = "surya"
+description = "CNS stimulant. Dopamine and norepinephrine reuptake inhibitor. First-line for ADHD. Immediate and extended-release formulations."
+tags = ["pharmacology", "stimulant", "ADHD", "dopamine", "norepinephrine", "psychiatry"]
+properties = { half_life_hours = 3.5, therapeutic_index = 6.0, bioavailability = 0.3, protein_binding = 0.15, renal_clearance = 0.9, target_serotonin = 0.0, target_dopamine = 0.75, target_norepinephrine = 0.7, receptor_affinity_kd = 100.0, volume_of_distribution_Lkg = 3.0 }
+
+[[entity]]
+id = "amphetamine"
+name = "Dextroamphetamine (Adderall, Vyvanse)"
+domain = "surya"
+description = "CNS stimulant. Dopamine and norepinephrine releaser (TAAR1 agonist). First-line for ADHD. High abuse potential."
+tags = ["pharmacology", "stimulant", "ADHD", "dopamine", "norepinephrine", "psychiatry"]
+properties = { half_life_hours = 10.0, therapeutic_index = 5.0, bioavailability = 0.75, protein_binding = 0.2, renal_clearance = 0.5, target_serotonin = 0.1, target_dopamine = 0.85, target_norepinephrine = 0.8, receptor_affinity_kd = 50.0, volume_of_distribution_Lkg = 5.0 }
+
+[[entity]]
+id = "atomoxetine"
+name = "Atomoxetine (Strattera)"
+domain = "surya"
+description = "Non-stimulant ADHD treatment. Selective norepinephrine reuptake inhibitor (NRI). No abuse potential. Delayed onset."
+tags = ["pharmacology", "non-stimulant", "ADHD", "norepinephrine", "psychiatry"]
+properties = { half_life_hours = 5.0, therapeutic_index = 7.0, bioavailability = 0.63, protein_binding = 0.98, renal_clearance = 0.03, target_serotonin = 0.0, target_dopamine = 0.0, target_norepinephrine = 0.85, receptor_affinity_kd = 5.0, volume_of_distribution_Lkg = 0.85 }
+
+[[entity]]
+id = "modafinil"
+name = "Modafinil (Provigil)"
+domain = "surya"
+description = "Wakefulness-promoting agent. Dopamine reuptake inhibitor (weak). Used for narcolepsy, shift work sleep disorder. Off-label for ADHD and fatigue."
+tags = ["pharmacology", "wakefulness", "dopamine", "narcolepsy", "cognitive_enhancement", "psychiatry"]
+properties = { half_life_hours = 15.0, therapeutic_index = 8.0, bioavailability = 0.8, protein_binding = 0.6, renal_clearance = 0.4, target_serotonin = 0.0, target_dopamine = 0.5, target_norepinephrine = 0.2, receptor_affinity_kd = 500.0, volume_of_distribution_Lkg = 0.9 }
+
+[[entity]]
+id = "donepezil"
+name = "Donepezil (Aricept)"
+domain = "surya"
+description = "Cholinesterase inhibitor. Acetylcholinesterase inhibition. Used for Alzheimer's dementia. Modest cognitive benefit."
+tags = ["pharmacology", "cognitive", "dementia", "acetylcholine", "neurology"]
+properties = { half_life_hours = 70.0, therapeutic_index = 6.0, bioavailability = 0.95, protein_binding = 0.96, renal_clearance = 0.2, target_serotonin = 0.0, target_dopamine = 0.0, target_norepinephrine = 0.0, receptor_affinity_kd = 10.0, volume_of_distribution_Lkg = 12.0 }
+
+[[entity]]
+id = "memantine"
+name = "Memantine (Namenda)"
+domain = "surya"
+description = "NMDA receptor antagonist. Glutamate modulation. Used for moderate-to-severe Alzheimer's. Neuroprotective effects."
+tags = ["pharmacology", "cognitive", "dementia", "glutamate", "NMDA", "neurology"]
+properties = { half_life_hours = 70.0, therapeutic_index = 8.0, bioavailability = 0.9, protein_binding = 0.45, renal_clearance = 0.8, target_serotonin = 0.0, target_dopamine = 0.0, target_norepinephrine = 0.0, receptor_affinity_kd = 500.0, volume_of_distribution_Lkg = 8.0 }
+
+# ═══════════════════════════════════════════════════════════════
+# ADDICTION MEDICATIONS (6)
+# ═══════════════════════════════════════════════════════════════
+
+[[entity]]
+id = "naltrexone"
+name = "Naltrexone (Vivitrol, Revia)"
+domain = "surya"
+description = "Opioid receptor antagonist. μ-opioid antagonist. Used for alcohol use disorder and opioid use disorder. Reduces craving and blocking effect."
+tags = ["pharmacology", "addiction", "opioid", "alcohol", "psychiatry"]
+properties = { half_life_hours = 4.0, therapeutic_index = 10.0, bioavailability = 0.25, protein_binding = 0.2, renal_clearance = 0.6, target_serotonin = 0.0, target_dopamine = 0.3, target_norepinephrine = 0.0, receptor_affinity_kd = 1.0, volume_of_distribution_Lkg = 2.0 }
+
+[[entity]]
+id = "acamprosate"
+name = "Acamprosate (Campral)"
+domain = "surya"
+description = "Glutamate modulator. NMDA receptor modulation, GABA potentiation. Used for alcohol abstinence maintenance. Reduces withdrawal-related distress."
+tags = ["pharmacology", "addiction", "alcohol", "glutamate", "psychiatry"]
+properties = { half_life_hours = 20.0, therapeutic_index = 8.0, bioavailability = 0.11, protein_binding = 0.0, renal_clearance = 0.9, target_serotonin = 0.0, target_dopamine = 0.0, target_norepinephrine = 0.0, receptor_affinity_kd = 1000.0, volume_of_distribution_Lkg = 0.3 }
+
+[[entity]]
+id = "buprenorphine"
+name = "Buprenorphine (Suboxone, Subutex)"
+domain = "surya"
+description = "Partial μ-opioid agonist, κ-antagonist. Used for opioid use disorder maintenance. Ceiling effect on respiration (safer than methadone)."
+tags = ["pharmacology", "addiction", "opioid", "maintenance", "psychiatry"]
+properties = { half_life_hours = 37.0, therapeutic_index = 6.0, bioavailability = 0.3, protein_binding = 0.96, renal_clearance = 0.3, target_serotonin = 0.0, target_dopamine = 0.2, target_norepinephrine = 0.0, receptor_affinity_kd = 0.5, volume_of_distribution_Lkg = 3.0 }
+
+[[entity]]
+id = "disulfiram"
+name = "Disulfiram (Antabuse)"
+domain = "surya"
+description = "Alcohol deterrent. Aldehyde dehydrogenase inhibitor. Causes severe reaction with alcohol (acetaldehyde syndrome). Used for alcohol aversion therapy."
+tags = ["pharmacology", "addiction", "alcohol", "aversion", "psychiatry"]
+properties = { half_life_hours = 120.0, therapeutic_index = 3.0, bioavailability = 0.8, protein_binding = 0.95, renal_clearance = 0.01, target_serotonin = 0.0, target_dopamine = 0.1, target_norepinephrine = 0.1, receptor_affinity_kd = 1000.0, volume_of_distribution_Lkg = 3.0 }
+
+[[entity]]
+id = "varenicline"
+name = "Varenicline (Chantix)"
+domain = "surya"
+description = "Partial α4β2 nicotinic acetylcholine receptor agonist. Used for smoking cessation. Reduces craving and withdrawal. Also blocks rewarding effects of nicotine."
+tags = ["pharmacology", "addiction", "smoking_cessation", "nicotine", "psychiatry"]
+properties = { half_life_hours = 24.0, therapeutic_index = 8.0, bioavailability = 0.9, protein_binding = 0.2, renal_clearance = 0.92, target_serotonin = 0.0, target_dopamine = 0.3, target_norepinephrine = 0.0, receptor_affinity_kd = 0.15, volume_of_distribution_Lkg = 5.0 }
+
+[[entity]]
+id = "naloxone"
+name = "Naloxone (Narcan)"
+domain = "surya"
+description = "Opioid receptor antagonist (short-acting). Emergency reversal of opioid overdose. Also combined with buprenorphine (Suboxone) to deter IV abuse."
+tags = ["pharmacology", "addiction", "opioid", "overdose", "antagonist", "emergency"]
+properties = { half_life_hours = 1.5, therapeutic_index = 12.0, bioavailability = 0.02, protein_binding = 0.4, renal_clearance = 0.7, target_serotonin = 0.0, target_dopamine = 0.1, target_norepinephrine = 0.0, receptor_affinity_kd = 0.2, volume_of_distribution_Lkg = 2.0 }
+
+# ═══════════════════════════════════════════════════════════════
+# NOVEL / INVESTIGATIONAL (6)
+# ═══════════════════════════════════════════════════════════════
+
+[[entity]]
+id = "ketamine"
+name = "Ketamine (Spravato — esketamine)"
+domain = "surya"
+description = "NMDA receptor antagonist. Dissociative anesthetic. Rapid-acting antidepressant effect (hours vs weeks). Used for treatment-resistant depression. FDA-approved esketamine nasal spray."
+tags = ["pharmacology", "antidepressant", "NMDA", "glutamate", "rapid_acting", "novel", "psychiatry"]
+properties = { half_life_hours = 2.5, therapeutic_index = 4.0, bioavailability = 0.2, protein_binding = 0.45, renal_clearance = 0.9, target_serotonin = 0.1, target_dopamine = 0.3, target_norepinephrine = 0.2, receptor_affinity_kd = 500.0, volume_of_distribution_Lkg = 2.5 }
+
+[[entity]]
+id = "psilocybin"
+name = "Psilocybin"
+domain = "surya"
+description = "Psychedelic tryptamine. 5-HT2A receptor agonist (partial). Prodrug: psilocybin → psilocin. Investigational for depression, anxiety, end-of-life distress."
+tags = ["pharmacology", "psychedelic", "serotonin", "5HT2A", "depression", "investigational", "psychiatry"]
+properties = { half_life_hours = 3.0, therapeutic_index = 10.0, bioavailability = 0.5, protein_binding = 0.6, renal_clearance = 0.1, target_serotonin = 0.9, target_dopamine = 0.1, target_norepinephrine = 0.0, receptor_affinity_kd = 6.0, volume_of_distribution_Lkg = 2.0 }
+
+[[entity]]
+id = "mdma"
+name = "MDMA (Ecstasy, Midomafetamine)"
+domain = "surya"
+description = "Empathogen. Serotonin, dopamine, norepinephrine releaser. Investigational for PTSD-assisted psychotherapy. FDA Breakthrough Therapy designation."
+tags = ["pharmacology", "psychedelic", "serotonin", "empathogen", "PTSD", "investigational", "psychiatry"]
+properties = { half_life_hours = 8.0, therapeutic_index = 5.0, bioavailability = 0.7, protein_binding = 0.35, renal_clearance = 0.2, target_serotonin = 0.85, target_dopamine = 0.7, target_norepinephrine = 0.75, receptor_affinity_kd = 500.0, volume_of_distribution_Lkg = 5.0 }
+
+[[entity]]
+id = "brexanolone"
+name = "Brexanolone (Zulresso)"
+domain = "surya"
+description = "Neuroactive steroid. GABA-A receptor positive allosteric modulator. First FDA-approved treatment for postpartum depression. IV infusion only."
+tags = ["pharmacology", "antidepressant", "GABA", "postpartum", "neurosteroid", "novel", "psychiatry"]
+properties = { half_life_hours = 9.0, therapeutic_index = 5.0, bioavailability = 0.0, protein_binding = 0.99, renal_clearance = 0.01, target_serotonin = 0.0, target_dopamine = 0.0, target_norepinephrine = 0.0, receptor_affinity_kd = 50.0, volume_of_distribution_Lkg = 2.0 }
+
+[[entity]]
+id = "pimavanserin"
+name = "Pimavanserin (Nuplazid)"
+domain = "surya"
+description = "Atypical antipsychotic. Selective 5-HT2A inverse agonist. No D2 blockade. Used for Parkinson's disease psychosis. Unique mechanism."
+tags = ["pharmacology", "antipsychotic", "serotonin", "5HT2A", "Parkinson", "novel", "psychiatry"]
+properties = { half_life_hours = 57.0, therapeutic_index = 7.0, bioavailability = 0.7, protein_binding = 0.95, renal_clearance = 0.05, target_serotonin = 0.85, target_dopamine = 0.0, target_norepinephrine = 0.0, receptor_affinity_kd = 0.5, volume_of_distribution_Lkg = 2.5 }
+
+[[entity]]
+id = "dextromethorphan_bupropion"
+name = "Dextromethorphan/Bupropion (Auvelity)"
+domain = "surya"
+description = "Novel antidepressant combination. Dextromethorphan (NMDA antagonist, sigma-1 agonist) + bupropion (NDRI, CYP2D6 inhibitor to boost DM levels). Rapid antidepressant effect."
+tags = ["pharmacology", "antidepressant", "NMDA", "novel", "combination", "rapid_acting", "psychiatry"]
+properties = { half_life_hours = 12.0, therapeutic_index = 5.0, bioavailability = 0.7, protein_binding = 0.8, renal_clearance = 0.1, target_serotonin = 0.2, target_dopamine = 0.5, target_norepinephrine = 0.5, receptor_affinity_kd = 200.0, volume_of_distribution_Lkg = 10.0 }

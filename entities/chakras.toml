@@ -1,0 +1,142 @@
+# 7 Chakras — mapped to the 7 ruling grahas (Surya through Shani)
+#
+# Each chakra is an energy center in the subtle body. Each graha rules
+# a domain of knowledge. A human engaging with Athena through a domain
+# is simultaneously engaging the corresponding chakra.
+#
+# This is the bridge: grounding in the body, ascent to the Self.
+# ────────────────────────────────────────────────────────────────────
+
+# ─── Muladhara (Root) — Shani ──────────────────────────────────────
+# Foundation, survival, discipline, structure. Earth element.
+# Shani (Saturn) rules Language & Philosophy — the structures we build
+# to make sense of reality.
+[[entity]]
+id = "muladhara"
+name = "Muladhara (Root Chakra)"
+description = "Foundation chakra: survival instinct, stability, grounding. Located at the base of the spine. When balanced:安全感, groundedness, discipline. When blocked: fear, instability, disconnection from body."
+tags = ["chakra", "root", "shani", "grounding", "survival", "discipline", "foundation"]
+graha = "shani"
+guna = "tamas"
+tattva = "earth"
+mantra = "लं"
+bija = "LAM"
+purushartha = "artha"
+day = "saturday"
+properties = { stability = 0.9, survival_instinct = 0.85, grounding = 0.88, discipline = 0.8, security = 0.85 }
+
+# ─── Svadhisthana (Sacral) — Shukra ────────────────────────────────
+# Pleasure, creativity, relationships, desire. Water element.
+# Shukra (Venus) rules Physics & Engineering — the dance of matter,
+# attraction, resonance, and beauty in form.
+[[entity]]
+id = "svadhisthana"
+name = "Svadhisthana (Sacral Chakra)"
+description = "Sacral chakra: creativity, pleasure, emotional connection, sensuality. Located below the navel. When balanced: creative flow, healthy relationships, emotional vitality. When blocked: guilt, creative blocks, emotional numbness."
+tags = ["chakra", "sacral", "shukra", "creativity", "pleasure", "relationships", "emotion"]
+graha = "shukra"
+guna = "rajas"
+tattva = "water"
+mantra = "वं"
+bija = "VAM"
+purushartha = "kama"
+day = "friday"
+properties = { creativity = 0.9, pleasure = 0.85, emotional_flow = 0.8, relationship_health = 0.85, sensuality = 0.8 }
+
+# ─── Manipura (Solar Plexus) — Mangala ────────────────────────────
+# Will, power, action, transformation. Fire element.
+# Mangala (Mars) rules Math & Computer Science — pure logic, structured
+# power, the fire of computation and proof.
+[[entity]]
+id = "manipura"
+name = "Manipura (Solar Plexus Chakra)"
+description = "Solar plexus chakra: willpower, agency, self-esteem, transformation. Located at the solar plexus. When balanced: confident action, healthy ambition, inner fire. When blocked: low self-worth, indecision, powerlessness."
+tags = ["chakra", "solar_plexus", "mangala", "willpower", "action", "agency", "transformation"]
+graha = "mangala"
+guna = "rajas"
+tattva = "fire"
+mantra = "रं"
+bija = "RAM"
+purushartha = "dharma"
+day = "tuesday"
+properties = { willpower = 0.9, agency = 0.85, self_esteem = 0.8, transformation = 0.85, inner_fire = 0.88 }
+
+# ─── Anahata (Heart) — Brihaspati ──────────────────────────────────
+# Love, compassion, wisdom, expansion. Air element.
+# Brihaspati (Jupiter) rules History & Psychology — the accumulated
+# wisdom of human experience, the stories that expand the heart.
+[[entity]]
+id = "anahata"
+name = "Anahata (Heart Chakra)"
+description = "Heart chakra: love, compassion, forgiveness, connection. Located at the center of the chest. When balanced: unconditional love, empathy, open-heartedness. When blocked: grief, resentment, inability to connect."
+tags = ["chakra", "heart", "brihaspati", "love", "compassion", "wisdom", "connection"]
+graha = "brihaspati"
+guna = "sattva"
+tattva = "air"
+mantra = "यं"
+bija = "YAM"
+purushartha = "dharma"
+day = "thursday"
+properties = { love = 0.9, compassion = 0.88, wisdom = 0.85, forgiveness = 0.8, expansion = 0.85 }
+
+# ─── Vishuddha (Throat) — Budha ────────────────────────────────────
+# Communication, truth, expression. Ether/Akasha element.
+# Budha (Mercury) rules Astronomy & Economics — the exchange of
+# information, the patterns of communication across cosmic scale.
+[[entity]]
+id = "vishuddha"
+name = "Vishuddha (Throat Chakra)"
+description = "Throat chakra: communication, self-expression, truth-speaking. Located at the throat. When balanced: authentic expression, clear communication, truth. When blocked: inability to speak truth, fear of judgment, miscommunication."
+tags = ["chakra", "throat", "budha", "communication", "truth", "expression", "voice"]
+graha = "budha"
+guna = "sattva"
+tattva = "ether"
+mantra = "हं"
+bija = "HAM"
+purushartha = "dharma"
+day = "wednesday"
+properties = { communication = 0.9, truth_speaking = 0.88, expression = 0.85, clarity = 0.85, listening = 0.8 }
+
+# ─── Ajna (Third Eye) — Chandra ────────────────────────────────────
+# Intuition, perception, insight, mind. Beyond the 5 elements.
+# Chandra (Moon) rules Earth & Environment — the cycles of nature,
+# the rhythm of perception, the fluid interface between self and world.
+[[entity]]
+id = "ajna"
+name = "Ajna (Third Eye Chakra)"
+description = "Third eye chakra: intuition, perception, insight, inner vision. Located between the eyebrows. When balanced: clear intuition, wisdom beyond logic, inner knowing. When blocked: confusion, closed-mindedness, inability to see the bigger picture."
+tags = ["chakra", "third_eye", "chandra", "intuition", "perception", "insight", "vision"]
+graha = "chandra"
+guna = "sattva"
+mantra = "ॐ"
+bija = "OM"
+purushartha = "moksha"
+day = "monday"
+properties = { intuition = 0.9, perception = 0.85, insight = 0.88, inner_vision = 0.85, clarity = 0.8 }
+
+# ─── Sahasrara (Crown) — Surya ─────────────────────────────────────
+# Enlightenment, cosmic consciousness, unity. Beyond all elements.
+# Surya (Sun) rules Biology & Life — the source of all life, the light
+# of consciousness itself. The Self that illuminates all experience.
+[[entity]]
+id = "sahasrara"
+name = "Sahasrara (Crown Chakra)"
+description = "Crown chakra: enlightenment, cosmic consciousness, unity, transcendence. Located at the crown of the head. When balanced: awakened awareness, bliss, knowledge of the Self. When blocked: spiritual disconnection, lack of purpose, existential dread."
+tags = ["chakra", "crown", "surya", "enlightenment", "consciousness", "unity", "transcendence"]
+graha = "surya"
+guna = "sattva"
+mantra = ""
+bija = ""
+purushartha = "moksha"
+day = "sunday"
+properties = { enlightenment = 0.9, cosmic_consciousness = 0.88, unity = 0.85, transcendence = 0.85, bliss = 0.9 }
+
+# ─── Chakra axis — the ascent path ─────────────────────────────────
+# The chakras form a vertical axis from Muladhara (ground) to
+# Sahasrara (sky). This is the Ouroboros: descent grounds knowledge
+# in the body, ascent lifts the body to knowledge.
+#
+# Each chakra bridges a human experience with a domain of Athena's
+# knowledge. When a human asks about "structure" they are in Muladhara/
+# Shani. When they seek "wisdom" they are in Anahata/Brihaspati.
+# When they touch "enlightenment" they stand at Sahasrara/Surya.

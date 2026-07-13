@@ -1,0 +1,82 @@
+# Entities for Rahu — Innovation, Technology, Disruption
+# Rahu: the karmic node of ambition, innovation, and illusion
+
+[[entity]]
+id = "artificial_intelligence"
+name = "Artificial Intelligence"
+domain = "rahu"
+description = "Machine learning and neural networks. Transformational technology with massive upside and existential risk."
+tags = ["technology", "ai", "machine_learning", "disruption", "counsel"]
+properties = { capability_growth = 0.95, accessibility = 0.7, risk_level = 0.8, economic_impact = 0.9 }
+
+[[entity]]
+id = "blockchain_web3"
+name = "Blockchain / Web3"
+domain = "rahu"
+description = "Decentralized ledger technology. Enables trustless systems but prone to speculation and fraud."
+tags = ["technology", "blockchain", "decentralization", "fintech", "counsel"]
+properties = { decentralization = 0.9, speculation_risk = 0.7, utility = 0.5, adoption = 0.4 }
+
+[[entity]]
+id = "social_media_platforms"
+name = "Social Media Platforms"
+domain = "rahu"
+description = "Networked communication platforms. Connect billions but optimize for engagement over wellbeing."
+tags = ["technology", "social", "attention", "psychology", "counsel"]
+properties = { connectivity = 0.9, attention_capture = 0.85, mental_health_impact = 0.7, misinformation = 0.6 }
+
+[[entity]]
+id = "quantum_computing"
+name = "Quantum Computing"
+domain = "rahu"
+description = "Computing via quantum mechanics. Exponential speedup for specific problems. Still emerging."
+tags = ["technology", "quantum", "physics", "computation", "disruption"]
+properties = { capability_potential = 0.95, maturity = 0.3, accessibility = 0.1, timeline = 0.5 }
+
+[[entity]]
+id = "biotechnology_crispr"
+name = "Biotechnology / CRISPR"
+domain = "rahu"
+description = "Gene editing technology. Revolutionary potential for medicine, agriculture, and existential risk."
+tags = ["technology", "biotech", "genetics", "disruption", "ethics", "counsel"]
+properties = { capability_growth = 0.9, accessibility = 0.5, ethical_complexity = 0.9, risk_level = 0.7 }
+
+[[entity]]
+id = "renewable_energy_transition"
+name = "Renewable Energy Transition"
+domain = "rahu"
+description = "Solar, wind, battery technology shift. Economic and environmental transformation."
+tags = ["technology", "energy", "climate", "economics", "counsel"]
+properties = { cost_decline = 0.85, adoption_rate = 0.7, environmental_benefit = 0.8, disruption = 0.6 }
+
+[[entity]]
+id = "digital_currency_cbdcs"
+name = "Digital Currencies / CBDCs"
+domain = "rahu"
+description = "Central bank digital currencies and cryptocurrency. Monetary system transformation."
+tags = ["technology", "finance", "monetary", "counsel"]
+properties = { adoption = 0.5, privacy_impact = 0.7, financial_inclusion = 0.6, control_risk = 0.8 }
+
+[[entity]]
+id = "surveillance_capitalism"
+name = "Surveillance Capitalism"
+domain = "rahu"
+description = "Data extraction business model. Profits from behavioral prediction and manipulation."
+tags = ["technology", "economics", "privacy", "ethics", "counsel"]
+properties = { data_extraction = 0.9, behavioral_prediction = 0.85, privacy_violation = 0.9, economic_value = 0.8 }
+
+[[entity]]
+id = "open_source_movement"
+name = "Open Source Movement"
+domain = "rahu"
+description = "Collaborative software development. Democratizes technology but challenges traditional business models."
+tags = ["technology", "collaboration", "software", "community"]
+properties = { accessibility = 0.9, collaboration = 0.85, sustainability = 0.5, innovation = 0.8 }
+
+[[entity]]
+id = "automation_job_displacement"
+name = "Automation & Job Displacement"
+domain = "rahu"
+description = "AI/robotics replacing human labor. Economic transformation requiring societal adaptation."
+tags = ["technology", "economics", "employment", "society", "counsel"]
+properties = { displacement_rate = 0.7, new_jobs_created = 0.5, transition_speed = 0.8, inequality_impact = 0.7 }

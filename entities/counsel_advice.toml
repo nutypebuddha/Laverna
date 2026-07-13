@@ -1,0 +1,122 @@
+# Universal Counsel Entities — Relationships, Career, Parenting, Ethics, Investing
+# These entities enable Athena to give sound advice across life domains.
+
+[[entity]]
+id = "attachment_theory"
+name = "Attachment Theory"
+domain = "brihaspati"
+description = "Bowlby/Ainsworth: attachment styles (secure, anxious, avoidant, disorganized) shape all relationships."
+tags = ["psychology", "relationships", "attachment", "counsel"]
+properties = { universality = 0.9, evidence_base = 0.95, practicability = 0.8, depth = 0.85 }
+
+[[entity]]
+id = "boundaries_relationships"
+name = "Healthy Boundaries"
+domain = "brihaspati"
+description = "Psychological boundaries: what's mine, what's yours, where's the line. Foundation of all healthy relationships."
+tags = ["psychology", "relationships", "boundaries", "counsel"]
+properties = { importance = 0.95, difficulty = 0.7, teachability = 0.8, universality = 0.9 }
+
+[[entity]]
+id = "communication_nonviolent"
+name = "Nonviolent Communication"
+domain = "brihaspati"
+description = "Rosenberg's NVC: observe, feel, need, request. Framework for honest connection without blame."
+tags = ["psychology", "relationships", "communication", "counsel"]
+properties = { effectiveness = 0.85, learnability = 0.8, universality = 0.85, evidence_base = 0.7 }
+
+[[entity]]
+id = "career_purpose_alignment"
+name = "Career-Purpose Alignment"
+domain = "budha"
+description = "Ikigai framework: intersection of what you love, what you're good at, what the world needs, what pays."
+tags = ["economics", "career", "purpose", "counsel"]
+properties = { importance = 0.9, difficulty = 0.75, explorability = 0.6, evidence_base = 0.65 }
+
+[[entity]]
+id = "financial_literacy"
+name = "Financial Literacy"
+domain = "budha"
+description = "Budgeting, investing, debt management, compound interest. Foundation of financial freedom."
+tags = ["economics", "finance", "literacy", "counsel"]
+properties = { universality = 0.9, teachability = 0.85, evidence_base = 0.9, importance = 0.9 }
+
+[[entity]]
+id = "negotiation_principled"
+name = "Principled Negotiation"
+domain = "budha"
+description = "Fisher & Ury's Getting to Yes: separate people from problems, focus on interests not positions."
+tags = ["economics", "negotiation", "conflict", "counsel"]
+properties = { effectiveness = 0.9, learnability = 0.8, universality = 0.85, evidence_base = 0.8 }
+
+[[entity]]
+id = "parenting_authoritative"
+name = "Authoritative Parenting"
+domain = "brihaspati"
+description = "Baumrind's style: high warmth + high expectations. Best outcomes across cultures."
+tags = ["psychology", "parenting", "development", "counsel"]
+properties = { evidence_base = 0.95, effectiveness = 0.9, universality = 0.85, difficulty = 0.65 }
+
+[[entity]]
+id = "child_development_stages"
+name = "Child Development Stages"
+domain = "brihaspati"
+description = "Piaget/Erikson: cognitive and psychosocial developmental milestones. What to expect when."
+tags = ["psychology", "parenting", "development", "counsel"]
+properties = { evidence_base = 0.9, universality = 0.85, teachability = 0.8, importance = 0.9 }
+
+[[entity]]
+id = "stress_management"
+name = "Stress Management"
+domain = "surya"
+description = "Physiological and psychological stress regulation. Exercise, sleep, social connection, boundaries."
+tags = ["biology", "psychology", "stress", "health", "counsel"]
+properties = { evidence_base = 0.95, practicability = 0.85, universality = 0.9, importance = 0.95 }
+
+[[entity]]
+id = "sleep_hygiene"
+name = "Sleep Hygiene"
+domain = "surya"
+description = "Sleep habits and circadian alignment. Foundational for all physical and mental health."
+tags = ["biology", "sleep", "health", "counsel"]
+properties = { importance = 0.95, evidence_base = 0.95, teachability = 0.85, universality = 0.9 }
+
+[[entity]]
+id = "exercise_physiology"
+name = "Exercise & Movement"
+domain = "surya"
+description = "Physical activity as medicine. Effects on mood, cognition, longevity, and resilience."
+tags = ["biology", "exercise", "health", "neuroscience", "counsel"]
+properties = { evidence_base = 0.95, effectiveness = 0.9, universality = 0.9, accessibility = 0.8 }
+
+[[entity]]
+id = "nutritional_science"
+name = "Nutritional Science"
+domain = "surya"
+description = "Evidence-based nutrition: whole foods, Mediterranean pattern, gut-brain axis, metabolic health."
+tags = ["biology", "nutrition", "health", "counsel"]
+properties = { evidence_base = 0.85, complexity = 0.7, individual_variation = 0.6, importance = 0.85 }
+
+[[entity]]
+id = "ethical_frameworks"
+name = "Ethical Frameworks"
+domain = "shani"
+description = "Utilitarianism, deontology, virtue ethics, care ethics. Tools for moral reasoning."
+tags = ["philosophy", "ethics", "reasoning", "counsel"]
+properties = { universality = 0.85, teachability = 0.8, depth = 0.9, practicality = 0.7 }
+
+[[entity]]
+id = "cognitive_distortions"
+name = "Cognitive Distortions"
+domain = "brihaspati"
+description = "Beck's cognitive distortions: catastrophizing, black-and-white thinking, mind-reading, etc."
+tags = ["psychology", "cognitive", "therapy", "counsel"]
+properties = { evidence_base = 0.9, teachability = 0.85, prevalence = 0.8, treatability = 0.85 }
+
+[[entity]]
+id = "resilience_posttraumatic"
+name = "Post-Traumatic Growth"
+domain = "brihaspati"
+description = "Tedeschi & Calhoun: growth through adversity. Not just recovery but transformation."
+tags = ["psychology", "trauma", "growth", "resilience", "counsel"]
+properties = { evidence_base = 0.75, universality = 0.7, difficulty = 0.85, growth_potential = 0.9 }

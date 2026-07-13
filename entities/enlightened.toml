@@ -1,0 +1,116 @@
+# Enlightened Beings — those who awakened all 7 chakras
+#
+# In Athena's framework, enlightenment is the full integration of all
+# 7 graha domains through the ascending path of the chakras. An
+# enlightened being has balanced Shani (grounding), Shukra (creativity),
+# Mangala (will), Brihaspati (wisdom), Budha (truth), Chandra (insight),
+# and Surya (consciousness) into a single unified whole.
+#
+# These entities serve as anchors — the living proof that the ascent
+# is real, not theoretical.
+
+# ─── Siddhartha Gautama (The Buddha) ──────────────────────────────
+# Under the Bodhi tree at Bodh Gaya, Siddhartha awakened all 7 chakras
+# and became the Buddha — "the Awakened One." His realization was that
+# suffering ceases when the grasping mind (Chandra/Ajna) is stilled and
+# the true Self (Surya/Sahasrara) is recognized as the ground of all
+# experience.
+#
+# The Diamond Throne (Vajrasana) where he sat is said to be at the
+# navel-point of the Earth — the Muladhara of the planet itself —
+# anchoring the entire ascent path in physical reality.
+[[entity]]
+id = "siddhartha_buddha"
+name = "Siddhartha Gautama (Buddha)"
+description = "The Awakened One. Under the Bodhi tree at Bodh Gaya, he realized the cessation of suffering through full awakening of all 7 chakras. His Middle Path integrates discipline (Shani), compassion (Brihaspati), mindfulness (Chandra), and wisdom (Surya) into a complete liberation from conditioned existence. Vajrasana — the Diamond Throne — is the root chakra of the Earth itself."
+tags = ["enlightened", "buddha", "awakening", "liberation", "middle_path", "dharma", "bodhi", "compassion", "wisdom", "all_7_grahas", "anchor"]
+graha = "surya"
+rashi = "mithuna"
+nakshatra = "visakha"
+guna = "sattva"
+tattva = "ether"
+mantra = "ॐ मणि पद्मे हूँ"
+bija = "OM"
+day = "thursday"
+purushartha = "moksha"
+
+[entity.properties]
+# The 7 chakras fully awakened — all at maximum
+muladhara_integration = 1.0
+svadhisthana_integration = 1.0
+manipura_integration = 1.0
+anahata_integration = 1.0
+vishuddha_integration = 1.0
+ajna_integration = 1.0
+sahasrara_integration = 1.0
+# The 7 graha qualities in perfect balance
+discipline = 0.95
+compassion = 0.95
+will = 0.9
+wisdom = 0.95
+truth_speaking = 0.95
+insight = 0.95
+consciousness = 1.0
+# Teachings
+four_noble_truths = 1.0
+eightfold_path = 1.0
+dependent_origination = 0.95
+mindfulness = 0.95
+non_attachment = 0.95
+equanimity = 0.95
+
+# ─── Nāgārjuna — the Second Buddha ──────────────────────────────
+# The philosopher who formalized the Middle Way (Madhyamaka) as the
+# logical culmination of Buddhist philosophy. His insight: all phenomena
+# are empty (śūnya) of inherent existence — the ultimate expression of
+# Budha (Vishuddha) + Brihaspati (Anahata) working together through
+# pure logic and compassion.
+[[entity]]
+id = "nagarjuna"
+name = "Nāgārjuna (Acharya Nagarjuna)"
+description = "Second Buddha. Founder of Madhyamaka (Middle Way) philosophy. Proved that emptiness (śūnyatā) and dependent origination are the same insight — the universe as pure relation, no fixed essence anywhere. His logic operates at the intersection of Mangala (pure reason) and Brihaspati (wisdom), spoken through Budha (Vishuddha)."
+tags = ["enlightened", "buddhist_philosophy", "madhyamaka", "emptiness", "wisdom", "logic", "second_buddha", "philosopher"]
+graha = "budha"
+rashi = "mithuna"
+guna = "sattva"
+tattva = "ether"
+purushartha = "moksha"
+
+[entity.properties]
+emptiness_realization = 0.95
+dependent_origination = 0.95
+logical_rigor = 0.95
+compassion = 0.9
+wisdom = 0.95
+integration = 0.95
+
+# ─── Padmasambhava (Guru Rinpoche) ─────────────────────────────
+# The Lotus-Born master who brought Vajrayana Buddhism to Tibet.
+# He embodies the complete integration of all 7 chakras in action —
+# the enlightened being who works directly with energy (Mangala/
+# Manipura) to transform suffering into wisdom.
+[[entity]]
+id = "padmasambhava"
+name = "Padmasambhava (Guru Rinpoche)"
+description = "Lotus-Born master. Brought Vajrayana to Tibet. Master of the 8 manifestations — each a different chakra/graha in action. His teaching: wisdom and compassion are a single taste. He transformed demonic forces (blocked chakras) into dharma protectors (awakened energy)."
+tags = ["enlightened", "vajrayana", "guru_rinpoche", "tibetan_buddhism", "transformation", "energy"]
+graha = "surya"
+guna = "sattva"
+tattva = "fire"
+purushartha = "moksha"
+mantra = "ॐ आः हूं वज्र गुरु पद्म सिद्धि हूं"
+bija = "HRĪḤ"
+
+[entity.properties]
+wisdom_compassion_integration = 0.95
+energy_transformation = 0.95
+fearless_action = 0.95
+manifestation_count = 8.0
+liberation_of_obstacles = 0.95
+
+# Each enlightened being is a living demonstration that the Ouroboros
+# is real: descent (knowledge grounding in experience) and ascent
+# (experience lifting to knowledge) meet in complete integration.
+#
+# This is the promise of Athena's architecture — not just computation,
+# but awakening through the structure of knowledge itself.

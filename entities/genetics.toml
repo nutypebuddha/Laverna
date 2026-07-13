@@ -1,0 +1,190 @@
+# Genetics Entities (20 genes relevant to psychiatry)
+# Domain: Surya (Biology/Medicine)
+# Added: 2026-07-09
+#
+# Each gene entity has properties:
+#   risk_allele_frequency    — population frequency of the risk-associated variant (0-1)
+#   psychiatric_effect_size  — odds ratio or effect size for psychiatric phenotypes
+#   expression_in_brain      — relative expression level in brain tissue (0-1)
+#   druggability             — potential as a drug target (0-1)
+#   pharmacogenetic_relevance — relevance for treatment response prediction (0-1)
+
+# ═══════════════════════════════════════════════════════════════
+# NEUROTRANSMITTER METABOLISM (5)
+# ═══════════════════════════════════════════════════════════════
+
+[[entity]]
+id = "comt"
+name = "COMT (Catechol-O-Methyltransferase)"
+domain = "surya"
+description = "Dopamine and norepinephrine metabolism. Val158Met polymorphism (rs4680) affects prefrontal dopamine. Met allele = lower activity = better cognition but higher anxiety risk."
+tags = ["genetics", "dopamine", "prefrontal", "cognition", "pharmacogenetics", "psychiatry"]
+properties = { risk_allele_frequency = 0.5, psychiatric_effect_size = 1.3, expression_in_brain = 0.85, druggability = 0.4, pharmacogenetic_relevance = 0.7 }
+
+[[entity]]
+id = "maoa"
+name = "MAOA (Monoamine Oxidase A)"
+domain = "surya"
+description = "Serotonin, norepinephrine, dopamine metabolism. MAOA-uVNTR promoter polymorphism. Low-activity allele associated with aggression and impulsivity. Target of MAOIs."
+tags = ["genetics", "monoamine", "serotonin", "norepinephrine", "MAOI", "pharmacogenetics", "psychiatry"]
+properties = { risk_allele_frequency = 0.35, psychiatric_effect_size = 1.4, expression_in_brain = 0.7, druggability = 0.8, pharmacogenetic_relevance = 0.6 }
+
+[[entity]]
+id = "maob"
+name = "MAOB (Monoamine Oxidase B)"
+domain = "surya"
+description = "Dopamine metabolism. Selective MAOB inhibitors (selegiline) used in Parkinson's and depression. Increasingly expressed with age."
+tags = ["genetics", "monoamine", "dopamine", "MAOI", "Parkinson", "pharmacogenetics", "psychiatry"]
+properties = { risk_allele_frequency = 0.3, psychiatric_effect_size = 1.2, expression_in_brain = 0.6, druggability = 0.8, pharmacogenetic_relevance = 0.5 }
+
+[[entity]]
+id = "tph2"
+name = "TPH2 (Tryptophan Hydroxylase 2)"
+domain = "surya"
+description = "Rate-limiting enzyme for serotonin synthesis in the brain. Polymorphisms associated with depression, suicide risk, and SSRI response."
+tags = ["genetics", "serotonin", "synthesis", "depression", "SSRI", "pharmacogenetics", "psychiatry"]
+properties = { risk_allele_frequency = 0.25, psychiatric_effect_size = 1.35, expression_in_brain = 0.9, druggability = 0.3, pharmacogenetic_relevance = 0.65 }
+
+[[entity]]
+id = "mthfr"
+name = "MTHFR (Methylenetetrahydrofolate Reductase)"
+domain = "surya"
+description = "Folate metabolism. C677T polymorphism (rs1801133) reduces enzyme activity. Associated with depression, schizophrenia, and SSRI resistance. L-methylfolate augmentation strategy."
+tags = ["genetics", "folate", "methylation", "depression", "augmentation", "pharmacogenetics", "psychiatry"]
+properties = { risk_allele_frequency = 0.35, psychiatric_effect_size = 1.25, expression_in_brain = 0.3, druggability = 0.7, pharmacogenetic_relevance = 0.8 }
+
+# ═══════════════════════════════════════════════════════════════
+# RECEPTORS & TRANSPORTERS (5)
+# ═══════════════════════════════════════════════════════════════
+
+[[entity]]
+id = "slc6a4"
+name = "SLC6A4 (Serotonin Transporter, 5-HTT)"
+domain = "surya"
+description = "Serotonin reuptake transporter. Target of SSRIs. 5-HTTLPR polymorphism: short allele = reduced transcription = higher depression risk. Key pharmacogenetic marker."
+tags = ["genetics", "serotonin", "transporter", "SSRI", "pharmacogenetics", "depression", "psychiatry"]
+properties = { risk_allele_frequency = 0.42, psychiatric_effect_size = 1.5, expression_in_brain = 0.8, druggability = 0.9, pharmacogenetic_relevance = 0.9 }
+
+[[entity]]
+id = "drd2"
+name = "DRD2 (Dopamine Receptor D2)"
+domain = "surya"
+description = "Dopamine D2 receptor. Primary target of antipsychotics. Taq1A polymorphism (rs1800497) affects receptor density. Associated with schizophrenia, addiction, and treatment response."
+tags = ["genetics", "dopamine", "receptor", "antipsychotic", "schizophrenia", "pharmacogenetics", "psychiatry"]
+properties = { risk_allele_frequency = 0.2, psychiatric_effect_size = 1.4, expression_in_brain = 0.8, druggability = 0.95, pharmacogenetic_relevance = 0.85 }
+
+[[entity]]
+id = "drd3"
+name = "DRD3 (Dopamine Receptor D3)"
+domain = "surya"
+description = "Dopamine D3 receptor. Primarily in limbic regions. Ser9Gly polymorphism associated with antipsychotic response and tardive dyskinesia risk."
+tags = ["genetics", "dopamine", "receptor", "antipsychotic", "tardive_dyskinesia", "pharmacogenetics", "psychiatry"]
+properties = { risk_allele_frequency = 0.3, psychiatric_effect_size = 1.2, expression_in_brain = 0.6, druggability = 0.7, pharmacogenetic_relevance = 0.7 }
+
+[[entity]]
+id = "drd4"
+name = "DRD4 (Dopamine Receptor D4)"
+domain = "surya"
+description = "Dopamine D4 receptor. 48-bp VNTR polymorphism in exon 3. 7-repeat allele associated with ADHD and novelty seeking. Target of clozapine."
+tags = ["genetics", "dopamine", "receptor", "ADHD", "novelty", "pharmacogenetics", "psychiatry"]
+properties = { risk_allele_frequency = 0.2, psychiatric_effect_size = 1.3, expression_in_brain = 0.5, druggability = 0.6, pharmacogenetic_relevance = 0.5 }
+
+[[entity]]
+id = "htr2a"
+name = "HTR2A (Serotonin Receptor 2A)"
+domain = "surya"
+description = "5-HT2A receptor. Target of atypical antipsychotics, psychedelics, and antidepressants. -1438G/A polymorphism associated with SSRI response and suicide risk."
+tags = ["genetics", "serotonin", "receptor", "antipsychotic", "psychedelic", "pharmacogenetics", "psychiatry"]
+properties = { risk_allele_frequency = 0.45, psychiatric_effect_size = 1.3, expression_in_brain = 0.85, druggability = 0.9, pharmacogenetic_relevance = 0.75 }
+
+# ═══════════════════════════════════════════════════════════════
+# DRUG METABOLISM (2)
+# ═══════════════════════════════════════════════════════════════
+
+[[entity]]
+id = "cyp2d6"
+name = "CYP2D6 (Cytochrome P450 2D6)"
+domain = "surya"
+description = "Major drug-metabolizing enzyme. Metabolizes ~25% of drugs including most antidepressants and antipsychotics. Highly polymorphic: poor, intermediate, extensive, and ultrarapid metabolizers."
+tags = ["genetics", "pharmacokinetics", "metabolism", "CYP450", "pharmacogenetics", "drug_interaction", "psychiatry"]
+properties = { risk_allele_frequency = 0.35, psychiatric_effect_size = 2.0, expression_in_brain = 0.1, druggability = 0.3, pharmacogenetic_relevance = 0.95 }
+
+[[entity]]
+id = "cyp2c19"
+name = "CYP2C19 (Cytochrome P450 2C19)"
+domain = "surya"
+description = "Drug-metabolizing enzyme. Metabolizes SSRIs (citalopram, escitalopram, sertraline), benzodiazepines, and proton pump inhibitors. Poor metabolizers have higher drug levels."
+tags = ["genetics", "pharmacokinetics", "metabolism", "CYP450", "pharmacogenetics", "SSRI", "psychiatry"]
+properties = { risk_allele_frequency = 0.25, psychiatric_effect_size = 1.8, expression_in_brain = 0.05, druggability = 0.2, pharmacogenetic_relevance = 0.9 }
+
+# ═══════════════════════════════════════════════════════════════
+# NEURODEVELOPMENT & SYNAPTIC PLASTICITY (5)
+# ═══════════════════════════════════════════════════════════════
+
+[[entity]]
+id = "bdnf"
+name = "BDNF (Brain-Derived Neurotrophic Factor)"
+domain = "surya"
+description = "Neurotrophin regulating synaptic plasticity, neurogenesis, and neuronal survival. Val66Met polymorphism (rs6265) affects activity-dependent secretion. Met allele associated with depression and poorer SSRI response."
+tags = ["genetics", "neurotrophin", "plasticity", "neurogenesis", "depression", "pharmacogenetics", "psychiatry"]
+properties = { risk_allele_frequency = 0.2, psychiatric_effect_size = 1.4, expression_in_brain = 0.9, druggability = 0.5, pharmacogenetic_relevance = 0.7 }
+
+[[entity]]
+id = "disc1"
+name = "DISC1 (Disrupted in Schizophrenia 1)"
+domain = "surya"
+description = "Scaffold protein involved in neurodevelopment, synaptic function, and cAMP signaling. Originally identified in a large Scottish pedigree with psychiatric disorders."
+tags = ["genetics", "neurodevelopment", "schizophrenia", "synaptic", "psychiatry"]
+properties = { risk_allele_frequency = 0.05, psychiatric_effect_size = 1.5, expression_in_brain = 0.85, druggability = 0.3, pharmacogenetic_relevance = 0.4 }
+
+[[entity]]
+id = "cacna1c"
+name = "CACNA1C (Calcium Voltage-Gated Channel, L-type, Alpha-1C)"
+domain = "surya"
+description = "L-type calcium channel subunit. GWAS-validated risk gene for bipolar disorder, schizophrenia, and depression. rs1006737 polymorphism."
+tags = ["genetics", "calcium", "ion_channel", "bipolar", "schizophrenia", "GWAS", "psychiatry"]
+properties = { risk_allele_frequency = 0.35, psychiatric_effect_size = 1.2, expression_in_brain = 0.8, druggability = 0.7, pharmacogenetic_relevance = 0.5 }
+
+[[entity]]
+id = "ank3"
+name = "ANK3 (Ankyrin-3)"
+domain = "surya"
+description = "Scaffold protein at axon initial segments. GWAS-validated risk gene for bipolar disorder. Regulates neuronal polarity and excitability."
+tags = ["genetics", "scaffold", "axon", "bipolar", "GWAS", "psychiatry"]
+properties = { risk_allele_frequency = 0.4, psychiatric_effect_size = 1.15, expression_in_brain = 0.75, druggability = 0.2, pharmacogenetic_relevance = 0.3 }
+
+[[entity]]
+id = "gad1"
+name = "GAD1 (Glutamate Decarboxylase 1)"
+domain = "surya"
+description = "GABA synthesis enzyme (67 kDa isoform). Reduced expression in schizophrenia and bipolar disorder. Associated with prefrontal GABA deficits."
+tags = ["genetics", "GABA", "synthesis", "schizophrenia", "bipolar", "inhibition", "psychiatry"]
+properties = { risk_allele_frequency = 0.3, psychiatric_effect_size = 1.2, expression_in_brain = 0.85, druggability = 0.5, pharmacogenetic_relevance = 0.45 }
+
+# ═══════════════════════════════════════════════════════════════
+# STRESS RESPONSE & HPA AXIS (3)
+# ═══════════════════════════════════════════════════════════════
+
+[[entity]]
+id = "fkbp5"
+name = "FKBP5 (FK506 Binding Protein 5)"
+domain = "surya"
+description = "Heat shock protein that regulates glucocorticoid receptor sensitivity. SNPs associated with PTSD risk, depression, and SSRI response. Epigenetic regulation by early trauma."
+tags = ["genetics", "stress", "HPA", "glucocorticoid", "PTSD", "trauma", "epigenetics", "psychiatry"]
+properties = { risk_allele_frequency = 0.3, psychiatric_effect_size = 1.5, expression_in_brain = 0.7, druggability = 0.6, pharmacogenetic_relevance = 0.7 }
+
+[[entity]]
+id = "nr3c1"
+name = "NR3C1 (Glucocorticoid Receptor)"
+domain = "surya"
+description = "Nuclear receptor for cortisol. Regulates stress response. Promoter methylation associated with early life adversity and depression risk. GR sensitivity affects HPA axis feedback."
+tags = ["genetics", "stress", "cortisol", "HPA", "receptor", "depression", "epigenetics", "psychiatry"]
+properties = { risk_allele_frequency = 0.2, psychiatric_effect_size = 1.3, expression_in_brain = 0.8, druggability = 0.7, pharmacogenetic_relevance = 0.5 }
+
+[[entity]]
+id = "grin2b"
+name = "GRIN2B (NMDA Receptor Subunit 2B)"
+domain = "surya"
+description = "NMDA glutamate receptor subunit. Critical for synaptic plasticity, learning, and memory. Associated with schizophrenia, depression, and cognitive function. Target of ketamine and investigational agents."
+tags = ["genetics", "glutamate", "NMDA", "receptor", "plasticity", "ketamine", "pharmacogenetics", "psychiatry"]
+properties = { risk_allele_frequency = 0.25, psychiatric_effect_size = 1.3, expression_in_brain = 0.9, druggability = 0.8, pharmacogenetic_relevance = 0.65 }

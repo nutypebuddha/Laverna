@@ -1,0 +1,89 @@
+# Entities on Aries (Math & Logic)
+
+[[entity]]
+id = "bayesian_inference"
+name = "Bayesian Inference"
+domain = "mangala"
+description = "Statistical framework: updating beliefs based on evidence using prior probability."
+tags = ["statistics", "probability", "reasoning"]
+properties = { prior_weight = 0.5, evidence_sensitivity = 0.8, uncertainty_quantification = 0.9 }
+
+[[entity]]
+id = "differential_diagnosis"
+name = "Differential Diagnosis"
+domain = "mangala"
+description = "Logical framework: distinguishing between similar conditions by systematic comparison."
+tags = ["logic", "diagnosis", "medicine", "reasoning"]
+properties = { discriminative_power = 0.85, specificity = 0.7, sensitivity = 0.75 }
+
+[[entity]]
+id = "coherence_theory"
+name = "Coherence Theory"
+domain = "mangala"
+description = "Epistemic framework: a belief is justified if it coheres with a system of beliefs."
+tags = ["logic", "epistemology", "reasoning"]
+properties = { internal_consistency = 0.9, explanatory_power = 0.7, comprehensiveness = 0.6 }
+
+[[entity]]
+id = "falsification"
+name = "Falsification"
+domain = "mangala"
+description = "Scientific method: a theory is scientific if it can be proven false through empirical observation."
+tags = ["logic", "science", "epistemology", "methodology"]
+properties = { testability = 0.95, empirical_grounding = 0.85, parsimony = 0.7 }
+
+[[entity]]
+id = "signal_detection_theory"
+name = "Signal Detection Theory"
+domain = "mangala"
+description = "Decision-making framework: distinguishing signal from noise. Hit rate vs false alarm rate."
+tags = ["statistics", "decision_making", "perception"]
+properties = { discriminability_d = 0.75, response_bias_c = 0.5, hit_rate = 0.8 }
+
+[[entity]]
+id = "diagnostic_classifier"
+name = "Diagnostic Classifier"
+domain = "mangala"
+description = "ML model: classifies patients into diagnostic categories based on feature vectors."
+tags = ["machine_learning", "classification", "diagnosis", "AI"]
+properties = { accuracy = 0.85, precision = 0.8, recall = 0.82, f1_score = 0.81 }
+
+[[entity]]
+id = "nlp_symptom_extractor"
+name = "NLP Symptom Extractor"
+domain = "mangala"
+description = "NLP system: extracts symptom mentions from clinical notes using named entity recognition."
+tags = ["NLP", "clinical", "information_extraction", "AI"]
+properties = { precision = 0.88, recall = 0.76, f1_score = 0.82 }
+
+[[entity]]
+id = "neural_network"
+name = "Neural Network"
+domain = "mangala"
+description = "Computational model: layered processing units that learn patterns from data."
+tags = ["machine_learning", "deep_learning", "AI"]
+properties = { nonlinearity = 0.9, representational_capacity = 0.85, interpretability = 0.3 }
+
+[[entity]]
+id = "reinforcement_learning_treatment"
+name = "Reinforcement Learning for Treatment"
+domain = "mangala"
+description = "AI approach: RL algorithms optimize treatment sequences by learning from patient outcomes."
+tags = ["machine_learning", "reinforcement_learning", "treatment", "AI"]
+properties = { exploration_exploitation = 0.7, reward_modeling = 0.8, personalized_dosing = 0.75 }
+
+[[entity]]
+id = "graph_neural_network_connectome"
+name = "Graph Neural Network for Connectome"
+domain = "mangala"
+description = "Deep learning on brain connectivity graphs. Classifies disorders from structural/functional connectomes."
+tags = ["deep_learning", "graph_NN", "connectome", "neuroimaging"]
+properties = { graph_representation = 0.85, topological_feature_extraction = 0.8, classification_accuracy = 0.78 }
+
+[[entity]]
+id = "explainable_ai_psychiatry"
+name = "Explainable AI in Psychiatry"
+domain = "mangala"
+description = "XAI methods: interpretability techniques for psychiatric ML models. Feature attribution and counterfactuals."
+tags = ["machine_learning", "XAI", "interpretability", "ethics"]
+properties = { feature_attribution = 0.85, counterfactual_generation = 0.7, clinician_trust = 0.55 }

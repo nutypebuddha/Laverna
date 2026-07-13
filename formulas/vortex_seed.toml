@@ -1,0 +1,332 @@
+# Vortex: Climate → Psychiatry Cascade
+#
+# A 4-domain spiral demonstrating how environmental changes cascade through
+# biological systems into psychological outcomes.
+#
+# Chain: Chandra (Earth) → Surya (Biology) → Brihaspati (Psychology)
+#
+# This is the first functional vortex formula: a cross-domain reasoning chain
+# that no single-domain engine could express.
+
+[[formula]]
+id = "climate_anxiety_vortex"
+domain = "chandra"
+from = "chandra"
+to = "brihaspati"
+aspect = "opposition"
+tags = ["vortex", "climate", "psychiatry", "cascade", "cross-domain", "spiral"]
+inputs = ["carbon_emissions", "population_density", "baseline_anxiety_rate"]
+output = "climate_anxiety_index"
+expression = "baseline_anxiety_rate * (1.0 + 0.3 * ln(1.0 + carbon_emissions / population_density))"
+description = "Climate anxiety index: how carbon emissions and population density modulate baseline anxiety. Vortex: Chandra→Surya→Brihaspati — Earth emissions drive biological stress responses that manifest as psychological distress."
+evidence = "Clayton et al., 2021 (APA Climate Change Mental Health Report); Obradovich et al., 2018 (Nature Climate Change)"
+
+[[formula]]
+id = "heat_cognition_impact"
+domain = "chandra"
+from = "chandra"
+to = "brihaspati"
+aspect = "opposition"
+tags = ["vortex", "climate", "cognition", "cascade", "cross-domain"]
+inputs = ["temperature_anomaly", "baseline_cognitive_score"]
+output = "cognitive_decrement"
+expression = "baseline_cognitive_score * (1.0 - 0.05 * temperature_anomaly)"
+description = "Cognitive performance decrement from heat exposure. Vortex: Chandra→Surya→Brihaspati — rising temperatures (Earth) impair neural function (Biology) reducing cognitive performance (Psychology)."
+evidence = "Cedeño Laurent et al., 2018 (PLoS Medicine); Zivin et al., 2018 (Journal of Environmental Economics)"
+
+[[formula]]
+id = "seasonal_mood_cascade"
+domain = "chandra"
+from = "chandra"
+to = "brihaspati"
+aspect = "opposition"
+tags = ["vortex", "seasonal", "mood", "circadian", "cascade", "cross-domain"]
+inputs = ["daylight_hours", "baseline_mood_score", "latitude_factor"]
+output = "seasonal_mood_index"
+expression = "baseline_mood_score * (1.0 + 0.15 * (daylight_hours - 12.0) / 12.0 * latitude_factor)"
+description = "Seasonal mood variation driven by daylight exposure. Vortex: Chandra→Surya→Brihaspati — Earth axial tilt (Chandra) modulates circadian biology (Surya) producing affective shifts (Brihaspati)."
+evidence = "Rosenthal et al., 1984 (SAD description); Wirz-Justice et al., 2019 (Chronobiology International)"
+# Vortex: Economic History Cascade
+#
+# A 4-domain spiral from economics through earth systems to historical outcomes.
+#
+# Chain: Budha (Economics) → Chandra (Earth) → Brihaspati (History) → Mangala (CS)
+#
+# Models how economic incentives drive resource extraction, which changes landscapes,
+# which forces human migration, which can be modeled predictively.
+
+[[formula]]
+id = "economic_extraction_pressure"
+domain = "budha"
+from = "budha"
+to = "mangala"
+aspect = "trine"
+tags = ["vortex", "economics", "environment", "history", "spiral"]
+inputs = ["resource_price", "extraction_technology_efficiency", "regulatory_burden"]
+output = "extraction_intensity"
+expression = "resource_price * extraction_technology_efficiency / (1.0 + regulatory_burden)"
+description = "Economic pressure to extract natural resources. Vortex: Budha→Chandra→Brihaspati→Mangala — commodity prices (Budha) drive extraction rates (Chandra) that reshape communities (Brihaspati) modeled via predictive algorithms (Mangala)."
+evidence = "Barbier, 2011 (Scarcity and Frontiers); Sachs & Warner, 2001 (Resource curse)"
+
+[[formula]]
+id = "extraction_to_land_degradation"
+domain = "chandra"
+from = "budha"
+to = "brihaspati"
+aspect = "square"
+tags = ["vortex", "environment", "degradation", "migration", "spiral"]
+inputs = ["extraction_intensity", "ecosystem_resilience"]
+output = "land_degradation_index"
+expression = "extraction_intensity / (1.0 + ecosystem_resilience)"
+description = "Land degradation resulting from resource extraction intensity. Vortex: Budha→Chandra→Brihaspati→Mangala — extraction (Chandra) degrades ecosystems forcing population displacement (Brihaspati)."
+evidence = "IPCC Special Report on Climate Change and Land, 2019; UNCCD Global Land Outlook, 2022"
+
+[[formula]]
+id = "degradation_to_migration_pressure"
+domain = "brihaspati"
+from = "chandra"
+to = "mangala"
+aspect = "square"
+tags = ["vortex", "history", "migration", "environmental_refugee", "spiral"]
+inputs = ["land_degradation_index", "population", "social_stability"]
+output = "migration_pressure"
+expression = "land_degradation_index * population / (1.0 + social_stability)"
+description = "Historical migration pressure from environmental degradation. Vortex: Budha→Chandra→Brihaspati→Mangala — land degradation (Chandra) drives population movement that reshapes historical trajectories (Brihaspati), quantifiable through network models (Mangala)."
+evidence = "McLeman, 2018 (Migration and Climate Change); IPCC 6th Assessment Report, 2022 (Human Mobility)"
+# Vortex: Treatment Response Pipeline
+#
+# A 4-domain spiral from philosophy of mind through computational modeling
+# to clinical intervention.
+#
+# Chain: Shani (Philosophy) → Mangala (CS) → Shukra (Physics/Engineering) → Brihaspati (Psychology)
+#
+# Models how a philosophical concept (qualia, consciousness) translates through
+# computational models into physical interventions that alter psychological states.
+
+[[formula]]
+id = "qualia_to_computational_model"
+domain = "shani"
+from = "shani"
+to = "shukra"
+aspect = "trine"
+tags = ["vortex", "philosophy", "cs", "consciousness", "qualia", "spiral"]
+inputs = ["subjective_distress_score", "cognitive_complexity"]
+output = "computational_representation_quality"
+expression = "subjective_distress_score / (1.0 + cognitive_complexity) * 100.0"
+description = "Translate subjective distress into a computational representation quality score. Vortex: Shani→Mangala→Shukra→Brihaspati — philosophical models of qualia (Shani) inform computational psychiatry features (Mangala) that target brain stimulation parameters (Shukra) to reduce symptoms (Brihaspati)."
+evidence = "Friston et al., 2017 (Free Energy Principle); Stephan & Mathys, 2014 (Computational Psychiatry)"
+
+[[formula]]
+id = "computational_to_stimulation"
+domain = "mangala"
+from = "shani"
+to = "shukra"
+aspect = "trine"
+tags = ["vortex", "cs", "engineering", "brain_stimulation", "spiral"]
+inputs = ["computational_representation_quality", "stimulation_efficiency"]
+output = "optimal_stimulation_parameter"
+expression = "computational_representation_quality * stimulation_efficiency * 0.85"
+description = "Convert computational model output into optimal brain stimulation parameters. Vortex: Shani→Mangala→Shukra→Brihaspati — computational model of distress (Mangala) drives TMS/tDCS parameters (Shukra)."
+evidence = "Fox et al., 2014 (Nature: connectome-based TMS targeting); Drysdale et al., 2017 (Nature Medicine: depression biotypes)"
+
+[[formula]]
+id = "stimulation_to_symptom_reduction"
+domain = "shukra"
+from = "mangala"
+to = "brihaspati"
+aspect = "square"
+tags = ["vortex", "engineering", "psychology", "treatment", "spiral"]
+inputs = ["optimal_stimulation_parameter", "baseline_symptom_severity"]
+output = "predicted_symptom_reduction"
+expression = "baseline_symptom_severity * (1.0 - 0.3 * optimal_stimulation_parameter / 100.0)"
+description = "Compute predicted symptom reduction from brain stimulation parameter. Vortex: Shani→Mangala→Shukra→Brihaspati — stimulation protocol (Shukra) modulates neural circuits producing measurable psychological improvement (Brihaspati)."
+evidence = "O'Reardon et al., 2007 (FDA TMS trial); Brunoni et al., 2017 (JAMA Psychiatry tDCS meta-analysis)"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Vortex: Drug Design Pipeline
+#
+# A 4-domain spiral from molecular biology through physics and astronomy to
+# computational screening.
+#
+# Chain: Surya (Biology) → Shukra (Physics) → Budha (Astronomy) → Mangala (CS)
+#
+# Models how a molecular target's binding kinetics are influenced by physical
+# forces, scaled by astronomical principles, and screened computationally.
+
+[[formula]]
+id = "molecular_target_binding"
+domain = "surya"
+from = "surya"
+to = "mangala"
+aspect = "trine"
+tags = ["vortex", "pharmacology", "binding", "molecular", "spiral"]
+inputs = ["receptor_concentration", "ligand_affinity_kd", "binding_site_accessibility"]
+output = "binding_occupancy"
+expression = "receptor_concentration * ligand_affinity_kd / (1.0 + ligand_affinity_kd * receptor_concentration) * binding_site_accessibility"
+description = "Molecular binding occupancy from receptor-ligand kinetics. Vortex: Surya→Shukra→Budha→Mangala — receptor biology (Surya) determines binding kinetics (Shukra) scaled by universal constants (Budha) and screened via algorithms (Mangala)."
+evidence = "Langmuir, 1918 (adsorption isotherm); Hulme & Trevethick, 2010 (British Journal of Pharmacology)"
+
+[[formula]]
+id = "binding_to_physical_force"
+domain = "shukra"
+from = "surya"
+to = "mangala"
+aspect = "trine"
+tags = ["vortex", "physics", "binding", "thermodynamics", "spiral"]
+inputs = ["binding_occupancy", "temperature", "entropy_change"]
+output = "binding_free_energy"
+expression = "-0.592 * temperature * log(binding_occupancy / (1.0 - binding_occupancy + 0.001)) + temperature * entropy_change / 1000"
+description = "Gibbs free energy of binding from occupancy and thermodynamics. Vortex: Surya→Shukra→Budha→Mangala — binding occupancy (Surya) feeds thermodynamic models (Shukra) incorporating universal constants (Budha)."
+evidence = "Reynolds & Holloway, 2011 (Journal of Medicinal Chemistry); Klebe, 2015 (Nature Reviews Drug Discovery)"
+
+[[formula]]
+id = "astro_scaled_screen"
+domain = "mangala"
+from = "shukra"
+to = "mangala"
+aspect = "conjunction"
+tags = ["vortex", "cs", "astronomy", "drug_screening", "spiral"]
+inputs = ["binding_free_energy", "lipinski_violations", "synthetic_accessibility"]
+output = "drug_lead_score"
+expression = "exp(-binding_free_energy / 10.0) / (1.0 + lipinski_violations) * synthetic_accessibility"
+description = "Computational drug lead score from biophysical properties. Vortex: Surya→Shukra→Budha→Mangala — thermodynamic binding (Shukra) combined with drug-likeness rules and synthetic feasibility, scored by ensemble algorithms (Mangala)."
+evidence = "Lipinski et al., 2001 (ADME rules); Schneider & Fechner, 2005 (Nature Reviews Drug Discovery)"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Vortex: Solar Radiation Cascade
+#
+# A 4-domain spiral from stellar physics through astronomical orbital mechanics
+# to climate systems and biological photosynthesis.
+#
+# Chain: Shukra (Physics) → Budha (Astronomy) → Chandra (Earth) → Surya (Biology)
+
+[[formula]]
+id = "solar_fusion_output"
+domain = "shukra"
+from = "shukra"
+to = "surya"
+aspect = "opposition"
+tags = ["vortex", "physics", "fusion", "solar", "spiral"]
+inputs = ["core_temperature", "core_pressure", "hydrogen_fraction"]
+output = "fusion_power_output"
+expression = "core_temperature^4 * core_pressure * hydrogen_fraction * 3.828e26"
+description = "Stellar fusion power output from core conditions. Vortex: Shukra→Budha→Chandra→Surya — fusion physics (Shukra) determines solar output that propagates through the solar system (Budha) to drive Earth's climate (Chandra) enabling photosynthesis (Surya)."
+evidence = "Kippenhahn & Weigert, 1990 (Stellar Structure); Bahcall, 2000 (Neutrino astrophysics)"
+
+[[formula]]
+id = "solar_flux_at_earth"
+domain = "budha"
+from = "shukra"
+to = "chandra"
+aspect = "square"
+tags = ["vortex", "astronomy", "orbital", "insolation", "spiral"]
+inputs = ["fusion_power_output", "orbital_radius_au", "albedo"]
+output = "surface_insolation"
+expression = "fusion_power_output / (4 * pi * (orbital_radius_au * 1.496e11)^2) * (1.0 - albedo)"
+description = "Solar insolation at Earth's surface accounting for orbital distance and albedo. Vortex: Shukra→Budha→Chandra→Surya — fusion power (Shukra) radiates across AU-scale distances (Budha) to reach Earth (Chandra)."
+evidence = "Lean, 2010 (Solar irradiance variability); Wild et al., 2013 (Earth's energy balance)"
+
+[[formula]]
+id = "insolation_to_photosynthesis"
+domain = "surya"
+from = "budha"
+to = "surya"
+aspect = "square"
+tags = ["vortex", "biology", "photosynthesis", "climate", "spiral"]
+inputs = ["surface_insolation", "co2_concentration", "leaf_area_index"]
+output = "net_primary_productivity"
+expression = "surface_insolation * 0.45 * co2_concentration / (co2_concentration + 0.0004) * leaf_area_index * 1e-12"
+description = "Net primary productivity from insolation, CO2 and leaf area. Vortex: Shukra→Budha→Chandra→Surya — surface insolation (Budha→Chandra) drives photosynthetic carbon fixation (Surya)."
+evidence = "Monteith, 1972 (light-use efficiency); Beer et al., 2010 (Global NPP)"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Vortex: Cognitive Linguistics
+#
+# A 4-domain spiral from psychological processing through linguistic structure
+# to computational models and physical neural networks.
+#
+# Chain: Brihaspati (Psychology) → Shani (Language) → Mangala (CS) → Shukra (Physics)
+
+[[formula]]
+id = "thought_to_language"
+domain = "brihaspati"
+from = "brihaspati"
+to = "shukra"
+aspect = "opposition"
+tags = ["vortex", "psychology", "linguistics", "cognition", "spiral"]
+inputs = ["cognitive_load", "working_memory_capacity", "semantic_density"]
+output = "linguistic_complexity"
+expression = "min(cognitive_load / working_memory_capacity, 1.0) * semantic_density * 10.0"
+description = "Linguistic complexity arising from cognitive constraints. Vortex: Brihaspati→Shani→Mangala→Shukra — cognitive processing (Brihaspati) shapes linguistic output (Shani) that can be modeled computationally (Mangala) and implemented in neural networks (Shukra)."
+evidence = "Levelt, 1989 (Speaking); Ferreira & Slevc, 2007 (Grammatical encoding)"
+
+[[formula]]
+id = "language_to_computation"
+domain = "shani"
+from = "brihaspati"
+to = "mangala"
+aspect = "square"
+tags = ["vortex", "linguistics", "cs", "nlp", "spiral"]
+inputs = ["linguistic_complexity", "corpus_size", "model_capacity"]
+output = "nlp_model_perplexity"
+expression = "linguistic_complexity * log(corpus_size + 1) / sqrt(model_capacity) * 100.0"
+description = "NLP model perplexity from linguistic complexity and model capacity. Vortex: Brihaspati→Shani→Mangala→Shukra — linguistic structure (Shani) determines the difficulty of computational language models (Mangala)."
+evidence = "Jelinek et al., 1977 (Perplexity); Vaswani et al., 2017 (Transformer)"
+
+[[formula]]
+id = "computation_to_neural_physics"
+domain = "mangala"
+from = "shani"
+to = "shukra"
+aspect = "trine"
+tags = ["vortex", "cs", "physics", "neural_network", "spiral"]
+inputs = ["nlp_model_perplexity", "parameter_count", "energy_per_operation_joules"]
+output = "training_energy_cost"
+expression = "nlp_model_perplexity * parameter_count * energy_per_operation_joules / 1e9"
+description = "Training energy cost from model perplexity and scale. Vortex: Brihaspati→Shani→Mangala→Shukra — computational model quality (Mangala) determines the physical energy required for training (Shukra)."
+evidence = "Strubell et al., 2019 (Energy costs of NLP); Patterson et al., 2021 (ML carbon footprint)"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Vortex: Single-expression true 5-domain spirals
+#
+# Unlike the cascades above (which chain 3 individual formulas), these formulas
+# pack the entire multi-domain spiral into a single evaluable expression.
+
+[[formula]]
+id = "cosmic_bio_rhythm"
+domain = "surya"
+from = "surya"
+to = "budha"
+aspect = "trine"
+tags = ["vortex", "cosmic", "circadian", "biology", "astronomy", "spiral", "unified"]
+inputs = ["solar_irradiance", "lunar_cycle_phase", "latitude_degrees", "baseline_metabolic_rate"]
+output = "cosmic_biological_entrainment"
+expression = "baseline_metabolic_rate * (1.0 + 0.1 * sin(2 * pi * lunar_cycle_phase) + 0.05 * solar_irradiance / 1361.0 * cos(latitude_degrees * pi / 180.0))"
+description = "Multi-domain biological entrainment: solar irradiance (Shukra→Budha) modulates lunar tidal cycles (Budha→Chandra) that entrain circadian metabolism (Chandra→Surya). Single-expression 5-domain spiral: Shukra→Budha→Chandra→Surya→Mangala."
+evidence = "Refinetti, 2006 (Circadian Physiology); Kronfeld-Schor et al., 2013 (Annual Review of Physiology)"
+
+[[formula]]
+id = "climate_conflict_cascade"
+domain = "chandra"
+from = "chandra"
+to = "brihaspati"
+aspect = "opposition"
+tags = ["vortex", "climate", "conflict", "history", "economics", "spiral", "unified"]
+inputs = ["temperature_anomaly", "precipitation_change", "population_density", "resource_scarcity_index", "institutional_trust"]
+output = "conflict_risk_score"
+expression = "temperature_anomaly * precipitation_change * resource_scarcity_index * population_density / (1.0 + institutional_trust) / 1000.0"
+description = "Climate-conflict cascade: temperature/precipitation anomalies (Chandra) drive resource scarcity (Budha→Economics) that compounds historical grievances (Brihaspati→History), filtered through institutional trust. 5-domain unified spiral: Chandra→Budha→Brihaspati→Shani→Mangala."
+evidence = "Hsiang et al., 2013 (Science: climate-conflict meta-analysis); Burke et al., 2015 (Nature: temperature and conflict)"
+
+[[formula]]
+id = "psychedelic_neural_reintegration"
+domain = "brihaspati"
+from = "surya"
+to = "shukra"
+aspect = "square"
+tags = ["vortex", "psychedelic", "neural", "psychology", "philosophy", "spiral", "unified"]
+inputs = ["default_mode_connectivity", "serotonin_2a_occupancy", "baseline_depression_score", "integration_sessions"]
+output = "therapeutic_reintegration_index"
+expression = "baseline_depression_score * (1.0 - 0.4 * default_mode_connectivity * serotonin_2a_occupancy / (serotonin_2a_occupancy + 0.5) * (1.0 - exp(-0.3 * integration_sessions)))"
+description = "Therapeutic reintegration: serotonin 2A receptor binding (Surya→Biology) alters default mode network connectivity (Surya→Brihaspati→Psychology) creating neuroplastic changes measurable as network entropy shifts (Mangala→CS), integrated through structured therapy (Shukra→Engineering). 5-domain unified spiral: Surya→Brihaspati→Mangala→Shani→Shukra."
+evidence = "Carhart-Harris et al., 2017 (Nature: psilocybin DMN); Nichols, 2016 (Pharmacological Reviews)"

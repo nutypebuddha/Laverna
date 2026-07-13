@@ -1,0 +1,81 @@
+# Entities on Taurus (Physics & Chemistry — also pharmacology/medications)
+
+[[entity]]
+id = "lithium"
+name = "Lithium Carbonate"
+domain = "shukra"
+description = "Mood stabilizer, gold standard for bipolar disorder. Affects neurotransmitter systems."
+tags = ["medication", "mood_stabilizer", "pharmacology", "psychiatry"]
+properties = { half_life_hours = 24.0, therapeutic_index = 0.4, target_dopamine = 0.3, target_serotonin = 0.5, renal_clearance = 0.8 }
+
+[[entity]]
+id = "ssri"
+name = "Selective Serotonin Reuptake Inhibitor"
+domain = "shukra"
+description = "Antidepressant class: increases serotonin availability. Used for depression and anxiety."
+tags = ["medication", "antidepressant", "pharmacology", "psychiatry"]
+properties = { half_life_hours = 24.0, target_serotonin = 0.9, target_dopamine = 0.1, target_norepinephrine = 0.2 }
+
+[[entity]]
+id = "antipsychotic"
+name = "Atypical Antipsychotic"
+domain = "shukra"
+description = "Antipsychotic medication: D2 and 5-HT2A receptor antagonist. Used for schizophrenia and schizoaffective disorder."
+tags = ["medication", "antipsychotic", "pharmacology", "psychiatry"]
+properties = { target_dopamine = 0.85, target_serotonin = 0.7, half_life_hours = 24.0, metabolic_side_effects = 0.6 }
+
+[[entity]]
+id = "electroconvulsive_therapy"
+name = "Electroconvulsive Therapy"
+domain = "shukra"
+description = "Medical treatment: controlled seizure under anesthesia. Effective for severe depression and mania."
+tags = ["treatment", "neuromodulation", "psychiatry"]
+properties = { efficacy_severe_depression = 0.8, efficacy_mania = 0.7, cognitive_side_effects = 0.5 }
+
+[[entity]]
+id = "neurotransmitter"
+name = "Neurotransmitter"
+domain = "shukra"
+description = "Chemical messenger: transmits signals across synapses. Fundamental to neural communication."
+tags = ["neuroscience", "chemistry", "biology"]
+properties = { signal_speed_ms = 0.1, synaptic_cleft_nm = 20.0 }
+
+[[entity]]
+id = "fmri"
+name = "Functional MRI"
+domain = "shukra"
+description = "Neuroimaging technology: measures brain activity via blood flow (BOLD signal)."
+tags = ["neuroimaging", "technology", "neuroscience"]
+properties = { spatial_resolution_mm = 1.5, temporal_resolution_s = 1.0, accessibility = 0.4 }
+
+[[entity]]
+id = "eeg"
+name = "Electroencephalography"
+domain = "shukra"
+description = "Neuroimaging technology: measures electrical activity via scalp electrodes."
+tags = ["neuroimaging", "technology", "neuroscience"]
+properties = { temporal_resolution_ms = 1.0, spatial_resolution_mm = 10.0, accessibility = 0.8 }
+
+[[entity]]
+id = "brain_stimulation"
+name = "Brain Stimulation Technology"
+domain = "shukra"
+description = "Neuromodulation: TMS, tDCS, DBS for treating psychiatric conditions."
+tags = ["technology", "neuromodulation", "treatment"]
+properties = { invasiveness = 0.3, focality = 0.6, treatment_efficacy = 0.65 }
+
+[[entity]]
+id = "computational_psychiatry"
+name = "Computational Psychiatry"
+domain = "shukra"
+description = "Engineering approach: computational models of mental disorders for diagnosis and treatment planning."
+tags = ["technology", "computational", "psychiatry", "AI"]
+properties = { predictive_accuracy = 0.75, mechanistic_insight = 0.8, clinical_translationality = 0.5 }
+
+[[entity]]
+id = "digital_phenotyping"
+name = "Digital Phenotyping"
+domain = "shukra"
+description = "Technology: passive sensing from smartphones and wearables to measure behavioral patterns."
+tags = ["technology", "digital", "mobile", "sensing"]
+properties = { passive_sensing_depth = 0.85, ecological_validity = 0.9, privacy_risk = 0.6 }

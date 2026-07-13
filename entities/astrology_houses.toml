@@ -1,0 +1,98 @@
+# Astrological Houses — twelve domains of life experience
+# Natural house system: each house corresponds to the sign on its cusp.
+
+[[entity]]
+id = "first_house"
+name = "1st House — Self"
+domain = "mangala"
+description = "House of self, identity, appearance, and personal initiative. The mask we show the world."
+tags = ["house", "self", "identity", "personality"]
+properties = { self_awareness = 0.9, personal_initiative = 0.85, physical_vitality = 0.8 }
+
+[[entity]]
+id = "second_house"
+name = "2nd House — Values"
+domain = "shukra"
+description = "House of money, possessions, values, and self-worth. Material and emotional security."
+tags = ["house", "values", "finance", "security"]
+properties = { material_security = 0.9, self_worth = 0.8, resourcefulness = 0.85 }
+
+[[entity]]
+id = "third_house"
+name = "3rd House — Communication"
+domain = "budha"
+description = "House of communication, learning, siblings, and short journeys. The mind's daily exchange."
+tags = ["house", "communication", "learning", "intellect"]
+properties = { communication_skill = 0.9, curiosity = 0.85, adaptability = 0.8 }
+
+[[entity]]
+id = "fourth_house"
+name = "4th House — Home"
+domain = "chandra"
+description = "House of home, family, roots, and emotional foundation. The inner sanctuary."
+tags = ["house", "home", "family", "emotion"]
+properties = { emotional_foundation = 0.9, family_bonds = 0.88, nurturing_capacity = 0.85 }
+
+[[entity]]
+id = "fifth_house"
+name = "5th House — Creativity"
+domain = "surya"
+description = "House of creativity, romance, children, and self-expression. Joy and play."
+tags = ["house", "creativity", "romance", "self_expression"]
+properties = { creative_power = 0.9, romantic_expression = 0.8, joy_capacity = 0.85 }
+
+[[entity]]
+id = "sixth_house"
+name = "6th House — Health"
+domain = "budha"
+description = "House of health, daily work, service, and routine. The body's maintenance and refinement."
+tags = ["house", "health", "work", "service"]
+properties = { health_awareness = 0.85, work_ethic = 0.9, analytical_precision = 0.8 }
+
+[[entity]]
+id = "seventh_house"
+name = "7th House — Partnership"
+domain = "shukra"
+description = "House of partnerships, marriage, contracts, and open relationships. The mirror of the self."
+tags = ["house", "partnership", "relationships", "balance"]
+properties = { relationship_awareness = 0.9, diplomacy = 0.85, partnership_skill = 0.8 }
+
+[[entity]]
+id = "eighth_house"
+name = "8th House — Transformation"
+domain = "mangala"
+description = "House of transformation, shared resources, sexuality, and the occult. Depth and regeneration."
+tags = ["house", "transformation", "depth", "regeneration"]
+properties = { transformative_power = 0.9, intensity = 0.88, regenerative_capacity = 0.85 }
+
+[[entity]]
+id = "ninth_house"
+name = "9th House — Philosophy"
+domain = "brihaspati"
+description = "House of philosophy, higher education, travel, and meaning. The search for truth."
+tags = ["house", "philosophy", "travel", "higher_education"]
+properties = { wisdom_seeking = 0.9, philosophical_depth = 0.85, adventurousness = 0.8 }
+
+[[entity]]
+id = "tenth_house"
+name = "10th House — Career"
+domain = "shani"
+description = "House of career, public status, ambition, and legacy. The pinnacle of worldly achievement."
+tags = ["house", "career", "ambition", "status"]
+properties = { ambition = 0.9, career_achievement = 0.85, public_recognition = 0.8 }
+
+[[entity]]
+id = "eleventh_house"
+name = "11th House — Community"
+domain = "shani"
+description = "House of friendships, groups, hopes, and collective vision. The network and the ideal."
+tags = ["house", "community", "friendship", "vision"]
+properties = { community_connection = 0.9, visionary_thinking = 0.85, friendship_depth = 0.8 }
+
+[[entity]]
+id = "twelfth_house"
+name = "12th House — Subconscious"
+domain = "brihaspati"
+description = "House of the subconscious, solitude, dreams, and transcendence. The collective unconscious."
+tags = ["house", "subconscious", "dreams", "transcendence"]
+properties = { subconscious_access = 0.9, spiritual_depth = 0.85, creative_imagination = 0.8 }

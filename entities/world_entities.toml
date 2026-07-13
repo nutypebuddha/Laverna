@@ -1,0 +1,62 @@
+# World / Symbolic Entities
+# Concepts with birth-time data for birth-chart-based graha resolution in descent.
+#
+# Vanity entries (ryan_jason_phernetton, nutypebuddha) removed in the
+# 2026-07 cleanup — author self-inserts with `birth_place = "GitHub"` and
+# made-up property values (`cid_facts = 1606.0`) don't belong in the
+# production entity corpus. The remaining entries (athena, america,
+# wisconsin, world) are real-world entities with verifiable birth dates.
+
+[[entity]]
+id = "athena"
+name = "Athena"
+domain = "mangala"
+description = "Greek goddess of wisdom, craft, and strategic warfare. Born from Zeus's head fully armored. Patron of Athens."
+graha = "budha"
+tattva = "ether"
+guna = "sattva"
+tags = ["greek_mythology", "olympian", "wisdom", "strategy", "craft", "goddess"]
+birth_time = "0438-08-15"
+birth_place = "Athens, Greece"
+properties = { wisdom = 0.95, strategy = 0.9, craft = 0.85, civilization = 0.8, warfare = 0.7 }
+
+[[entity]]
+id = "america"
+name = "America"
+domain = "mangala"
+description = "United States of America. Federal republic founded on ideals of liberty, democracy, and individualism."
+graha = "mangala"
+rashi = "simha"
+tattva = "fire"
+guna = "rajas"
+tags = ["nation", "democracy", "liberty", "independence", "federal_republic"]
+birth_time = "1776-07-04"
+birth_place = "Philadelphia, Pennsylvania"
+properties = { independence_year = 1776.0, liberty = 0.9, democracy = 0.85, individualism = 0.8, innovation = 0.85 }
+
+[[entity]]
+id = "wisconsin"
+name = "Wisconsin"
+domain = "chandra"
+description = "U.S. state in the upper Midwest. Known as America's Dairyland. Statehood achieved 1848."
+graha = "chandra"
+rashi = "karka"
+tattva = "water"
+guna = "sattva"
+tags = ["state", "midwest", "dairy", "great_lakes", "agriculture"]
+birth_time = "1848-05-29"
+birth_place = "Madison, Wisconsin"
+properties = { statehood_year = 1848.0, dairy = 0.9, agriculture = 0.8, lakes = 0.75, winter = 0.7 }
+
+[[entity]]
+id = "world"
+name = "World"
+domain = "shani"
+description = "Earth as a global entity. The totality of human civilization, geography, and interconnected systems."
+graha = "shani"
+tattva = "earth"
+guna = "tamas"
+tags = ["planet", "earth", "global", "civilization", "geography"]
+birth_time = "1991-01-01"
+birth_place = "Earth"
+properties = { population_1991 = 5400000000.0, continents = 7.0, oceans = 5.0, globalization = 0.7 }

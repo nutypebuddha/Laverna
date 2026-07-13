@@ -1,0 +1,65 @@
+# Entities on Capricorn (Language & Linguistics)
+
+[[entity]]
+id = "clinical_interview"
+name = "Clinical Interview"
+domain = "shani"
+description = "Structured diagnostic interview: SCID, MINI, or unstructured clinical assessment."
+tags = ["clinical", "diagnosis", "assessment", "language"]
+properties = { reliability = 0.7, validity = 0.75, patient_report_weight = 0.8 }
+
+[[entity]]
+id = "thought_disorder"
+name = "Formal Thought Disorder"
+domain = "shani"
+description = "Linguistic manifestation: disorganized speech, loosening of associations, tangentiality."
+tags = ["psychiatry", "language", "psychosis", "symptom"]
+properties = { disorganization = 0.85, comprehensibility = 0.3, linguistic_coherence = 0.2 }
+
+[[entity]]
+id = "diagnostic_formulation"
+name = "Diagnostic Formulation"
+domain = "shani"
+description = "Clinical case formulation: narrative synthesis of diagnosis, etiology, and treatment plan."
+tags = ["clinical", "language", "diagnosis", "psychiatry"]
+properties = { narrative_coherence = 0.8, evidence_integration = 0.75, clinical_utility = 0.85 }
+
+[[entity]]
+id = "psychotherapy_discourse"
+name = "Psychotherapy Discourse Analysis"
+domain = "shani"
+description = "Linguistic analysis of therapist-client dialogue. Turn-taking, therapeutic techniques, and change language."
+tags = ["language", "psychotherapy", "discourse", "communication"]
+properties = { therapist_responsiveness = 0.7, client_engagement = 0.8, change_talk_frequency = 0.65 }
+
+[[entity]]
+id = "mind_body_problem"
+name = "Mind-Body Problem"
+domain = "shani"
+description = "Philosophical problem: relationship between consciousness and physical brain states."
+tags = ["philosophy", "consciousness", "metaphysics"]
+properties = { dualism_weight = 0.5, physicalism_weight = 0.5, explanatory_gap = 0.9 }
+
+[[entity]]
+id = "qualia"
+name = "Qualia"
+domain = "shani"
+description = "Phenomenal experience: the subjective 'what-it's-like' of conscious states."
+tags = ["philosophy", "consciousness", "phenomenology"]
+properties = { subjectivity = 1.0, ineffability = 0.7, privacy = 0.8 }
+
+[[entity]]
+id = "medical_ethics"
+name = "Medical Ethics"
+domain = "shani"
+description = "Ethical framework: autonomy, beneficence, non-maleficence, justice in medical practice."
+tags = ["ethics", "medicine", "philosophy"]
+properties = { autonomy_weight = 0.9, beneficence_weight = 0.85, justice_weight = 0.8 }
+
+[[entity]]
+id = "reductionism"
+name = "Reductionism"
+domain = "shani"
+description = "Philosophical approach: complex phenomena explained by simpler components."
+tags = ["philosophy", "methodology", "science"]
+properties = { explanatory_power = 0.7, completeness = 0.5, tractability = 0.8 }

@@ -1,0 +1,145 @@
+
+
+[[formula]]
+id = "nor"
+formula_type = "logic"
+domain = "Mangala"
+inputs = ["a", "b"]
+output = "nor_out"
+expression = "1 - a - b + a * b"
+description = "NOR: ¬(a ∨ b) = 1-a-b+ab — Mars: rejection of union, derivable as nand(nand(a,a),nand(b,b))... inverted"
+evidence = "Truth table: NOR(0,0)=1, else 0. Also functionally complete. De Morgan: ¬(a∨b) = ¬a ∧ ¬b"
+tags = ["logic", "mars", "gate", "functional_complete"]
+
+
+[[formula]]
+id = "xnor"
+formula_type = "logic"
+domain = "Mangala"
+inputs = ["a", "b"]
+output = "xnor_out"
+expression = "1 - a - b + 2 * a * b"
+description = "XNOR: ¬(a ⊕ b) = 1-a-b+2ab — Mars: equivalence gate, 1 iff a=b"
+evidence = "Truth table: XNOR(a,b)=1 iff a=b. Complement of XOR."
+tags = ["logic", "mars", "gate", "equivalence"]
+
+
+[[formula]]
+id = "mod"
+domain = "Mangala"
+inputs = ["a", "b"]
+output = "mod_out"
+expression = "a % b"
+description = "Modulo: a mod b — remainder after division"
+evidence = "Euclid: a = qb + r with 0 <= r < b"
+tags = ["math", "gate", "primitive", "peano"]
+
+
+[[formula]]
+id = "pow"
+domain = "Mangala"
+inputs = ["base", "exponent"]
+output = "pow_out"
+expression = "base ^ exponent"
+description = "Power: base^exponent"
+evidence = "Peano: b^0 = 1, b^(n+1) = b*b^n"
+tags = ["math", "gate", "primitive", "peano"]
+
+
+[[formula]]
+id = "sqrt"
+domain = "Mangala"
+inputs = ["x"]
+output = "sqrt_out"
+expression = "sqrt(x)"
+description = "Square root: inverse of squaring"
+evidence = "Real field: sqrt(x)*sqrt(x) = x for x >= 0"
+tags = ["math", "gate", "primitive", "peano"]
+
+
+[[formula]]
+id = "neg"
+domain = "Mangala"
+inputs = ["a"]
+output = "neg_out"
+expression = "0 - a"
+description = "Negation: additive inverse"
+evidence = "Field axiom: a + (-a) = 0"
+tags = ["math", "gate", "primitive", "peano"]
+
+
+[[formula]]
+id = "abs"
+domain = "Mangala"
+inputs = ["a"]
+output = "abs_out"
+expression = "abs(a)"
+description = "Absolute value: distance from zero"
+evidence = "Definition: abs(a) = a if a >= 0 else -a"
+tags = ["math", "gate", "primitive", "peano"]
+
+
+[[formula]]
+id = "log10"
+domain = "Mangala"
+inputs = ["x"]
+output = "log10_out"
+expression = "log10(x)"
+description = "Base-10 logarithm"
+evidence = "Definition: 10^log10(x) = x for x > 0"
+tags = ["math", "gate", "primitive", "peano"]
+
+
+[[formula]]
+id = "ln"
+domain = "Mangala"
+inputs = ["x"]
+output = "ln_out"
+expression = "ln(x)"
+description = "Natural logarithm (base e)"
+evidence = "Definition: e^ln(x) = x for x > 0"
+tags = ["math", "gate", "primitive", "peano"]
+
+
+[[formula]]
+id = "floor"
+domain = "Mangala"
+inputs = ["x"]
+output = "floor_out"
+expression = "floor(x)"
+description = "Floor: greatest integer <= x"
+evidence = "Definition: floor(x) <= x < floor(x)+1"
+tags = ["math", "gate", "primitive", "peano"]
+
+
+[[formula]]
+id = "ceil"
+domain = "Mangala"
+inputs = ["x"]
+output = "ceil_out"
+expression = "ceil(x)"
+description = "Ceiling: least integer >= x"
+evidence = "Definition: ceil(x)-1 < x <= ceil(x)"
+tags = ["math", "gate", "primitive", "peano"]
+
+
+[[formula]]
+id = "min"
+domain = "Mangala"
+inputs = ["a", "b"]
+output = "min_out"
+expression = "min(a, b)"
+description = "Minimum of two values"
+evidence = "Total order: min(a,b) <= a, min(a,b) <= b"
+tags = ["math", "gate", "primitive", "peano"]
+
+
+[[formula]]
+id = "max"
+domain = "Mangala"
+inputs = ["a", "b"]
+output = "max_out"
+expression = "max(a, b)"
+description = "Maximum of two values"
+evidence = "Total order: max(a,b) >= a, max(a,b) >= b"
+tags = ["math", "gate", "primitive", "peano"]

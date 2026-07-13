@@ -1,0 +1,33 @@
+# Entities on Cancer (Earth & Environment)
+
+[[entity]]
+id = "seasonal_affective_disorder"
+name = "Seasonal Affective Disorder"
+domain = "chandra"
+description = "Mood disorder: depressive episodes tied to seasonal light variation."
+tags = ["psychiatry", "mood", "environment", "circadian"]
+properties = { light_sensitivity = 0.8, latitude_correlation = 0.7, phototherapy_response = 0.75 }
+
+[[entity]]
+id = "urban_mental_health"
+name = "Urban Mental Health"
+domain = "chandra"
+description = "Environmental factor: urban living associated with higher psychosis risk."
+tags = ["environment", "psychiatry", "social", "epidemiology"]
+properties = { psychosis_risk_ratio = 1.5, social_density_effect = 0.6, green_space_benefit = 0.7 }
+
+[[entity]]
+id = "climate_anxiety"
+name = "Climate Anxiety"
+domain = "chandra"
+description = "Psychological distress related to climate change. Chronic environmental threat perception."
+tags = ["environment", "anxiety", "climate", "psychiatry"]
+properties = { eco_distress = 0.8, helplessness = 0.65, pro_environmental_behavior = 0.5 }
+
+[[entity]]
+id = "environmental_enrichment"
+name = "Environmental Enrichment"
+domain = "chandra"
+description = "Environmental stimulation: complex, stimulating environments promote neuroplasticity and resilience."
+tags = ["environment", "neuroscience", "neuroplasticity", "development"]
+properties = { neuroplasticity_enhancement = 0.85, stress_buffering = 0.7, cognitive_reserve = 0.75 }
