@@ -99,7 +99,12 @@ fn energy_efficiency_in_code_full_analysis() {
 
     // ── Phase 3: Descent Engine ───────────────────────────────────────────
     report.push_str("─── Phase 3: Descent Engine (7-Layer Pipeline) ──────────\n");
-    let descent_engine = DescentEngine::new(formula_reg.clone(), _forms.clone(), _events.clone());
+    let descent_engine = DescentEngine::new(
+        formula_reg.clone(),
+        entity_reg.clone(),
+        _forms.clone(),
+        _events.clone(),
+    );
     let matrix = descent_engine.descend(QUERY);
     report.push_str(&format!(
         "  Tokens: {} | Resolution: {:.1}% | Avg Depth: {:.2}/6\n",
@@ -114,13 +119,22 @@ fn energy_efficiency_in_code_full_analysis() {
     ));
     for token in &matrix.tokens {
         report.push_str(&format!(
-            "    \"{}\" → layer: {} (depth {}), confidence: {:.2}, domains: {:?}\n",
+            "    \"{}\" → layer: {} (depth {}), confidence: {:.2}, domains: {:?}, formulas: {}, entity: {:?}",
             token.text,
             token.settled_layer.name(),
             token.settled_layer.depth(),
             token.confidence,
-            token.domains
+            token.domains,
+            token.formulas.len(),
+            token.entity
         ));
+        if let Some(ref expr) = token.formal_expression {
+            report.push_str(&format!(", formal: \"{}\"", expr));
+        }
+        if !token.provenance.is_empty() {
+            report.push_str(&format!(", provenance: {} steps", token.provenance.len()));
+        }
+        report.push_str("\n");
     }
     report.push_str(&format!(
         "  Dominant domains: {:?}\n",

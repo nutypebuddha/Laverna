@@ -56,6 +56,9 @@ mod tests {
     }
 
     #[test]
+    // `3.14` here is a parsed decimal extracted from input text, not the
+    // transcendental constant — clippy's approx_constant lint does not apply.
+    #[allow(clippy::approx_constant)]
     fn extract_numerical_values_basic() {
         assert_eq!(
             extract_numerical_values("compute 42 and 3.14"),

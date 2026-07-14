@@ -10,7 +10,9 @@ pub mod formula;
 pub mod gyro;
 pub mod pachinko;
 pub mod primitive;
+pub mod sandbox;
 pub mod shikai;
+pub mod strategy;
 pub mod tanto;
 pub mod validation;
 pub mod wheel;
@@ -18,6 +20,7 @@ pub mod zanpakuto;
 
 #[cfg(feature = "mcp")]
 pub mod mcp;
+pub mod optimize;
 
 #[cfg(feature = "llm")]
 pub mod inference;
@@ -42,8 +45,8 @@ pub mod prelude {
         SynastryAspect, WatchArchetype,
     };
     pub use crate::descent::{
-        lowercase_string, tokenize_descent, DescentEngine, DescentLayer, SettledToken,
-        SettlingMatrix,
+        lowercase_string, tokenize_descent, DescentEngine, DescentLayer, ProvenanceStep,
+        SettledToken, SettlingMatrix,
     };
     pub use crate::economy::budget::Budget;
     pub use crate::economy::conversation::ConversationTracker;
@@ -60,11 +63,12 @@ pub mod prelude {
         extract_formula_domain, validate_formula_id, Formula, FormulaRegistry, FormulaType,
     };
     pub use crate::gyro::{GyroDynamics, GyroRouter, GyroState, RouteResult};
+    pub use crate::optimize::{explain, parse_schema, solve, Allocation, Schema};
     pub use crate::primitive::arithmetic::{add_unsigned_8, full_adder, half_adder};
     pub use crate::primitive::dag::NandDag;
     pub use crate::primitive::expr::{NandExprError, NandExpression};
     pub use crate::primitive::nand::{and_gate, nand_gate, not_gate, or_gate, xor_gate};
-    pub use crate::shikai::{extract_numerical_values, parse_query_intent};
+    pub use crate::shikai::{determine_query_domain, extract_numerical_values, parse_query_intent};
     pub use crate::tanto::{
         compute_formula, create_env, evaluate_expr, evaluate_nl, evaluate_pipeline, solve_problem,
     };

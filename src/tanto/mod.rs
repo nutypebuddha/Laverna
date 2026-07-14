@@ -83,8 +83,8 @@ mod tests {
     #[test]
     fn test_evaluate_expr_constants() {
         let env = create_env();
-        assert!((evaluate_expr("pi", &env).unwrap() - 3.141592653589793).abs() < 1e-10);
-        assert!((evaluate_expr("e", &env).unwrap() - 2.718281828459045).abs() < 1e-10);
+        assert!((evaluate_expr("pi", &env).unwrap() - std::f64::consts::PI).abs() < 1e-10);
+        assert!((evaluate_expr("e", &env).unwrap() - std::f64::consts::E).abs() < 1e-10);
     }
 
     #[test]

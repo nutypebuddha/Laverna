@@ -51,6 +51,23 @@ jobs:
       - name: Run tests
         run: cargo test
 
+      - name: Swiss-Ephemeris oracle gate
+        # Part 3 #1: fail the build if any graha (or the lagna degree) drifts
+        # past 0.05° from the Swiss-verified ground truth. Pinned values live
+        # in tests/swiss_oracle.rs; this is the standing guarantee the audit
+        # called for (no Swiss dependency ships — values were verified by hand).
+        run: cargo test --test swiss_oracle
+
+      - name: CLI/MCP parity gate
+        # Part 3 #2: the same validate/chart input must produce byte-identical
+        # output through the CLI and the MCP tools/call path. The binary is
+        # built WITH the mcp feature for this step (mcp_parity.rs is gated on
+        # it), so it is not silently skipped under the default cargo test above.
+        run: cargo test --features mcp --test mcp_parity
+
+      - name: Run tests (with mcp)
+        run: cargo test --features mcp
+
       - name: Run tests (with llm)
         run: cargo test --features llm --lib
 
@@ -88,7 +105,7 @@ jobs:
             target/${{ matrix.target }}/release/build
             target/${{ matrix.target }}/release/deps
           key: cross-${{ matrix.target }}-${{ hashFiles('**/Cargo.lock') }}
-      - name: Build (slim: no default features)
+      - name: "Build (slim: no default features)"
         run: cargo build --release --target ${{ matrix.target }} --no-default-features
       - name: Verify static link
         run: |
@@ -98,16 +115,17 @@ jobs:
             echo "::error::$bin is dynamically linked"; exit 1
           fi
 
-  portable-check:
-    name: Portable Feature Check
+  embedded-corpus:
+    name: Embedded Corpus Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions-rust-lang/setup-rust-toolchain@v1
-      - name: Build with portable feature
-        run: cargo build --release --no-default-features --features portable
-      - name: Test portable binary
+      - name: Build (no default features)
+        run: cargo build --release --no-default-features
+      - name: Verify corpus loads from a foreign CWD
         run: |
           bin=target/release/laverna
           "$bin" ping
           "$bin" info
+          ( cd /tmp && "$bin" entities | grep -q "214" ) || { echo "::error::seed corpus not embedded"; exit 1; }

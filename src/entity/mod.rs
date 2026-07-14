@@ -536,8 +536,8 @@ impl EntityRegistry {
         Ok(())
     }
 
-    /// Load seed entities from an in-memory TOML string (used by the
-    /// `portable` build, which embeds the corpus instead of reading disk).
+    /// Load seed entities from an in-memory TOML string (the corpus is always
+    /// embedded in the binary, so disk reads are never required).
     pub fn load_seeds_from_str(&mut self, content: &str) -> Result<(), String> {
         let parsed: SeedFile =
             toml::from_str(content).map_err(|e| format!("cannot parse seed TOML: {e}"))?;
@@ -683,8 +683,8 @@ impl ShikaiFormRegistry {
             .map_err(|e| format!("{}: {}", path.display(), e))
     }
 
-    /// Load forms from an in-memory TOML string (e.g. the `portable` build's
-    /// compiled-in corpus, which has no file on disk to read from).
+    /// Load forms from an in-memory TOML string (the corpus is always compiled
+    /// into the binary, so there is no file on disk to read from at runtime).
     pub fn load_from_str(&mut self, content: &str) -> Result<(), String> {
         #[derive(Deserialize)]
         struct FormFile {
@@ -864,8 +864,8 @@ impl EventRegistry {
             .map_err(|e| format!("{}: {}", path.display(), e))
     }
 
-    /// Load events from an in-memory TOML string (e.g. the `portable` build's
-    /// compiled-in corpus, which has no file on disk to read from).
+    /// Load events from an in-memory TOML string (the corpus is always compiled
+    /// into the binary, so there is no file on disk to read from at runtime).
     pub fn load_from_str(&mut self, content: &str) -> Result<(), String> {
         #[derive(Deserialize)]
         struct EventFile {
@@ -1721,7 +1721,10 @@ tags = ["anime", "gundam"]
                 loaded += 1;
             }
         }
-        assert!(loaded > 0, "Should have loaded at least one entity TOML file");
+        assert!(
+            loaded > 0,
+            "Should have loaded at least one entity TOML file"
+        );
         let seeds = reg.list_seeds();
         assert!(
             seeds.len() > 100,
@@ -1729,7 +1732,13 @@ tags = ["anime", "gundam"]
             seeds.len()
         );
         // Spot-check a few known entities
-        assert!(reg.get_seed("cognitive_flexibility").is_some(), "Missing 'cognitive_flexibility' from budha.toml");
-        assert!(reg.get_seed("mangala").is_some(), "Missing 'mangala' from grahas.toml");
+        assert!(
+            reg.get_seed("cognitive_flexibility").is_some(),
+            "Missing 'cognitive_flexibility' from budha.toml"
+        );
+        assert!(
+            reg.get_seed("mangala").is_some(),
+            "Missing 'mangala' from grahas.toml"
+        );
     }
 }

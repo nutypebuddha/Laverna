@@ -64,7 +64,6 @@ websearch = ["dep:ureq"]
 budget = []
 bench = ["dep:criterion"]
 llm = ["dep:llama-gguf", "dep:tokio"]
-portable = []  # embed formula/entity corpus in binary
 
 [profile.release]
 lto = "fat"

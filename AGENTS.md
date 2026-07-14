@@ -30,7 +30,12 @@ cargo build --release --target x86_64-unknown-linux-musl --no-default-features
 | `budget` | token budget tracking | no |
 | `bench` | criterion harness | no |
 | `llm` | llama-gguf local LLM backend | no |
-| `portable` | embed corpus in binary | no |
+
+The seed corpus (formulas, synonyms, nonmath, shikai forms, events, entities) is
+**always embedded** in the binary by `build.rs` (no feature gate) — `entities` /
+`formulas` / `entity-get` load from any CWD, not just the repo root. `info`
+reports `embedded-corpus` to make this explicit. The old `portable` feature was
+removed (it was a no-op after T35).
 
 ## Architecture
 - **Layer 0 — Primitive**: `src/primitive/`, `src/descent/`, `src/gyro/`

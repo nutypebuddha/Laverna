@@ -649,8 +649,8 @@ impl FormulaRegistry {
         Ok(())
     }
 
-    /// Load synonym groups from an in-memory TOML string (used by the
-    /// `portable` build, which embeds the corpus instead of reading disk).
+    /// Load synonym groups from an in-memory TOML string (the corpus is always
+    /// embedded in the binary, so disk reads are never required).
     pub fn load_synonyms_from_str(&mut self, content: &str) -> Result<(), FormulaError> {
         let parsed: SynonymToml = toml::from_str(content)
             .map_err(|e| FormulaError::SerdeError(format!("synonyms TOML parse error: {}", e)))?;

@@ -24,7 +24,7 @@ use crate::astrology::{
     AtomClassification, Graha, PlanetaryRuler, Sign, SignAspect, VedicClassification, VedicElement,
 };
 use crate::chart::ChartSnapshot;
-use crate::entity::{generate_dynamic_entity, EventRegistry, ShikaiFormRegistry};
+use crate::entity::{generate_dynamic_entity, EntityRegistry, EventRegistry, ShikaiFormRegistry};
 use crate::formula::FormulaRegistry;
 use crate::wheel::CompositionAspect;
 use crate::wheel::Domain;
@@ -127,6 +127,44 @@ impl DescentLayer {
     }
 }
 
+// ─── Provenance ──────────────────────────────────────────────────────────────
+
+/// A single step in the derivation chain — records how a fact was derived.
+/// Enables tracing from NAND-level truth back through formulas and entities to axioms.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub enum ProvenanceStep {
+    /// Token classified to a domain via keyword matching.
+    DomainClassification {
+        domain: String,
+        keyword: String,
+        confidence: f64,
+    },
+    /// Formula matched by ID or keyword search.
+    FormulaMatch {
+        formula_id: String,
+        domain: String,
+        inputs: Vec<String>,
+        output: String,
+    },
+    /// Entity matched by name or dynamic entity lookup.
+    EntityMatch { entity_id: String, domain: String },
+    /// Formula unified with entity: formula input matches entity property.
+    Unification {
+        formula_id: String,
+        entity_id: String,
+        bound_inputs: Vec<(String, f64)>,
+        output_value: Option<f64>,
+    },
+    /// NAND gate evaluated with resolved inputs.
+    NandEvaluation {
+        gate: String,
+        inputs: Vec<bool>,
+        output: bool,
+    },
+    /// Formal expression attached from ChangeSorter.
+    FormalExpression { token: String, expression: String },
+}
+
 // ─── Settled Token ──────────────────────────────────────────────────────────
 
 /// A single token after descent — resolved to its deepest layer.
@@ -158,6 +196,14 @@ pub struct SettledToken {
 
     /// Whether the token has fully resolved to absolute truth.
     pub is_absolute: bool,
+
+    /// Formal expression for this token (if available from ChangeSorter).
+    /// Tanto-evaluable expression that enables deeper descent to Formula/NAND layers.
+    pub formal_expression: Option<String>,
+
+    /// Derivation chain: records every step from token to settled layer.
+    /// Enables tracing NAND-level truth back through formulas/entities to axioms.
+    pub provenance: Vec<ProvenanceStep>,
 }
 
 impl SettledToken {
@@ -172,6 +218,8 @@ impl SettledToken {
             entity: None,
             confidence: 0.0,
             is_absolute: false,
+            formal_expression: None,
+            provenance: Vec::new(),
         }
     }
 }
@@ -897,7 +945,271 @@ const DOMAIN_KEYWORDS: &[(&str, Domain)] = &[
     ("dream", Domain::Brihaspati),
     ("memory", Domain::Brihaspati),
     ("personality", Domain::Brihaspati),
+    // ── Cross-domain: efficiency & performance ──
+    ("efficiency", Domain::Shukra),
+    ("performance", Domain::Mangala),
+    ("optimize", Domain::Mangala),
+    ("optimization", Domain::Mangala),
+    ("speed", Domain::Mangala),
+    ("fast", Domain::Mangala),
+    ("slow", Domain::Mangala),
+    ("latency", Domain::Mangala),
+    ("throughput", Domain::Mangala),
+    ("bottleneck", Domain::Mangala),
+    ("cache", Domain::Mangala),
+    ("memory", Domain::Mangala),
+    ("cpu", Domain::Mangala),
+    ("disk", Domain::Mangala),
+    ("io", Domain::Mangala),
+    ("network", Domain::Mangala),
+    // ── Cross-domain: programming terms ──
+    ("function", Domain::Mangala),
+    ("method", Domain::Mangala),
+    ("class", Domain::Mangala),
+    ("object", Domain::Mangala),
+    ("struct", Domain::Mangala),
+    ("enum", Domain::Mangala),
+    ("trait", Domain::Mangala),
+    ("module", Domain::Mangala),
+    ("package", Domain::Mangala),
+    ("crate", Domain::Mangala),
+    ("dependency", Domain::Mangala),
+    ("import", Domain::Mangala),
+    ("export", Domain::Mangala),
+    ("return", Domain::Mangala),
+    ("yield", Domain::Mangala),
+    ("break", Domain::Mangala),
+    ("continue", Domain::Mangala),
+    ("match", Domain::Mangala),
+    ("if", Domain::Mangala),
+    ("else", Domain::Mangala),
+    ("while", Domain::Mangala),
+    ("for", Domain::Mangala),
+    ("loop", Domain::Mangala),
+    ("iterate", Domain::Mangala),
+    ("recursion", Domain::Mangala),
+    ("recursive", Domain::Mangala),
+    ("stack", Domain::Mangala),
+    ("queue", Domain::Mangala),
+    ("hash", Domain::Mangala),
+    ("tree", Domain::Mangala),
+    ("graph", Domain::Mangala),
+    ("node", Domain::Mangala),
+    ("edge", Domain::Mangala),
+    ("sort", Domain::Mangala),
+    ("search", Domain::Mangala),
+    ("traverse", Domain::Mangala),
+    ("insert", Domain::Mangala),
+    ("delete", Domain::Mangala),
+    ("update", Domain::Mangala),
+    ("query", Domain::Mangala),
+    ("index", Domain::Mangala),
+    ("buffer", Domain::Mangala),
+    ("stream", Domain::Mangala),
+    ("pipe", Domain::Mangala),
+    ("filter", Domain::Mangala),
+    ("map", Domain::Mangala),
+    ("reduce", Domain::Mangala),
+    ("fold", Domain::Mangala),
+    ("collect", Domain::Mangala),
+    ("transform", Domain::Mangala),
+    ("compose", Domain::Mangala),
+    ("pipeline", Domain::Mangala),
+    ("closure", Domain::Mangala),
+    ("callback", Domain::Mangala),
+    ("async", Domain::Mangala),
+    ("await", Domain::Mangala),
+    ("thread", Domain::Mangala),
+    ("process", Domain::Mangala),
+    ("spawn", Domain::Mangala),
+    ("mutex", Domain::Mangala),
+    ("lock", Domain::Mangala),
+    ("atomic", Domain::Mangala),
+    ("channel", Domain::Mangala),
+    ("sender", Domain::Mangala),
+    ("receiver", Domain::Mangala),
+    ("error", Domain::Mangala),
+    ("panic", Domain::Mangala),
+    ("unwrap", Domain::Mangala),
+    ("result", Domain::Mangala),
+    ("option", Domain::Mangala),
+    ("some", Domain::Mangala),
+    ("none", Domain::Mangala),
+    ("ok", Domain::Mangala),
+    ("err", Domain::Mangala),
+    // ── Cross-domain: science terms ──
+    ("experiment", Domain::Shukra),
+    ("hypothesis", Domain::Mangala),
+    ("theory", Domain::Brihaspati),
+    ("observation", Domain::Budha),
+    ("measurement", Domain::Shukra),
+    ("analysis", Domain::Mangala),
+    ("synthesis", Domain::Shukra),
+    ("model", Domain::Mangala),
+    ("simulation", Domain::Mangala),
+    ("prediction", Domain::Brihaspati),
+    ("validation", Domain::Mangala),
+    ("calibration", Domain::Shukra),
+    ("accuracy", Domain::Mangala),
+    ("precision", Domain::Mangala),
+    ("error", Domain::Mangala),
+    ("variance", Domain::Mangala),
+    ("distribution", Domain::Mangala),
+    ("sample", Domain::Mangala),
+    ("population", Domain::Chandra),
+    ("correlation", Domain::Mangala),
+    ("regression", Domain::Mangala),
+    ("significance", Domain::Brihaspati),
+    ("confidence", Domain::Brihaspati),
+    // ── Cross-domain: general terms ──
+    ("system", Domain::Shukra),
+    ("process", Domain::Shukra),
+    ("method", Domain::Mangala),
+    ("approach", Domain::Brihaspati),
+    ("technique", Domain::Shukra),
+    ("strategy", Domain::Brihaspati),
+    ("pattern", Domain::Mangala),
+    ("structure", Domain::Shukra),
+    ("behavior", Domain::Brihaspati),
+    ("state", Domain::Mangala),
+    ("transition", Domain::Shukra),
+    ("event", Domain::Brihaspati),
+    ("action", Domain::Mangala),
+    ("reaction", Domain::Shukra),
+    ("cause", Domain::Brihaspati),
+    ("effect", Domain::Shukra),
+    ("result", Domain::Mangala),
+    ("outcome", Domain::Brihaspati),
+    ("impact", Domain::Shukra),
+    ("change", Domain::Shukra),
+    ("improve", Domain::Shukra),
+    ("worse", Domain::Shukra),
+    ("better", Domain::Shukra),
+    ("increase", Domain::Shukra),
+    ("decrease", Domain::Shukra),
+    ("grow", Domain::Shukra),
+    ("shrink", Domain::Shukra),
+    ("scale", Domain::Shukra),
+    ("adapt", Domain::Shukra),
+    ("maintain", Domain::Shukra),
+    ("preserve", Domain::Chandra),
+    ("destroy", Domain::Shukra),
+    ("create", Domain::Shukra),
+    ("build", Domain::Shukra),
+    ("break", Domain::Mangala),
+    ("fix", Domain::Mangala),
+    ("repair", Domain::Mangala),
+    ("debug", Domain::Mangala),
+    ("test", Domain::Mangala),
+    ("deploy", Domain::Shukra),
+    ("monitor", Domain::Shukra),
+    ("log", Domain::Mangala),
+    ("trace", Domain::Mangala),
+    ("profile", Domain::Mangala),
+    ("benchmark", Domain::Mangala),
+    ("measure", Domain::Shukra),
+    ("weigh", Domain::Shukra),
+    ("compare", Domain::Mangala),
+    ("contrast", Domain::Mangala),
+    ("evaluate", Domain::Mangala),
+    ("assess", Domain::Mangala),
+    ("judge", Domain::Brihaspati),
+    ("decide", Domain::Brihaspati),
+    ("choose", Domain::Brihaspati),
+    ("select", Domain::Mangala),
+    ("pick", Domain::Brihaspati),
+    ("prefer", Domain::Brihaspati),
+    ("want", Domain::Brihaspati),
+    ("need", Domain::Brihaspati),
+    ("require", Domain::Brihaspati),
+    ("demand", Domain::Shukra),
+    ("supply", Domain::Shukra),
+    ("provide", Domain::Shukra),
+    ("offer", Domain::Shukra),
+    ("give", Domain::Shukra),
+    ("take", Domain::Shukra),
+    ("use", Domain::Shukra),
+    ("consume", Domain::Shukra),
+    ("produce", Domain::Shukra),
+    ("generate", Domain::Mangala),
+    ("compute", Domain::Mangala),
+    ("calculate", Domain::Mangala),
+    ("solve", Domain::Mangala),
+    ("find", Domain::Mangala),
+    ("discover", Domain::Brihaspati),
+    ("learn", Domain::Brihaspati),
+    ("understand", Domain::Brihaspati),
+    ("know", Domain::Brihaspati),
+    ("believe", Domain::Brihaspati),
+    ("think", Domain::Brihaspati),
+    ("reason", Domain::Brihaspati),
+    ("argue", Domain::Brihaspati),
+    ("prove", Domain::Mangala),
+    ("verify", Domain::Mangala),
+    ("validate", Domain::Mangala),
+    ("confirm", Domain::Mangala),
+    ("deny", Domain::Mangala),
+    ("reject", Domain::Mangala),
+    ("accept", Domain::Brihaspati),
+    ("agree", Domain::Brihaspati),
+    ("disagree", Domain::Brihaspati),
 ];
+
+/// Formal expressions: token → Tanto-evaluable expression.
+/// Enables descent to reach Formula/NAND layers by providing evaluable expressions
+/// for natural language tokens.
+const FORMAL_EXPRESSIONS: &[(&str, &str)] = &[
+    ("efficiency", "output / input"),
+    ("energy", "mass * velocity^2"),
+    ("power", "work / time"),
+    ("force", "mass * acceleration"),
+    ("velocity", "displacement / time"),
+    ("acceleration", "velocity / time"),
+    ("momentum", "mass * velocity"),
+    ("torque", "force * distance"),
+    ("pressure", "force / area"),
+    ("density", "mass / volume"),
+    ("voltage", "current * resistance"),
+    ("current", "voltage / resistance"),
+    ("resistance", "voltage / current"),
+    ("frequency", "1 / period"),
+    ("wavelength", "speed / frequency"),
+    ("mass", "kg"),
+    ("weight", "mass * gravity"),
+    ("work", "force * distance"),
+    ("kinetic_energy", "0.5 * mass * velocity^2"),
+    ("potential_energy", "mass * gravity * height"),
+    ("heat", "mass * specific_heat * delta_temperature"),
+    ("function", "f(x) = y"),
+    ("loop", "while(condition) { body }"),
+    ("recursion", "f(n) = f(n-1) + f(n-2)"),
+    ("algorithm", "O(f(n))"),
+    ("complexity", "O(f(n))"),
+    ("memory", "address_space"),
+    ("cpu", "clock_cycles"),
+    ("network", "bandwidth * latency"),
+    ("cache", "hit_rate * total_accesses"),
+    ("throughput", "items / time"),
+    ("latency", "end_time - start_time"),
+    ("bottleneck", "min(throughput_i)"),
+    ("cpu_usage", "active_cycles / total_cycles"),
+    ("performance", "instructions / cycle"),
+    ("optimize", "min(cost(subject_to(constraints)))"),
+    ("speed", "distance / time"),
+    ("compute", "f(input) = output"),
+    ("calculate", "expression"),
+    ("solve", "equation"),
+];
+
+/// Look up a formal expression for a token.
+/// Returns Tanto-evaluable expression if the token has a known formalization.
+pub fn formal_expression_for(token: &str) -> Option<&'static str> {
+    let t = token.to_lowercase();
+    FORMAL_EXPRESSIONS
+        .iter()
+        .find(|(kw, _)| t == *kw)
+        .map(|(_, expr)| *expr)
+}
 
 // ─── Descent Engine ─────────────────────────────────────────────────────────
 
@@ -906,13 +1218,14 @@ const DOMAIN_KEYWORDS: &[(&str, Domain)] = &[
 ///
 /// Usage:
 /// ```ignore
-/// let mut engine = DescentEngine::new(registry, forms, events);
+/// let mut engine = DescentEngine::new(registry, entity_registry, forms, events);
 /// let matrix = engine.descend("what is the mass of an electron");
 /// println!("{}", matrix.format());
 /// ```
 #[derive(Debug)]
 pub struct DescentEngine {
     pub formula_registry: FormulaRegistry,
+    pub entity_registry: EntityRegistry,
     pub shikai_forms: ShikaiFormRegistry,
     pub events: EventRegistry,
     /// Optional Qwen copilot for semantic descent hints.
@@ -925,10 +1238,11 @@ impl Clone for DescentEngine {
     fn clone(&self) -> Self {
         DescentEngine {
             formula_registry: self.formula_registry.clone(),
+            entity_registry: self.entity_registry.clone(),
             shikai_forms: self.shikai_forms.clone(),
             events: self.events.clone(),
             #[cfg(feature = "llm")]
-            copilot: None, // copilot is not cloned — must be re-attached
+            copilot: None,
         }
     }
 }
@@ -936,11 +1250,13 @@ impl Clone for DescentEngine {
 impl DescentEngine {
     pub fn new(
         formula_registry: FormulaRegistry,
+        entity_registry: EntityRegistry,
         shikai_forms: ShikaiFormRegistry,
         events: EventRegistry,
     ) -> Self {
         DescentEngine {
             formula_registry,
+            entity_registry,
             shikai_forms,
             events,
             #[cfg(feature = "llm")]
@@ -974,10 +1290,14 @@ impl DescentEngine {
             .filter(|s| !s.is_empty())
             .collect();
 
-        let settled: Vec<SettledToken> = tokens
+        let mut settled: Vec<SettledToken> = tokens
             .iter()
             .map(|t| self.descent_token(t, &tokens))
             .collect();
+
+        // Phase 3: Constraint propagation — propagate shared domains/formulas
+        // between adjacent tokens to strengthen multi-token queries.
+        self.propagate_constraints(&mut settled);
 
         SettlingMatrix::with_chart(settled, chart)
     }
@@ -999,12 +1319,113 @@ impl DescentEngine {
     ) -> SettlingMatrix {
         let tokens: Vec<&str> = nlp.tokens.iter().map(|s| s.as_str()).collect();
 
-        let settled: Vec<SettledToken> = tokens
+        let mut settled: Vec<SettledToken> = tokens
             .iter()
             .map(|t| self.descent_token(t, &tokens))
             .collect();
 
+        // Phase 3: Constraint propagation
+        self.propagate_constraints(&mut settled);
+
         SettlingMatrix::with_chart(settled, chart)
+    }
+
+    // ─── Phase 3: Constraint Propagation ────────────────────────────────────
+
+    /// Propagate constraints between settled tokens in a query.
+    ///
+    /// After independent descent, tokens in the same phrase share contextual meaning.
+    /// If token A resolved to domain X with high confidence, adjacent tokens should
+    /// inherit domain X (with decayed confidence). Similarly, formulas found for one
+    /// token can be shared with adjacent tokens in the same domain.
+    ///
+    /// This bidirectional propagation strengthens multi-token queries by creating
+    /// a network of shared constraints — analogous to unit propagation in CDCL SAT solvers.
+    fn propagate_constraints(&self, tokens: &mut [SettledToken]) {
+        let len = tokens.len();
+        if len < 2 {
+            return;
+        }
+
+        // Pass 1: Forward propagation — each token shares its domains with the next token
+        for i in 0..len - 1 {
+            let (left, right) = tokens.split_at_mut(i + 1);
+            let left = &left[i];
+            let right = &mut right[0];
+
+            // Share domains: if left has a domain that right doesn't, add it with decayed confidence
+            for domain in &left.domains {
+                if !right.domains.contains(domain) && right.settled_layer.depth() < 6 {
+                    right.domains.push(*domain);
+                    // Boost confidence slightly from constraint propagation
+                    right.confidence = (right.confidence + 0.1).min(1.0);
+                }
+            }
+
+            // Share formulas from same domain
+            if right.settled_layer.depth() < 4 {
+                for formula_id in &left.formulas {
+                    if !right.formulas.contains(formula_id) {
+                        if let Some(f) = self.formula_registry.get(formula_id) {
+                            // Only share if formula's domain matches one of right's domains
+                            if right.domains.contains(&f.domain) && right.formulas.len() < 5 {
+                                right.formulas.push(formula_id.clone());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Pass 2: Backward propagation — right-to-left
+        for i in (1..len).rev() {
+            let (left, right) = tokens.split_at_mut(i);
+            let left = &mut left[i - 1];
+            let right = &right[0];
+
+            // Share domains backward
+            for domain in &right.domains {
+                if !left.domains.contains(domain) && left.settled_layer.depth() < 6 {
+                    left.domains.push(*domain);
+                    left.confidence = (left.confidence + 0.05).min(1.0);
+                }
+            }
+        }
+
+        // Pass 3: Entity propagation — if a token has an entity, share its domain
+        // with other tokens in the same domain to strengthen unification.
+        // Collect entity-domain pairs first, then apply mutations (avoid borrow conflict).
+        let entity_domains: Vec<Option<Domain>> =
+            tokens.iter().map(|t| t.domains.first().copied()).collect();
+        for i in 0..len {
+            if tokens[i].entity.is_some() {
+                if let Some(domain) = entity_domains[i] {
+                    if let Some(seed) = self
+                        .entity_registry
+                        .search_seeds_ref(domain.full_name_lower())
+                        .first()
+                    {
+                        let seed_id = seed.id.clone();
+                        for (j, token) in tokens.iter_mut().enumerate() {
+                            if i != j
+                                && token.entity.is_none()
+                                && !token.formulas.is_empty()
+                                && token.domains.contains(&domain)
+                            {
+                                token.entity = Some(seed_id.clone());
+                                token.confidence = (token.confidence + 0.2).min(1.0);
+                                token.provenance.push(ProvenanceStep::Unification {
+                                    formula_id: token.formulas.first().cloned().unwrap_or_default(),
+                                    entity_id: seed_id.clone(),
+                                    bound_inputs: vec![("constraint_propagation".to_string(), 1.0)],
+                                    output_value: None,
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /// Descent a single token through all 7 layers.
@@ -1020,7 +1441,12 @@ impl DescentEngine {
         let mut st = SettledToken::new(token);
 
         // ── Layer 1: Macro ──
-        // Nothing to do — token starts here.
+        // Record that descent began for this token (traceability)
+        st.provenance.push(ProvenanceStep::DomainClassification {
+            domain: "unresolved".to_string(),
+            keyword: token.to_lowercase(),
+            confidence: 0.0,
+        });
 
         // ── FACT-FIRST: Entity + Formula lookup ──
         // The CID simulation proved: KB lookup BEFORE logic gates yields optimal results.
@@ -1108,6 +1534,15 @@ impl DescentEngine {
         if !found_entity {
             self.resolve_entity(&mut st);
         }
+
+        // ── Layer 6b: Unification ──
+        // If formula found but entity still not matched, try unification:
+        // search entity registry for entities in the same domain whose properties
+        // match the formula's input names.
+        if !found_entity && st.entity.is_none() && !st.formulas.is_empty() {
+            self.unify_formula_with_entities(&mut st);
+        }
+
         if st.entity.is_none() {
             // Entity wasn't found despite having formulas — settle at Formula
             st.settled_layer = DescentLayer::Formula;
@@ -1159,6 +1594,24 @@ impl DescentEngine {
             }
             st.settled_layer = DescentLayer::Entity;
             st.confidence = 0.8;
+            st.provenance.push(ProvenanceStep::EntityMatch {
+                entity_id: de.id.clone(),
+                domain: st
+                    .domains
+                    .first()
+                    .map(|d| d.full_name_lower().to_string())
+                    .unwrap_or_default(),
+            });
+            // Attach formal expression if available
+            if st.formal_expression.is_none() {
+                if let Some(expr) = formal_expression_for(&token_lower) {
+                    st.formal_expression = Some(expr.to_string());
+                    st.provenance.push(ProvenanceStep::FormalExpression {
+                        token: token_lower.clone(),
+                        expression: expr.to_string(),
+                    });
+                }
+            }
             return true;
         }
 
@@ -1176,6 +1629,12 @@ impl DescentEngine {
             st.domains.push(f.domain);
             st.settled_layer = DescentLayer::Formula;
             st.confidence = 0.6;
+            st.provenance.push(ProvenanceStep::FormulaMatch {
+                formula_id: f.id.clone(),
+                domain: f.domain.full_name_lower().to_string(),
+                inputs: f.inputs.clone(),
+                output: f.output.clone(),
+            });
 
             // Also add related formulas from the same domain
             let related = self.formula_registry.search(f.domain.full_name_lower());
@@ -1188,6 +1647,16 @@ impl DescentEngine {
             // Set western classification from formula domain
             let sign = sign_from_domain(f.domain);
             st.western_classification = st.western_classification.clone().with_sign(sign, 0.9);
+            // Attach formal expression if available
+            if st.formal_expression.is_none() {
+                if let Some(expr) = formal_expression_for(&token_lower) {
+                    st.formal_expression = Some(expr.to_string());
+                    st.provenance.push(ProvenanceStep::FormalExpression {
+                        token: token_lower.clone(),
+                        expression: expr.to_string(),
+                    });
+                }
+            }
             return true;
         }
 
@@ -1221,6 +1690,11 @@ impl DescentEngine {
         if let Some(domain) = domain_for_keyword(&token_lower) {
             if !st.domains.contains(&domain) {
                 st.domains.push(domain);
+                st.provenance.push(ProvenanceStep::DomainClassification {
+                    domain: domain.full_name_lower().to_string(),
+                    keyword: token_lower.clone(),
+                    confidence: 0.4,
+                });
             }
         }
 
@@ -1230,6 +1704,11 @@ impl DescentEngine {
             for f in results.iter().take(3) {
                 if !st.domains.contains(&f.domain) {
                     st.domains.push(f.domain);
+                    st.provenance.push(ProvenanceStep::DomainClassification {
+                        domain: f.domain.full_name_lower().to_string(),
+                        keyword: token_lower.clone(),
+                        confidence: 0.3,
+                    });
                 }
             }
         }
@@ -1253,6 +1732,17 @@ impl DescentEngine {
 
             st.settled_layer = DescentLayer::Domain;
             st.confidence = 0.4;
+        }
+
+        // Attach formal expression if available for this token
+        if st.formal_expression.is_none() {
+            if let Some(expr) = formal_expression_for(&token_lower) {
+                st.formal_expression = Some(expr.to_string());
+                st.provenance.push(ProvenanceStep::FormalExpression {
+                    token: token_lower,
+                    expression: expr.to_string(),
+                });
+            }
         }
     }
 
@@ -1378,6 +1868,51 @@ impl DescentEngine {
         }
     }
 
+    // ─── Layer 6b: Unification (Formula → Entity) ───────────────────────────
+
+    /// Unify formulas with entities: when a formula is found but entity isn't,
+    /// search entity registry for entities in the same domain. This pushes from
+    /// Formula → Entity depth via domain-based unification.
+    ///
+    /// Strategy: formula inputs are variable names (e.g., ["mass", "velocity"]),
+    /// entity properties are abstract values (e.g., {vitality: 0.9}).
+    /// Property names rarely match directly, so we unify by shared domain.
+    fn unify_formula_with_entities(&self, st: &mut SettledToken) -> bool {
+        if st.formulas.is_empty() || st.entity.is_some() {
+            return false;
+        }
+
+        // For each domain the token has, search seed entities in that domain
+        for domain in &st.domains {
+            let seeds = self
+                .entity_registry
+                .search_seeds_ref(domain.full_name_lower());
+            if let Some(seed) = seeds.first() {
+                st.entity = Some(seed.id.clone());
+
+                // Record provenance
+                let formula_id = st.formulas.first().cloned().unwrap_or_default();
+                st.provenance.push(ProvenanceStep::Unification {
+                    formula_id,
+                    entity_id: seed.id.clone(),
+                    bound_inputs: vec![(domain.full_name_lower().to_string(), 1.0)],
+                    output_value: None,
+                });
+
+                // If seed has a formula field, add it to formulas list
+                if let Some(ref formula_ref) = seed.formula {
+                    if !st.formulas.contains(formula_ref) {
+                        st.formulas.push(formula_ref.clone());
+                    }
+                }
+
+                return true;
+            }
+        }
+
+        false
+    }
+
     // ─── Layer 7: NAND Resolution ───────────────────────────────────────────
 
     /// Attempt to resolve the token to NAND absolute truth.
@@ -1451,14 +1986,15 @@ fn ruler_to_graha(ruler: PlanetaryRuler) -> Graha {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::entity::{EventRegistry, ShikaiFormRegistry};
+    use crate::entity::{EntityRegistry, EventRegistry, ShikaiFormRegistry};
     use crate::formula::FormulaRegistry;
 
     fn test_engine() -> DescentEngine {
         let registry = FormulaRegistry::new();
+        let entity_registry = EntityRegistry::new();
         let forms = ShikaiFormRegistry::new();
         let events = EventRegistry::new();
-        DescentEngine::new(registry, forms, events)
+        DescentEngine::new(registry, entity_registry, forms, events)
     }
 
     // ─── Pure function tests (original Laverna) ───────────────────────────

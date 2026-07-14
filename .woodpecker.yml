@@ -26,9 +26,10 @@ pipeline:
       - file target/x86_64-unknown-linux-musl/release/laverna
       - "! readelf -d target/x86_64-unknown-linux-musl/release/laverna 2>/dev/null | grep -q NEEDED"
 
-  portable:
+  embedded-corpus:
     image: rustlang/rust:latest
     commands:
-      - cargo build --release --no-default-features --features portable
+      - cargo build --release --no-default-features
       - ./target/release/laverna ping
       - ./target/release/laverna info
+      - cd /tmp && ./target/release/laverna entities | grep -q "214" || { echo "seed corpus not embedded"; exit 1; }

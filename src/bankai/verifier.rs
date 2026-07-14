@@ -560,4 +560,30 @@ mod tests {
         assert!(back.passed);
         assert_eq!(back.input, "2 + 3 = 5");
     }
+
+    // ── D1/D2 regression: false equations must fail, non-finite must fail ──
+
+    #[test]
+    fn d1_false_equations_fail() {
+        for e in ["2 + 3 = 6", "1 = 2", "0 = 1", "7*7 = 0", "1 + 1 = 99999"] {
+            let report = verify_expression(e);
+            assert!(!report.passed, "{e} must NOT pass");
+        }
+    }
+
+    #[test]
+    fn d1_true_equations_pass() {
+        for e in ["2 + 3 = 5", "5 = 5", "2^10 = 1024", "10 % 3 = 1"] {
+            let report = verify_expression(e);
+            assert!(report.passed, "{e} MUST pass");
+        }
+    }
+
+    #[test]
+    fn d2_non_finite_never_passes() {
+        for e in ["1e400 = 0", "1e400 = 1e400"] {
+            let report = verify_expression(e);
+            assert!(!report.passed, "{e} must NOT pass");
+        }
+    }
 }

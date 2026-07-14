@@ -2,7 +2,7 @@ pub mod personality;
 
 use serde::{Deserialize, Serialize};
 
-use crate::astrology::{Graha, Rashi};
+use crate::astrology::{Graha, House, Rashi};
 use crate::ephemeris::{self, GrahaPosition};
 
 /// A real astronomical aspect between two grahas, computed from their actual
@@ -42,11 +42,28 @@ pub struct ChartSnapshot {
     pub graha_positions: Vec<GrahaPosition>,
     /// Lagna (ascendant) rashi — computed if latitude/longitude are set.
     pub lagna: Option<Rashi>,
+    /// Lagna (ascendant) sidereal ecliptic degree [0, 360) — the exact
+    /// ascendant point, computed if latitude/longitude are set.
+    pub ascendant_deg: Option<f64>,
+    /// House cusps (bhavas) — computed if latitude/longitude are set.
+    /// Each entry is (House, tropical longitude in degrees, sidereal rashi).
+    pub house_cusps: Vec<HouseCusp>,
     /// Aspect matrix: aspect between each pair of grahas (9×9).
     /// Indexed by Graha::index() (0=Surya..8=Ketu).
     pub aspect_matrix: Vec<Vec<Option<Aspect>>>,
     /// Human-readable label (e.g. "birth chart for major_depression").
     pub label: Option<String>,
+}
+
+/// A single house cusp: the house, its tropical longitude, and sidereal rashi.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct HouseCusp {
+    /// Which house (1st through 12th).
+    pub house: House,
+    /// Tropical ecliptic longitude in degrees [0, 360).
+    pub tropical: f64,
+    /// Sidereal rashi at this cusp longitude.
+    pub rashi: Rashi,
 }
 
 impl ChartSnapshot {
@@ -61,16 +78,20 @@ impl ChartSnapshot {
             longitude: None,
             graha_positions,
             lagna: None,
+            ascendant_deg: None,
+            house_cusps: Vec::new(),
             aspect_matrix,
             label: None,
         }
     }
 
-    /// Set observer location and recompute lagna.
+    /// Set observer location and recompute lagna + house cusps.
     pub fn with_location(mut self, latitude: f64, longitude: f64) -> Self {
         self.latitude = Some(latitude);
         self.longitude = Some(longitude);
         self.lagna = self.compute_lagna(latitude, longitude);
+        self.ascendant_deg = Some(self.compute_ascendant_sidereal_deg(latitude, longitude));
+        self.house_cusps = self.compute_house_cusps(latitude, longitude);
         self
     }
 
@@ -103,15 +124,18 @@ impl ChartSnapshot {
         matrix
     }
 
-    /// Compute the lagna (ascendant) rashi from JD, latitude, and longitude.
+    /// Sidereal ecliptic degree [0, 360) of the ascendant (lagna point) for a
+    /// given observer — the exact rising point, before converting to a rashi.
     ///
-    /// Uses `xalen-houses` for the ascendant calculation. Pipeline:
+    /// Shared by `compute_lagna` (rashi) and `compute_house_cusps`
+    /// (rising-sign start) so the ascendant is computed exactly once and
+    /// cannot drift between the two. Pipeline:
     /// 1. GMST from JD (xalen_houses::gmst)
     /// 2. Local Sidereal Time from GMST + longitude
     /// 3. RAMC from LST (xalen_houses::compute_ramc)
     /// 4. Ascendant ecliptic longitude (xalen_houses::compute_ascendant)
-    /// 5. Subtract ayanamsa → sidereal → rashi
-    fn compute_lagna(&self, latitude: f64, longitude: f64) -> Option<Rashi> {
+    /// 5. Subtract ayanamsa → sidereal degree
+    fn compute_ascendant_sidereal_deg(&self, latitude: f64, longitude: f64) -> f64 {
         let gmst_hours = xalen_houses::gmst(self.julian_day);
         let lst_hours = xalen_houses::local_sidereal_time(gmst_hours, longitude);
         let ramc_rad = xalen_houses::compute_ramc(lst_hours);
@@ -121,13 +145,50 @@ impl ChartSnapshot {
         );
 
         let lat_rad = latitude.to_radians();
-        let asc_rad = xalen_houses::compute_ascendant(ramc_rad, epsilon_rad, lat_rad);
-        let asc_tropical = norm360(asc_rad.to_degrees());
+        let asc_tropical =
+            norm360(xalen_houses::compute_ascendant(ramc_rad, epsilon_rad, lat_rad).to_degrees());
 
         let ayanamsa = ephemeris::lahiri_ayanamsa(self.julian_day);
-        let asc_sidereal = norm360(asc_tropical - ayanamsa);
+        norm360(asc_tropical - ayanamsa)
+    }
+
+    fn compute_lagna(&self, latitude: f64, longitude: f64) -> Option<Rashi> {
+        let asc_sidereal = self.compute_ascendant_sidereal_deg(latitude, longitude);
         let xrashi = xalen_vedic::rashi::Rashi::from_longitude_deg(asc_sidereal);
         Some(Rashi::from_index(xrashi.index()))
+    }
+
+    /// Compute all 12 house cusps (bhavas) using the sidereal Whole Sign system.
+    ///
+    /// Sidereal Whole Sign: the 1st house is the *entire sidereal sign* that
+    /// contains the sidereal ascendant, and the 12 houses are the 12 sidereal
+    /// signs in order. The 1st cusp is therefore the sidereal start of the
+    /// rising sign — which is what Swiss Ephemeris produces for `b'W'` with the
+    /// sidereal flag.
+    ///
+    /// This is computed directly from the sidereal ascendant rather than via
+    /// `xalen_houses::compute_houses_sidereal`: that helper builds the cusps in
+    /// the *tropical* sign frame of the ascendant and only then subtracts the
+    /// ayanamsa, which mis-frames the houses (it lands on the wrong sign
+    /// boundary by the ayanamsa amount). Building from the sidereal ascendant
+    /// keeps every cusp on a true sidereal sign boundary and keeps the 1st
+    /// house's rashi identical to the lagna rashi.
+    fn compute_house_cusps(&self, latitude: f64, longitude: f64) -> Vec<HouseCusp> {
+        let asc_sidereal = self.compute_ascendant_sidereal_deg(latitude, longitude);
+
+        // 1st cusp = sidereal start of the rising sign; the rest step by 30°.
+        let rising_sign_start = (asc_sidereal / 30.0).floor() * 30.0;
+        let mut result = Vec::with_capacity(12);
+        for i in 0..12 {
+            let cusp_sidereal = norm360(rising_sign_start + i as f64 * 30.0);
+            let xrashi = xalen_vedic::rashi::Rashi::from_longitude_deg(cusp_sidereal);
+            result.push(HouseCusp {
+                house: House::from_index(i),
+                tropical: cusp_sidereal,
+                rashi: Rashi::from_index(xrashi.index()),
+            });
+        }
+        result
     }
 
     /// Get the position of a specific graha.
@@ -181,12 +242,35 @@ impl ChartSnapshot {
         ));
 
         if let Some(lagna) = self.lagna {
+            let deg_line = match self.ascendant_deg {
+                Some(deg) => format!("  —  {deg:.4}° sidereal"),
+                None => String::new(),
+            };
             out.push_str(&format!(
-                "Lagna (Ascendant): {} {} ({:?})\n\n",
+                "Lagna (Ascendant): {} {} ({:?}){}\n\n",
                 lagna.symbol(),
                 lagna.name(),
                 lagna,
+                deg_line,
             ));
+        }
+
+        if !self.house_cusps.is_empty() {
+            out.push_str("── Bhavas (House Cusps) ──\n");
+            out.push_str(&format!(
+                "{:8} | {:>9} | {:10} | {}\n",
+                "house", "longitude", "rashi", "domain"
+            ));
+            for cusp in &self.house_cusps {
+                out.push_str(&format!(
+                    "{:8} | {:>8.2}° | {:10} | {}\n",
+                    cusp.house.name(),
+                    cusp.tropical,
+                    cusp.rashi.name(),
+                    cusp.house.domain(),
+                ));
+            }
+            out.push('\n');
         }
 
         out.push_str(&format!(
@@ -356,6 +440,35 @@ mod tests {
     }
 
     #[test]
+    fn whole_sign_cusps_align_with_sidereal_ascendant() {
+        // Audit reference chart: 1994-04-14 20:09 UT, lat 45.4, lon -92.9.
+        // Sidereal ascendant = 127.648° (Simha). In sidereal Whole Sign the 1st
+        // cusp is the *start of the rising sidereal sign* (120.0° Simha) — not
+        // the ascendant degree, and not a tropical-frame-shifted boundary.
+        let jd = ephemeris::julian_day(1994, 4, 14, 20.15);
+        let snap = ChartSnapshot::new(jd).with_location(45.4, -92.9);
+        let cusps = &snap.house_cusps;
+        assert_eq!(cusps.len(), 12);
+        assert!(
+            (cusps[0].tropical - 120.0).abs() < 1e-6,
+            "cusp1 should be start of rising sidereal sign, got {}",
+            cusps[0].tropical
+        );
+        for i in 0..12 {
+            let expected = (120.0 + i as f64 * 30.0) % 360.0;
+            assert!(
+                (cusps[i].tropical - expected).abs() < 1e-6,
+                "cusp{} = {}, expected {}",
+                i + 1,
+                cusps[i].tropical,
+                expected
+            );
+        }
+        // The 1st house rashi must match the lagna rashi (both Simha).
+        assert_eq!(cusps[0].rashi, snap.lagna.unwrap());
+    }
+
+    #[test]
     fn synastry_self() {
         let snap = ChartSnapshot::new(2451545.0);
         let aspects = snap.synastry_with(&snap);
@@ -464,5 +577,56 @@ mod tests {
         assert!(!output.is_empty());
         assert!(output.contains("Surya"));
         assert!(output.contains("Aspect Matrix"));
+    }
+
+    // ── D6 regression: house cusps (bhavas) ──
+
+    #[test]
+    fn house_cusps_computed_with_location() {
+        let snap = ChartSnapshot::new(2451545.0).with_location(51.5, 0.0);
+        assert_eq!(snap.house_cusps.len(), 12, "must have 12 house cusps");
+        // First cusp (1st house) should match the lagna longitude
+        let first_cusp = &snap.house_cusps[0];
+        assert_eq!(first_cusp.house, crate::astrology::House::First);
+    }
+
+    #[test]
+    fn house_cusps_empty_without_location() {
+        let snap = ChartSnapshot::new(2451545.0);
+        assert!(snap.house_cusps.is_empty());
+    }
+
+    #[test]
+    fn house_cusps_all_12_houses_present() {
+        let snap = ChartSnapshot::new(2451545.0).with_location(40.7, -74.0);
+        for i in 0..12 {
+            let cusp = &snap.house_cusps[i];
+            assert_eq!(cusp.house, crate::astrology::House::from_index(i));
+            assert!(
+                cusp.tropical >= 0.0 && cusp.tropical < 360.0,
+                "cusp longitude must be in [0, 360): {}",
+                cusp.tropical
+            );
+        }
+    }
+
+    #[test]
+    fn house_cusps_deterministic() {
+        let a = ChartSnapshot::new(2451545.0).with_location(51.5, 0.0);
+        let b = ChartSnapshot::new(2451545.0).with_location(51.5, 0.0);
+        for (ca, cb) in a.house_cusps.iter().zip(b.house_cusps.iter()) {
+            assert_eq!(ca.tropical.to_bits(), cb.tropical.to_bits());
+        }
+    }
+
+    #[test]
+    fn format_includes_bhavas() {
+        let snap = ChartSnapshot::new(2451545.0)
+            .with_location(40.7, -74.0)
+            .with_label("test");
+        let output = snap.format();
+        assert!(output.contains("Bhavas"));
+        assert!(output.contains("1st"));
+        assert!(output.contains("10th"));
     }
 }

@@ -251,7 +251,7 @@ impl<'a> Parser<'a> {
         let base = self.parse_unary()?;
         if let Some(Token::Pow) = self.peek() {
             self.advance();
-            let exp = self.parse_unary()?;
+            let exp = self.parse_power()?; // Right-associative: 2^3^2 = 2^(3^2) = 512
             Some(base.powf(exp))
         } else {
             Some(base)
@@ -510,5 +510,24 @@ mod tests {
         let env = TantoEnv::new();
         assert_eq!(eval_op_format(b"add 2 3", &env), Some(5.0));
         assert_eq!(eval_op_format(b"mul 3 4", &env), Some(12.0));
+    }
+
+    // ── D3 regression: exponent chain must not drop terms ──
+
+    #[test]
+    fn d3_exponent_chain_right_associative() {
+        let env = TantoEnv::new();
+        // 2^3^2 = 2^(3^2) = 2^9 = 512 (right-associative)
+        let v = eval_math(b"2^3^2", &env).unwrap();
+        assert!((v - 512.0).abs() < 1e-6, "expected 512, got {v}");
+
+        // ** is the same operator
+        let v = eval_math(b"2**3**2", &env).unwrap();
+        assert!((v - 512.0).abs() < 1e-6, "expected 512, got {v}");
+
+        // Explicit parens still work
+        assert!((eval_math(b"(2^3)^2", &env).unwrap() - 64.0).abs() < 1e-6);
+        assert!((eval_math(b"2^(3^2)", &env).unwrap() - 512.0).abs() < 1e-6);
+        assert!((eval_math(b"2^3", &env).unwrap() - 8.0).abs() < 1e-6);
     }
 }
