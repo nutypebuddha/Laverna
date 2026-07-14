@@ -28,7 +28,7 @@ thiserror = "2"
 libc = "0.2"
 
 # TOML parsing
-toml = "0.8"
+toml = "1.1"
 
 # Compute
 vsop87 = "3.0.0"
