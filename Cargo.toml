@@ -55,7 +55,7 @@ criterion = { version = "0.5", features = ["html_reports"], optional = true }
 
 [dev-dependencies]
 tempfile = "3"
-pprof = { version = "0.14", features = ["criterion", "flamegraph"] }
+pprof = { version = "0.15", features = ["criterion", "flamegraph"] }
 
 [features]
 default = []  # minimal: no heavy deps, fast builds
