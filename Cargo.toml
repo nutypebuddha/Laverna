@@ -33,7 +33,7 @@ toml = "0.8"
 # Compute
 vsop87 = "3.0.0"
 astro = "2.0.0"
-sha2 = "0.10"
+sha2 = "0.11"
 xalen-vedic = "0.6"
 xalen-houses = "0.6"
 xalen-ayanamsa = "0.6"
