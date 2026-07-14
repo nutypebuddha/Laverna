@@ -1,0 +1,177 @@
+# Laverna — Release Workflow
+# Triggered on v* tag push: full CI gate + cross-compile 4 targets + GitHub Release
+
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+env:
+  CARGO_TERM_COLOR: always
+  RUSTFLAGS: "-D warnings"
+
+jobs:
+  # ─── CI Gate (must pass before any binary is built) ─────────────────────
+  gate:
+    name: CI Gate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          components: rustfmt, clippy
+
+      - name: Install cargo-deny
+        uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-deny
+
+      - name: Install cargo-audit
+        uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-audit
+
+      - name: Check formatting
+        run: cargo fmt -- --check
+
+      - name: Clippy (default features)
+        run: cargo clippy -- -D warnings
+
+      - name: Clippy (with llm)
+        run: cargo clippy --features llm -- -D warnings
+
+      - name: License / ban / advisory check
+        run: cargo deny check
+
+      - name: Tests
+        run: cargo test
+
+      - name: Tests (llm)
+        run: cargo test --features llm --lib
+
+      - name: Security audit
+        run: cargo audit
+
+  # ─── Cross-compile 4 targets ───────────────────────────────────────────
+  build:
+    name: Build (${{ matrix.target }})
+    needs: gate
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - target: x86_64-unknown-linux-musl
+            arch: x86_64
+          - target: x86_64-unknown-linux-gnu
+            arch: x86_64
+          - target: aarch64-unknown-linux-musl
+            arch: aarch64
+          - target: aarch64-unknown-linux-gnu
+            arch: aarch64
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          target: ${{ matrix.target }}
+      - uses: taiki-e/setup-cross-toolchain-action@v1
+        with:
+          target: ${{ matrix.target }}
+
+      - name: Build (slim: no default features)
+        run: cargo build --release --target ${{ matrix.target }} --no-default-features
+
+      - name: Verify static link (musl)
+        if: contains(matrix.target, 'musl')
+        run: |
+          bin=target/${{ matrix.target }}/release/laverna
+          file "$bin"
+          if readelf -d "$bin" | grep -q NEEDED; then
+            echo "::error::$bin is dynamically linked"; exit 1
+          fi
+
+      - name: Determine version
+        id: version
+        run: echo "tag=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+
+      - name: Rename binary
+        run: |
+          src=target/${{ matrix.target }}/release/laverna
+          dst="laverna-${{ steps.version.outputs.tag }}-${{ matrix.target }}"
+          cp "$src" "$dst"
+          echo "BINARY=$dst" >> "$GITHUB_ENV"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.BINARY }}
+          path: ${{ env.BINARY }}
+          retention-days: 5
+
+  # ─── Create GitHub Release ──────────────────────────────────────────────
+  release:
+    name: Publish Release
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - name: Generate changelog
+        id: changelog
+        run: |
+          # Find previous tag (skip current)
+          PREV_TAG=$(git tag --sort=-v:refname | head -2 | tail -1)
+          CURR_TAG=${GITHUB_REF_NAME}
+
+          if [ -z "$PREV_TAG" ] || [ "$PREV_TAG" = "$CURR_TAG" ]; then
+            echo "## What's Changed" > CHANGELOG.md
+            echo "" >> CHANGELOG.md
+            git log --oneline --no-decorate | head -20 >> CHANGELOG.md
+          else
+            echo "## What's Changed since $PREV_TAG" > CHANGELOG.md
+            echo "" >> CHANGELOG.md
+            git log --oneline --no-decorate "${PREV_TAG}..${CURR_TAG}" >> CHANGELOG.md
+          fi
+
+          echo "" >> CHANGELOG.md
+          echo "## Binaries" >> CHANGELOG.md
+          echo "" >> CHANGELOG.md
+          echo "| Target | Binary |" >> CHANGELOG.md
+          echo "|--------|--------|" >> CHANGELOG.md
+          for f in artifacts/laverna-*; do
+            name=$(basename "$f")
+            target=$(echo "$name" | sed 's/laverna-[^-]*-//')
+            echo "| \`$target\` | \`$name\` |" >> CHANGELOG.md
+          done
+
+          echo "" >> CHANGELOG.md
+          echo "---" >> CHANGELOG.md
+          echo "Built with determinism-first Rust. No ML, no side effects, no hallucinations." >> CHANGELOG.md
+
+      - name: Generate checksums
+        run: |
+          cd artifacts
+          sha256sum laverna-* > SHA256SUMS.txt
+          cat SHA256SUMS.txt
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: CHANGELOG.md
+          files: |
+            artifacts/laverna-*
+            artifacts/SHA256SUMS.txt
+          generate_release_notes: false
+          draft: false
+          prerelease: false
