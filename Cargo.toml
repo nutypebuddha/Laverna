@@ -41,7 +41,7 @@ xalen-time = "0.6"
 xalen-coords = "0.6"
 
 # MCP Server (optional)
-rmcp = { version = "1.4", features = ["server", "transport-io"], optional = true }
+rmcp = { version = "2.2", features = ["server", "transport-io"], optional = true }
 tokio = { version = "1", features = ["io-util", "rt", "rt-multi-thread"], optional = true }
 
 # Web search / World Bank stats (optional)
