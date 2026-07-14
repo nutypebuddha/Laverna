@@ -1,28 +1,43 @@
 # Laverna — Agent Instructions
 
-Vedic reasoning engine reboot. 4-layer architecture:
-**Asauchi** → **Zanpakuto** → **Shikai** → **Bankai**.
-NAND gate primitives at the bottom. Determinism-first.
+Deterministic Vedic reasoning engine. 4-layer pipeline:
+**Primitive** → **Asauchi** → **Zanpakuto** → **Bankai**.
+NAND gates at the bottom. Pure functions only. No ML in core.
 
 ## Environment
-- aarch64 Linux; check disk before building: `df -h / | tail -1`
+
+- aarch64 proot Debian on Android
+- Check disk before building: `df -h / | tail -1`
 - `CARGO_BUILD_JOBS` is NOT hardcoded — set per-invocation
 - `/sdcard` is vfat FUSE: no symlinks, no exec bits, use `cp`
+- Rust stable (see `rust-toolchain.toml`): `rustfmt`, `clippy`, `llvm-tools`
 
 ## Dev cycle
+
 ```bash
 cargo clippy -- -D warnings && cargo test --lib && cargo fmt -- --check
 ```
 
-## CI gate order
-`fmt --check` → `clippy -D warnings` (default + `--features llm`) →
-`cargo deny check` → `cargo test` → `cargo test --features llm --lib` → `cargo audit`
+## CI gate order (4 separate GitHub Actions jobs)
 
-## Build & features
-```bash
-cargo build --release                                     # native
-cargo build --release --target x86_64-unknown-linux-musl --no-default-features
 ```
+Job 1: Check    → fmt → clippy (default) → clippy (--features llm) → deny → test → swiss_oracle → mcp_parity → test (mcp) → test (llm)
+Job 2: Audit    → cargo audit
+Job 3: Cross    → musl x86_64 + aarch64 builds → verify static link (no NEEDED)
+Job 4: Corpus   → build → run `ping` → `info` → `entities` from /tmp (must find 214)
+```
+
+Branch protection requires all 4 job names to pass.
+
+## Build
+
+```bash
+cargo build --release                                                    # native
+cargo build --release --target x86_64-unknown-linux-musl --no-default-features  # slim cross
+```
+
+### Feature flags
+
 | feature | enables | default |
 |---------|---------|---------|
 | `mcp` | rmcp + tokio JSON-RPC server | no |
@@ -31,59 +46,68 @@ cargo build --release --target x86_64-unknown-linux-musl --no-default-features
 | `bench` | criterion harness | no |
 | `llm` | llama-gguf local LLM backend | no |
 
-The seed corpus (formulas, synonyms, nonmath, shikai forms, events, entities) is
-**always embedded** in the binary by `build.rs` (no feature gate) — `entities` /
-`formulas` / `entity-get` load from any CWD, not just the repo root. `info`
-reports `embedded-corpus` to make this explicit. The old `portable` feature was
-removed (it was a no-op after T35).
+Seed corpus is **always embedded** by `build.rs` — no feature gate.
+Binary is self-contained from any CWD.
+
+### Release profile
+
+`lto = "fat"`, `codegen-units = 1`, `strip = "symbols"`, `panic = "abort"`.
+There is also a `ci` profile that inherits from `release`.
 
 ## Architecture
-- **Layer 0 — Primitive**: `src/primitive/`, `src/descent/`, `src/gyro/`
-- **Layer 1 — Asauchi**: `src/asauchi/`, `src/formula/`, `src/entity/`, `src/ephemeris/`, `src/chart/`
-- **Layer 2 — Zanpakuto**: `src/zanpakuto/`, `src/shikai/`
-- **Layer 3 — Bankai**: `src/bankai/`, `src/mcp/`
 
-Pipeline: query → zanpakuto_nlp → descent_engine → shikai_process → bankai_solve
+| Layer | Modules | Role |
+|-------|---------|------|
+| 0 Primitive | `primitive/`, `descent/`, `gyro/` | NAND gates, 7-layer descent engine, wheel router |
+| 1 Asauchi | `asauchi/`, `formula/`, `entity/`, `ephemeris/`, `chart/` | Registries, ephemeris, birth charts |
+| 2 Zanpakuto | `zanpakuto/`, `shikai/` | NLP tokenization, query intent, domain classification |
+| 3 Bankai | `bankai/`, `mcp/` | Verifier, diagnostics, MCP server |
 
-## Naming Conventions (GNU/UNIX Pure Function Style)
+Pipeline: `query` → `zanpakuto_nlp` → `descent_engine` → `shikai_process` → `bankai_solve`
 
-All functions must be **pure**: no side effects, deterministic, all inputs as
-parameters, all outputs as return values. No global state.
+Entry: `src/cli/mod.rs` (clap). Library: `src/lib.rs`.
 
-### Functions
-- `snake_case` — always
-- **Verb-first**: `compute_*`, `evaluate_*`, `validate_*`, `transform_*`, `encode_*`, `decode_*`
-- **Module prefix** when disambiguation needed: `nand_gate()`, `nand_not()`, `nand_and()`
+## Naming (GNU/UNIX Pure Function Style)
+
+All functions **pure** — no side effects, deterministic, all inputs as params.
+
+- Functions: `snake_case`, **verb-first** (`compute_*`, `evaluate_*`, `validate_*`)
 - **No abbreviations**: `accumulator` not `acc`, `left_operand` not `lhs`
-- **Bool predicates**: `is_*`, `has_*`, `can_*`
-
-### Types
-- `PascalCase` — always
-- **Suffix by role**: `*Registry`, `*Engine`, `*Gate`, `*Result`, `*Config`
-
-### Constants
-- `SCREAMING_SNAKE_CASE`
-
-### Modules
-- `snake_case` — single word preferred
-
-### Example
-```rust
-/// Pure function: NAND gate. Universal gate — all others derive from this.
-pub fn nand_gate(left_input: bool, right_input: bool) -> bool {
-    !(left_input && right_input)
-}
-
-/// Pure function: Half adder. Returns (sum, carry).
-pub fn half_adder(left_operand: bool, right_operand: bool) -> (bool, bool) {
-    let sum = xor_gate(nand_gate(left_operand, right_operand), or_gate(left_operand, right_operand));
-    let carry = and_gate(left_operand, right_operand);
-    (sum, carry)
-}
-```
+- Module prefix when disambiguating: `nand_gate()`, `nand_not()`
+- Bool predicates: `is_*`, `has_*`, `can_*`
+- Types: `PascalCase`, suffix by role (`*Registry`, `*Engine`, `*Gate`, `*Result`)
+- Constants: `SCREAMING_SNAKE_CASE`
 
 ## Conventions
-- Formulas, not facts: encode relationships, not static lookups
-- Cross-domain by default: new formulas reference ≥2 grahas
-- Commits: Conventional Commits (`feat(wheel):`, `fix(bankai):`)
-- Errors: `anyhow` at call sites, `thiserror` for library types
+
+- **Errors**: `anyhow` at call sites, `thiserror` for library types
+- **Commits**: Conventional Commits — `feat(wheel):`, `fix(bankai):`
+- **Formulas, not facts**: encode relationships, not static lookups
+- **Cross-domain**: new formulas reference ≥2 grahas
+- **Doc comments**: `/// Pure function:` prefix on every public fn
+- **Section headers**: `// ─── Section Name ───` (Unicode box-drawing)
+- **Testing**: determinism assertions (run 3×, compare bit-for-bit), float tolerance `1e-12`, no mocking
+- **Deps**: only crates.io, `cargo deny` enforced, no git dependencies
+
+## Tests
+
+```bash
+cargo test                                              # all unit + integration
+cargo test --test swiss_oracle                          # Swiss Ephemeris regression (0.05° tolerance)
+cargo test --features mcp --test mcp_parity             # CLI/MCP byte-identical parity
+cargo test --features llm --lib                         # LLM feature tests
+```
+
+539 unit tests, 11 integration tests. Integration tests in `tests/`.
+`energy_efficiency_integration.rs` exercises all 14 subsystems.
+
+## Release
+
+Push a tag to trigger the release workflow (CI gate → 4 cross-compiled binaries → GitHub Release):
+
+```bash
+git tag v0.1.0 && git push origin v0.1.0
+```
+
+Binaries: `laverna-{version}-{target}` + `SHA256SUMS.txt`.
+Targets: x86_64/aarch64 × gnu/musl.
